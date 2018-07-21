@@ -1,0 +1,178 @@
+.body {
+    background-color: #333333;
+    color: white;
+}
+
+header {
+    background-color: mediumpurple;
+    position: static;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    height: 120px;
+}
+
+h1 {
+    color:  #333333;
+}
+
+#title {
+    color: white;
+    margin: 10px;
+}
+
+#title a {
+    color: white;
+    transition: color 0.5s;
+}
+
+#title a:hover {
+    text-decoration: none;
+    color: orange
+}
+
+#loginForm {
+    text-align: center;
+}
+
+#loginForm form {
+    background-color: orange;
+    display: inline-block;
+    padding: 20px;
+    width: 400px;
+    color: white;
+    text-align: left;
+}
+
+#loginForm input {
+    margin: 10px;
+
+}
+
+#logoutButton, #loginForm {
+    background-color: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#projectForm form{
+    width: 400px;
+    display: inline-block;
+    text-align: left;
+    background-color: grey;
+    padding: 30px;
+    margin: 10px;
+}
+
+#projectForm {
+    position: static;
+    text-align: center;
+}
+
+#mainBody {
+    text-align: center;
+    transition: opacity 1s;
+}
+
+.projectMiniatureLink {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    background-color: mediumpurple;
+    color: white;
+    vertical-align: top;
+    transition: background-color 0.7s;
+    overflow: hidden;
+}
+
+.projectMiniatureLink:hover {
+    background-color: mediumpurple;
+}
+
+.projectMiniature {
+    position: relative;
+    display: inline-block;
+    padding: 0px;
+    vertical-align: top;
+    margin: 20px;
+}
+
+.projectMiniature img {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.projectMiniature .projectName {
+    background-color: mediumpurple;
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: absolute;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    padding: 10px;
+}
+
+.projectMiniature .projectName:hover {
+    opacity: 0.8;
+}
+
+.deleteForm {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+}
+
+#projectImages .image {
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+}
+
+#projectImages {
+    text-align: center;
+}
+
+#projectImages .image form {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+#projectDetails {
+    margin: 20px;
+}
+
+.timelineMiniature {
+    width: 400px;
+    background-color: mediumpurple;
+    position: relative;
+    display: block;
+    text-align: left;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.timelineMiniature form {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#mainBodyTimeline {
+    position: static;
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    border-left: 2px solid white
+}
+
+#timeline {
+    text-align: center;
+}
+

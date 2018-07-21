@@ -1,0 +1,92 @@
+import React from 'react';
+import { hot } from 'react-hot-loader';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import { connect } from 'react-redux';
+import { uploadImages } from '../actions/actions';
+
+import 'react-datepicker/dist/react-datepicker.css';
+
+class AddImageToProject extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            images:[]
+        }
+
+        this.onClickUpdate = this.onClickUpdate.bind(this);
+        this.updateImages = this.updateImages.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.state.token = nextProps.token;
+        this.setState({
+            images:[]
+        })
+    }
+
+    componentWillMount() {
+        this.state.token = this.props.token;
+    }
+
+    onClickUpdate() {
+        this.props.dispatch(uploadImages(
+            this.state.images,
+            this.props.id,
+            this.state.token
+        ));
+        this.setState({
+            images: []
+        })
+    }
+
+    updateImages(imgList) {
+        let imgs = [];
+        console.log(imgList);
+        Array.from(imgList).forEach(elt => {
+            let reader = new FileReader();
+            console.log(elt);
+            reader.onload = (e) => {
+                imgs.push({url:e.target.result, blob:elt});
+                this.setState({
+                    images:imgs,
+                })
+            };
+            reader.readAsDataURL(elt);
+        });
+    }
+
+    render() {
+        if (this.state.token != "none")
+            return (
+                <div id="projectForm"> 
+                    <form>
+                        <h3>Add image to this project</h3>
+                        <div className="form-group"> 
+                            <label htmlFor="images">Images</label>
+                            <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple />
+                            { this.state.images.length > 0 &&
+                                this.state.images.map(function (img, i) {
+                                    return <img key={i} src={img.url} style={{height:200, width:'auto'}}/>
+                                })
+                            }
+                        </div>
+                        <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
+                    </form>                
+                </div>
+            );
+        else
+            return <div></div>
+    }
+}
+
+function mapStateToProps(state) {
+    const token = state.loginInfos.token;
+
+    return {
+        token
+     };
+}
+
+export default hot(module)(connect(mapStateToProps)(AddImageToProject));

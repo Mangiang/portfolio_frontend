@@ -1,18 +1,14 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
-import '../design.css'
-import '../bootstrap.min.css'
+import {hot} from 'react-hot-loader'
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { getProjects } from '../actions/actions';
-import ProjectMiniature from './ProjectMiniature';
-import AddProject from './AddProject'
-import HeaderComponent from './HeaderComponent';
+import {getProjects} from '../actions/actions';
+import ProjectsListScreen from '../screens/ProjectsListScreen';
 
 class App extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             projects: []
         }
@@ -29,25 +25,15 @@ class App extends React.Component {
 
     render() {
         return(
-            <div>
-                <HeaderComponent/>
-                <AddProject/>        
-                <div id="mainBody"> 
-                {
-                    this.state.projects.map(function (project, i) {
-                        return <ProjectMiniature key={i} project={project}/>
-                    })
-                }
-                </div>
-            </div>
+            <ProjectsListScreen/>
         )
     }
 }
 
 function mapStateToProps(state) {
     const projects = state.projects;
-    console.log("asdasd")
-    console.log(state.projects)
+    console.log("asdasd");
+    console.log(state.projects);
 
     return {
         projects

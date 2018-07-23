@@ -1,15 +1,14 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {hot} from 'react-hot-loader';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {Nav, Navbar, NavItem} from 'react-bootstrap';
 
-import Login from './Login'
-
-import './styles/HeaderComponentStyles.css'
+import {NavLink, NavLinksList} from './styles/HeaderComponentStyles'
 
 class HeaderComponent extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             token: "none"
         }
@@ -20,8 +19,8 @@ class HeaderComponent extends React.Component {
     }
 
     render() {
-        let title = ""
-        console.log("t", this.props)
+        let title = "";
+        console.log("t", this.props);
         if (this.props.page === "timeline") {
             title = (
                 <div id="title">
@@ -31,7 +30,7 @@ class HeaderComponent extends React.Component {
             )
         }
         else {
-            console.log("t")
+            console.log("t");
             title = (
                 <div id="title">
                     <h1><Link to={'/'}>Portefolio</Link></h1>
@@ -42,10 +41,25 @@ class HeaderComponent extends React.Component {
 
         return (
 
-            <header className='headerInline'>
+            <Navbar inverse collapseOnSelect>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <a href="/">Arthur Joly</a>
+                    </Navbar.Brand>
+                </Navbar.Header>
+                <Nav style={NavLinksList}>
+                    <NavItem style={NavLink} href="/projectsList">
+                        Portfolio
+                    </NavItem>
+                    <NavItem href="/timeline">
+                        Timeline
+                    </NavItem>
+                </Nav>
+            </Navbar>
+            /*<header className='headerInline'>
                 {title}
                 <Login/>               
-            </header>
+            </header>*/
         )
     }
 }

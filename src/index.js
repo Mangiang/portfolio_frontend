@@ -1,43 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import {Router, Route} from 'react-router';
+import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
-console.log("Miaou !");
-
-
-
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import Switch from 'react-router-dom/Switch';
-//import epipic from './reducers/reducers';
-import { store } from './store/store';
-import { getNext } from './actions/actions';
+import {store} from './store/store';
+import {getNext} from './actions/actions';
+import {Parallax} from 'react-parallax';
+
+import './design.css'
+import './bootstrap.min.css'
+
+import BackgroundImage from './images/backgroundImage.jpg'
+
+import HeaderComponent from './components/HeaderComponent';
 
 import TimelineScreen from './screens/TimelineScreen'
-import ProjectScreen from './screens/ProjectScreen'
-
-console.log();
+import ProjectsListScreen from './screens/ProjectsListScreen'
 
 let render = function(component, eltId) {
   ReactDOM.render( 
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' component={App}/>
-          <Route path='/timeline' component={TimelineScreen}/>
-          <Route path='/project/:id' component={ProjectScreen}/>
+            <Parallax
+                blur={10}
+                bgImage={BackgroundImage}
+                bgImageAlt="the cat"
+                strength={200}
+            >
+                <HeaderComponent page="projects"/>
+                <Route exact path='/' component={App}/>
+                <Route path='/timeline' component={TimelineScreen}/>
+                <Route path='/projectsList' component={ProjectsListScreen}/>
+            </Parallax>
         </Switch>
       </BrowserRouter>
     </Provider>, 
     document.getElementById(eltId)
   );
-}
+};
 
 if(document.getElementById('rootIndex')) {
     render(<App/>, 'rootIndex')
 }
 
-/*
-if(document.getElementById('rootProfil')) {
+/*if(document.getElementById('rootProfil')) {
     render(<App/>, 'rootProfil')
 }*/

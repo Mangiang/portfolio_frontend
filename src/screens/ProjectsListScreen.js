@@ -1,28 +1,28 @@
 import React from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
-import Timeline from '../components/Timeline';
 
-
-class TimelineScreen extends React.Component {
+class ProjectsListScreen extends React.Component {
     constructor(props) {
         super(props)
+    }
+
+    componentWillMount() {
     }
   
     render() {
         return (
             <div>
-                <Timeline/>
             </div>
         )
    }
 }
 
 function mapStateToProps(state) {
-
+    
     return {
         state
     };
 }
 
-export default hot(module)(connect(mapStateToProps)(TimelineScreen));
+export default hot(module)(connect(mapStateToProps)(ProjectsListScreen));

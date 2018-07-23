@@ -20,7 +20,7 @@ module.exports = env => {
         new DuplicatePackageCheckerPlugin()
     );
 
-    if (env.PROD_ENV !== "headless") {
+    if (!env || env.PROD_ENV !== "headless") {
         const WebpackMonitor = require('webpack-monitor');
         pluginList.push(
             new WebpackMonitor({

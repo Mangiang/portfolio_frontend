@@ -5,7 +5,7 @@ const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
 const imageLoader = require('image-webpack-loader');
 const urlLoader = require('url-loader');
-
+const path = require('path');
 
 module.exports = env => {
     const pluginList = [];
@@ -33,8 +33,11 @@ module.exports = env => {
     return webpackMerge(commonConfiguration, {
         mode: 'production',
         plugins: [...pluginList],
-        output: {
-            path: __dirname + '/dist',
+        entry: {
+	    index: path.resolve('./src/index.js')
+	},
+	output: {
+            path: __dirname + '../../../dist',
             filename: 'bundle.js'
         },
         optimization: {
@@ -55,17 +58,6 @@ module.exports = env => {
                     test: /\.(png|jpg|gif)$/,
                     loader: 'image-webpack-loader',
                     enforce: 'pre',
-                },
-                {
-                    test: /\.(png|jpg|gif)$/,
-                    use: [
-                        {
-                            loader: 'url-loader',
-                            options: {
-                                limit: 500
-                            }
-                        }
-                    ]
                 }
             ]
         }

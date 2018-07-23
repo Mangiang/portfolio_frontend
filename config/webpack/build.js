@@ -33,9 +33,6 @@ module.exports = env => {
     return webpackMerge(commonConfiguration, {
         mode: 'production',
         plugins: [...pluginList],
-        entry: {
-            index: './src/index.js'
-        },
         output: {
             path: __dirname + '/dist',
             filename: 'bundle.js'

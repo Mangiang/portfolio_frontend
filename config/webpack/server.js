@@ -2,14 +2,14 @@ const webpackMerge = require('webpack-merge');
 const commonConfiguration = require('./common');
 
 module.exports = env => {
-    let devServ = {overlay: false, open: false};
+    let devServ = {overlay: true, open: true};
     if (!env || env.PROD_ENV !== "headless") {
-        devServ = {overlay: false, open: false};
+        devServ = {overlay: true, open: false};
     }
 
-    webpackMerge(commonConfiguration, {
+    return webpackMerge(commonConfiguration, {
         mode: 'development',
-        devServer: {...devServ},
+        devServer: devServ,
         entry: './src/index.js',
         output: {
             path: __dirname + '/dist',

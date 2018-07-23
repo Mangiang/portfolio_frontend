@@ -6,6 +6,7 @@ describe('>>> HEADER COMPONENT', () => {
 
     beforeAll(async (done) => {
         browser = await puppeteer.launch({
+	    args:['--no-sandbox'],
             headless: true
         });
         page = await browser.newPage();

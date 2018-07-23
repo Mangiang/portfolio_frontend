@@ -7,69 +7,70 @@ const imageLoader = require('image-webpack-loader');
 const urlLoader = require('url-loader');
 
 
-const pluginList = [];
-pluginList.push(
-    new webpack.DefinePlugin({
-        'process.env': {
-            'NODE_ENV': JSON.stringify('production')
-        }
-    })
-);
-pluginList.push(
-    new DuplicatePackageCheckerPlugin()
-);
-
-if (process.env.NODE_ENV !== "headless") {
-    const WebpackMonitor = require('webpack-monitor');
+module.exports = env => {
+    const pluginList = [];
     pluginList.push(
-        new WebpackMonitor({
-            capture: true,
-            launch: true,
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         })
     );
-}
+    pluginList.push(
+        new DuplicatePackageCheckerPlugin()
+    );
 
-
-module.exports = webpackMerge(commonConfiguration, {
-    mode: 'production',
-    plugins: [...pluginList],
-    entry: {
-        index: './src/index.js'
-    },
-    output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
-    },
-    optimization: {
-        minimizer: [
-            new uglifyJSPlugin({
-                parallel: true,
-                uglifyOptions: {
-                    compress: {
-                        drop_console: true,
-                    }
-                }
+    if (env.PROD_ENV !== "headless") {
+        const WebpackMonitor = require('webpack-monitor');
+        pluginList.push(
+            new WebpackMonitor({
+                capture: true,
+                launch: true,
             })
-        ]
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: 'image-webpack-loader',
-                enforce: 'pre',
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 500
+        );
+    }
+
+    return webpackMerge(commonConfiguration, {
+        mode: 'production',
+        plugins: [...pluginList],
+        entry: {
+            index: './src/index.js'
+        },
+        output: {
+            path: __dirname + '/dist',
+            filename: 'bundle.js'
+        },
+        optimization: {
+            minimizer: [
+                new uglifyJSPlugin({
+                    parallel: true,
+                    uglifyOptions: {
+                        compress: {
+                            drop_console: true,
                         }
                     }
-                ]
-            }
-        ]
-    }
-});
+                })
+            ]
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    loader: 'image-webpack-loader',
+                    enforce: 'pre',
+                },
+                {
+                    test: /\.(png|jpg|gif)$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 500
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    });
+};

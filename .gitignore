@@ -23,3 +23,6 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+dist/
+config/webpack/dist/
+monitor/

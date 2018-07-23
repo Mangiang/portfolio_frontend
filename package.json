@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --hot --config ./config/webpack/server.js",
-    "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js"
+    "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js",
+    "headless_build": "./node_modules/.bin/webpack --env.PROD_ENV=headless --config ./config/webpack/build.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

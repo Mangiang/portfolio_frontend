@@ -1,75 +1,74 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Nav, Navbar, NavItem} from 'react-bootstrap';
+import {withRouter} from 'react-router';
 
-import {NavLink, NavLinksList} from './styles/HeaderComponentStyles'
+import {styles} from './styles/HeaderComponentStyles'
+
+
+import BackgroundImage from '../images/backgroundImage.jpg'
+import {Parallax} from 'react-parallax';
+
+import {requestNavigation} from '../actions/actions';
 
 class HeaderComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            token: "none"
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.state.token = nextProps.token;
     }
 
     render() {
-        let title = "";
-        console.log("t", this.props);
-        if (this.props.page === "timeline") {
-            title = (
-                <div id="title">
-                    <Link to={'/'}>Portefolio</Link>
-                    <h1><Link to={'/'}>Timeline</Link></h1>
-                </div>
-            )
-        }
-        else {
-            console.log("t");
-            title = (
-                <div id="title">
-                    <h1><Link to={'/'}>Portefolio</Link></h1>
-                    <Link to={'/timeline'}>Timeline</Link>
-                </div>
-            )
-        }
-
+        console.log(this.props.currentPage);
         return (
-
-            <Navbar inverse collapseOnSelect>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="/">Arthur Joly</a>
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav style={NavLinksList}>
-                    <NavItem style={NavLink} href="/projectsList">
-                        Portfolio
-                    </NavItem>
-                    <NavItem href="/timeline">
-                        Timeline
-                    </NavItem>
-                </Nav>
-            </Navbar>
-            /*<header className='headerInline'>
-                {title}
-                <Login/>               
-            </header>*/
+            <div>
+                <Parallax
+                    blur={3}
+                    bgImage={BackgroundImage}
+                    bgImageAlt="the background image"
+                    strength={500}>
+                    <div style={styles.backgroundOverlay}>
+                        <h1 style={styles.centerName}>Arthur Joly's portfolio</h1>
+                        <h4 style={styles.centerDescription}>
+                            Here is a list of some projects I worked on<br/>
+                        </h4>
+                        <button onClick={this.handleTimelineRedirect.bind(this)}>
+                            {(this.props.currentPage !== 'timeline' ? 'Timeline' : 'Projects list')}
+                        </button>
+                        <div style={{height: 200}}/>
+                    </div>
+                </Parallax>
+                <div style={{height: 5000000}}/>
+            </div>
         )
+    }
+
+    handleTimelineRedirect() {
+        if (this.props.currentPage === "timeline")
+            this.props.requestNavigation('projectslist');
+        else {
+            this.props.requestNavigation('timeline');
+        }
+        this.props.history.push('/' + this.props.currentPage);
     }
 }
 
 function mapStateToProps(state) {
-    const token = state.loginInfos.token;
-
+    const destinationPage = state.navHeader;
+    if (!destinationPage || Object.keys(destinationPage).length === 0) {
+        return {
+            currentPage: 'projectsList'
+        };
+    }
     return {
-        token: token
-     };
+        currentPage: destinationPage
+    };
 }
 
-export default hot(module)(connect(mapStateToProps)(HeaderComponent));
+function mapDispatchToProps(dispatch) {
+    return {
+        requestNavigation: (newPage) => {
+            dispatch(requestNavigation(newPage));
+        }
+    }
+}
+
+export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)));

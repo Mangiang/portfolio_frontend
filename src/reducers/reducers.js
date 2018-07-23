@@ -1,11 +1,12 @@
-import { combineReducers } from 'redux';
-import { 
+import {combineReducers} from 'redux';
+import {
+    REQUEST_DISPLAY_PROJECT,
+    REQUEST_GET_PROJECTS,
+    REQUEST_GET_TIMELINES,
     REQUEST_LOGIN,
     REQUEST_LOGIN_FAILED,
     REQUEST_LOGOUT,
-    REQUEST_GET_PROJECTS,
-    REQUEST_DISPLAY_PROJECT,
-    REQUEST_GET_TIMELINES
+    REQUEST_NAVIGATION
 } from '../actions/actions';
 
 
@@ -15,17 +16,17 @@ function loginInfos(state = {}, action) {
             return {
                 token: action.connectionToken,
                 loginFailed: false
-            }
+            };
         case REQUEST_LOGIN_FAILED:
             return {
                 token: state.token,
                 loginFailed: true
-            }
+            };
         case REQUEST_LOGOUT:
             return {
                 token: "none",
                 loginFailed: false
-            }
+            };
         default:
             return state;
     }
@@ -59,11 +60,21 @@ function timelines(state = {}, action) {
     }
 }
 
+function navHeader(state = {}, action) {
+    switch (action.type) {
+        case REQUEST_NAVIGATION:
+            return action.destinationPage;
+        default:
+            return state;
+    }
+}
+
 const portfolio = combineReducers({
     loginInfos,
     projects,
     currentProject,
-    timelines
-})
+    timelines,
+    navHeader
+});
 
 export default portfolio;

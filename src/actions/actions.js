@@ -14,12 +14,12 @@ export const REQUEST_GET_TIMELINES = 'REQUEST_GET_TIMELINES';
 export const REQUEST_ADD_TIMELINE = 'REQUEST_ADD_TIMELINE';
 export const REQUEST_DELETE_TIMELINE = 'REQUEST_DELETE_TIMELINE';
 export const REQUEST_DELETE_IMAGE = 'REQUEST_DELETE_IMAGE';
-
+export const REQUEST_NAVIGATION = 'REQUEST_NAVIGATION';
 
 const API = 'https://arthur-joly.fr:4242/';
 
 //action creators
-const requestLogin = function(token) {
+const requestLogin = function (token) {
     console.log("requestLogin");
     console.log(token);
     return {
@@ -28,7 +28,7 @@ const requestLogin = function(token) {
     }
 };
 
-const requestLoginFailed = function() {
+const requestLoginFailed = function () {
     return {
         type: REQUEST_LOGIN_FAILED
     }
@@ -46,33 +46,33 @@ export function login(login, password) {
                 login: login,
                 password: password
             })
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json();
         })
-        .then(data => {
-            console.log("fffffgf");
-            console.log(data);
-            if (data.success) {
-                cookie.save('portfolioToken', data.token, { path: '/' });
-                dispatch(requestLogin(data.token));
-            }
-            else {
-                dispatch(requestLoginFailed());
-            }
-        });
+            .then(data => {
+                console.log("fffffgf");
+                console.log(data);
+                if (data.success) {
+                    cookie.save('portfolioToken', data.token, {path: '/'});
+                    dispatch(requestLogin(data.token));
+                }
+                else {
+                    dispatch(requestLoginFailed());
+                }
+            });
     }
 }
 
 export function logout() {
     console.log(cookie.load('portfolioToken'));
-    cookie.remove('portfolioToken', { path: '/' });
+    cookie.remove('portfolioToken', {path: '/'});
     console.log(cookie.load('portfolioToken'));
     return {
         type: REQUEST_LOGOUT
     }
 }
 
-const requestAddProject = function() {
+const requestAddProject = function () {
     return {
         type: REQUEST_ADD_PROJECT
     }
@@ -88,37 +88,38 @@ export function addProject(title, description, beginDate, endDate, images, token
             }),
             method: 'POST',
             body: JSON.stringify({
-                title:title,
-                description:description,
-                beginDate:beginDate,
-                endDate:endDate
+                title: title,
+                description: description,
+                beginDate: beginDate,
+                endDate: endDate
             })
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json();
         })
-        .then(data => {
-            console.log("add", data, images, token);
-            if (images && data && token)
-                dispatch(uploadImages(images, data.id, token));
-            dispatch(requestAddProject());
-        }).then(() => dispatch(getProjects()));
+            .then(data => {
+                console.log("add", data, images, token);
+                if (images && data && token)
+                    dispatch(uploadImages(images, data.id, token));
+                dispatch(requestAddProject());
+            }).then(() => dispatch(getProjects()));
     }
 }
 
 export function uploadImages(images, projectId, token) {
     if (images.length === 0 || !images[0])
-        return () => {};
+        return () => {
+        };
 
     return (dispatch) => {
         images.forEach((elt) => {
             let formData = new FormData();
             formData.append('image', elt.blob);
             axios({
-                method:'post',
-                url:API + "project/upload/" + projectId.toString(),
-                data:formData,
-                headers:{"authorization": "Bearer " + token, "Content-Type":"multipart/form-data"}
-            }).then(function() {
+                method: 'post',
+                url: API + "project/upload/" + projectId.toString(),
+                data: formData,
+                headers: {"authorization": "Bearer " + token, "Content-Type": "multipart/form-data"}
+            }).then(function () {
                 dispatch(getProjects());
                 dispatch(displayProject(projectId));
             }).catch(function (error) {
@@ -128,7 +129,7 @@ export function uploadImages(images, projectId, token) {
     }
 }
 
-const requestDeleteImage = function() {
+const requestDeleteImage = function () {
     return {
         type: REQUEST_DELETE_IMAGE
     }
@@ -146,20 +147,20 @@ export function deleteImage(id, projectId, token) {
             body: JSON.stringify({
                 imageId: id
             })
-        }).then(function(response) {
+        }).then(function (response) {
             return response;
         })
-        .then(data => {
-            console.log("delete", data);
-            dispatch(requestDeleteImage());
-        }).then(function() {
+            .then(data => {
+                console.log("delete", data);
+                dispatch(requestDeleteImage());
+            }).then(function () {
             dispatch(displayProject(projectId));
         });
     }
 }
 
 
-const requestGetProjects = function(projects) {
+const requestGetProjects = function (projects) {
     return {
         type: REQUEST_GET_PROJECTS,
         projects: projects
@@ -173,17 +174,17 @@ export function getProjects() {
                 "Content-Type": "application/json"
             }),
             method: 'GET'
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json();
         })
-        .then(data => {
-            console.log("GetProjects", data);
-            dispatch(requestGetProjects(data.projects));
-        });
+            .then(data => {
+                console.log("GetProjects", data);
+                dispatch(requestGetProjects(data.projects));
+            });
     }
 }
 
-const requestDisplayProject = function(project) {
+const requestDisplayProject = function (project) {
     return {
         type: REQUEST_DISPLAY_PROJECT,
         project: project
@@ -198,18 +199,18 @@ export function displayProject(id) {
                 "Content-Type": "application/json"
             }),
             method: 'GET'
-        }).then(function(response) {
+        }).then(function (response) {
             console.log("display", response);
             return response.json();
         })
-        .then(data => {
-            console.log("project", data);
-            dispatch(requestDisplayProject(data));
-        });
+            .then(data => {
+                console.log("project", data);
+                dispatch(requestDisplayProject(data));
+            });
     }
 }
 
-const requestUpdateProject = function() {
+const requestUpdateProject = function () {
     return {
         type: REQUEST_UPDATE_PROJECT
     }
@@ -225,25 +226,25 @@ export function updateProject(id, title, description, beginDate, endDate, token)
             }),
             method: 'PUT',
             body: JSON.stringify({
-                title:title,
-                description:description,
-                beginDate:beginDate,
-                endDate:endDate
+                title: title,
+                description: description,
+                beginDate: beginDate,
+                endDate: endDate
             })
-        }).then(function(response) {
+        }).then(function (response) {
             console.log("miaou", response);
             return response.json();
         })
-        .then(data => {
-            console.log("miaou", data);
-            dispatch(requestUpdateProject());
-        }).then(function() {
+            .then(data => {
+                console.log("miaou", data);
+                dispatch(requestUpdateProject());
+            }).then(function () {
             dispatch(displayProject(id));
         });
     }
 }
 
-const requestDeleteProject = function() {
+const requestDeleteProject = function () {
     return {
         type: REQUEST_DELETE_PROJECT
     }
@@ -258,20 +259,19 @@ export function deleteProject(id, token) {
                 "authorization": "Bearer " + token
             }),
             method: 'DELETE',
-            body: JSON.stringify({
-            })
-        }).then(function(response) {
+            body: JSON.stringify({})
+        }).then(function (response) {
             return response;
         })
-        .then(data => {
-            dispatch(requestDeleteProject());
-        }).then(function() {
+            .then(() => {
+                dispatch(requestDeleteProject());
+            }).then(function () {
             dispatch(getProjects());
         });
     }
 }
 
-const requestGetTimelines = function(timelines = null) {
+const requestGetTimelines = function (timelines = null) {
     return {
         type: REQUEST_GET_TIMELINES,
         timelines: timelines
@@ -286,17 +286,17 @@ export function getTimelines() {
                 "Content-Type": "application/json"
             }),
             method: 'GET'
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json();
         })
-        .then(data => {
-            console.log("data", data);
-            dispatch(requestGetTimelines(data.timelines));
-        });
+            .then(data => {
+                console.log("data", data);
+                dispatch(requestGetTimelines(data.timelines));
+            });
     }
 }
 
-const requestAddTimeline = function() {
+const requestAddTimeline = function () {
     return {
         type: REQUEST_ADD_TIMELINE
     }
@@ -312,24 +312,24 @@ export function addTimeline(title, description, beginDate, endDate, token) {
             }),
             method: 'POST',
             body: JSON.stringify({
-                title:title,
-                description:description,
-                beginDate:beginDate,
-                endDate:endDate
+                title: title,
+                description: description,
+                beginDate: beginDate,
+                endDate: endDate
             })
-        }).then(function(response) {
+        }).then(function (response) {
             return response;
         })
-        .then(data => {
-            console.log("add", data);
-            dispatch(requestAddTimeline(data));
-        }).then(function() {
+            .then(data => {
+                console.log("add", data);
+                dispatch(requestAddTimeline(data));
+            }).then(function () {
             dispatch(getTimelines());
         });
     }
 }
 
-const requestDeleteTimeline = function() {
+const requestDeleteTimeline = function () {
     return {
         type: REQUEST_DELETE_TIMELINE
     }
@@ -344,17 +344,21 @@ export function deleteTimeline(id, token) {
                 "authorization": "Bearer " + token
             }),
             method: 'DELETE',
-            body: JSON.stringify({
-            })
-        }).then(function(response) {
+            body: JSON.stringify({})
+        }).then(function (response) {
             return response;
         })
-        .then(data => {
-            dispatch(requestDeleteTimeline());
-        }).then(function() {
+            .then(() => {
+                dispatch(requestDeleteTimeline());
+            }).then(function () {
             dispatch(getTimelines());
         });
     }
 }
 
-
+export function requestNavigation(destinationPage = 'projectsList') {
+    return {
+        type: REQUEST_NAVIGATION,
+        destinationPage: destinationPage
+    }
+}

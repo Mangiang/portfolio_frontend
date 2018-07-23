@@ -7,12 +7,9 @@ import {Provider} from 'react-redux';
 import Switch from 'react-router-dom/Switch';
 import {store} from './store/store';
 import {getNext} from './actions/actions';
-import {Parallax} from 'react-parallax';
 
 import './design.css'
 import './bootstrap.min.css'
-
-import BackgroundImage from './images/backgroundImage.jpg'
 
 import HeaderComponent from './components/HeaderComponent';
 
@@ -24,17 +21,10 @@ let render = function(component, eltId) {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-            <Parallax
-                blur={10}
-                bgImage={BackgroundImage}
-                bgImageAlt="the cat"
-                strength={200}
-            >
-                <HeaderComponent page="projects"/>
-                <Route exact path='/' component={App}/>
-                <Route path='/timeline' component={TimelineScreen}/>
-                <Route path='/projectsList' component={ProjectsListScreen}/>
-            </Parallax>
+            <HeaderComponent page="projects"/>
+            <Route exact path='/' component={App}/>
+            <Route path='/timeline' component={TimelineScreen}/>
+            <Route path='/projectsList' component={ProjectsListScreen}/>
         </Switch>
       </BrowserRouter>
     </Provider>, 

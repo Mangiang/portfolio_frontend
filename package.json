@@ -44,6 +44,7 @@
   "scripts": {
     "test": "jest",
     "start": "./node_modules/.bin/webpack-dev-server --hot --config ./config/webpack/server.js",
+    "headless_start": "./node_modules/.bin/webpack-dev-server --env.PROD_ENV=headless --hot --config ./config/webpack/server.js",
     "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js",
     "headless_build": "./node_modules/.bin/webpack --env.PROD_ENV=headless --config ./config/webpack/build.js"
   },

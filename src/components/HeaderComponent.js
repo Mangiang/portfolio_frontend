@@ -38,8 +38,8 @@ export class HeaderComponent extends Component<Props> {
         return (
             <div key={0}>
                 <LazyHero imageSrc={backgroundImage} color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
-                    <h1 style={styles.centerName}>Arthur Joly's portfolio</h1>
-                    <h4 style={styles.centerDescription}>
+                    <h1 id="title" style={styles.centerName}>Arthur Joly's portfolio</h1>
+                    <h4 id="description" style={styles.centerDescription}>
                         {description}
                         <br/>
                     </h4>

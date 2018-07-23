@@ -23,6 +23,7 @@ exports[`>>> HEADER COMPONENT --- Snapshot +++capturing Snapshot of MyHeaderComp
     >
       <div>
         <h1
+          id="title"
           style={
             Object {
               "color": "white",
@@ -33,6 +34,7 @@ exports[`>>> HEADER COMPONENT --- Snapshot +++capturing Snapshot of MyHeaderComp
           Arthur Joly's portfolio
         </h1>
         <h4
+          id="description"
           style={
             Object {
               "color": "white",

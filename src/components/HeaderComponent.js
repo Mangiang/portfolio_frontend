@@ -16,6 +16,12 @@ class HeaderComponent extends Component {
     }
 
     render() {
+        let description = "";
+        if (this.props.currentPage === 'timeline')
+            description = "Here are both my professional and school my experience";
+        else if (this.props.currentPage === 'projectsList')
+            description = "Here is a list of my projects";
+
         return (
             <div>
                 <Parallax
@@ -26,7 +32,8 @@ class HeaderComponent extends Component {
                     <div style={styles.backgroundOverlay}>
                         <h1 style={styles.centerName}>Arthur Joly's portfolio</h1>
                         <h4 style={styles.centerDescription}>
-                            Here is a list of some projects I worked on<br/>
+                            {description}
+                            <br/>
                         </h4>
                         <button onClick={this.handleTimelineRedirect.bind(this)}>
                             {(this.props.currentPage !== 'timeline' ? 'Timeline' : 'Projects list')}
@@ -34,14 +41,13 @@ class HeaderComponent extends Component {
                         <div style={{height: 200}}/>
                     </div>
                 </Parallax>
-                <div style={{height: 5000000}}/>
             </div>
         )
     }
 
     handleTimelineRedirect() {
         if (this.props.currentPage === "timeline")
-            this.props.requestNavigation('projectslist');
+            this.props.requestNavigation('projectsList');
         else {
             this.props.requestNavigation('timeline');
         }

@@ -6,7 +6,6 @@ import {withRouter} from 'react-router';
 import {styles} from './styles/HeaderComponentStyles'
 
 
-import BackgroundImage from '../images/backgroundImage.jpg'
 import {Parallax} from 'react-parallax';
 
 import {requestNavigation} from '../actions/actions';
@@ -21,7 +20,7 @@ class HeaderComponent extends Component {
             <div>
                 <Parallax
                     blur={3}
-                    bgImage={BackgroundImage}
+                    bgImage={require('../images/backgroundImage.jpg')}
                     bgImageAlt="the background image"
                     strength={500}>
                     <div style={styles.backgroundOverlay}>

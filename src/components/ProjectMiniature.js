@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DeleteProject from './DeleteProject';
 
-
 class ProjectMiniature extends React.Component {
     constructor(props) {
         super(props);

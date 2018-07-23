@@ -3,22 +3,36 @@ const commonConfiguration = require('./common');
 const webpack = require('webpack');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
-const WebpackMonitor = require('webpack-monitor');
+const imageLoader = require('image-webpack-loader');
+const urlLoader = require('url-loader');
 
-module.exports = webpackMerge(commonConfiguration, {
-    mode: 'production',
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new DuplicatePackageCheckerPlugin(),
+
+const pluginList = [];
+pluginList.push(
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+        }
+    })
+);
+pluginList.push(
+    new DuplicatePackageCheckerPlugin()
+);
+
+if (process.env.NODE_ENV !== "headless") {
+    const WebpackMonitor = require('webpack-monitor');
+    pluginList.push(
         new WebpackMonitor({
             capture: true,
             launch: true,
         })
-    ],
+    );
+}
+
+
+module.exports = webpackMerge(commonConfiguration, {
+    mode: 'production',
+    plugins: [...pluginList],
     entry: {
         index: './src/index.js'
     },

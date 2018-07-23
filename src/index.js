@@ -1,11 +1,11 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Route} from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import Switch from 'react-router-dom/Switch';
 import {store} from './store/store';
-import {getNext} from './actions/actions';
 import Loadable from 'react-loadable';
 
 import './design.css';
@@ -39,21 +39,25 @@ const ProjectsListScreen = Loadable({
 });
 
 const render = function (component, eltId) {
-    ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
-            <HeaderComponent page="projects"/>
-            <Route exact path='/' component={App}/>
-            <Route path='/timeline' component={TimelineScreen}/>
-            <Route path='/projectsList' component={ProjectsListScreen}/>
-        </Switch>
-      </BrowserRouter>
-    </Provider>, 
-    document.getElementById(eltId)
-  );
+    const root = document.getElementById(eltId);
+
+    if (root) {
+        ReactDOM.render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Switch>
+                        <HeaderComponent page="projects"/>
+                        <Route exact path='/' component={App}/>
+                        <Route path='/timeline' component={TimelineScreen}/>
+                        <Route path='/projectsList' component={ProjectsListScreen}/>
+                    </Switch>
+                </BrowserRouter>
+            </Provider>,
+            root
+        );
+    }
 };
 
-if(document.getElementById('rootIndex')) {
+if (document.getElementById('rootIndex')) {
     render(<App/>, 'rootIndex')
 }

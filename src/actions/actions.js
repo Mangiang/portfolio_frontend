@@ -1,5 +1,10 @@
-import cookie from 'react-cookies'
-import axios from 'axios'
+// @flow
+
+import cookie from 'react-cookies';
+import axios from 'axios';
+import type {State} from '../store/store';
+
+const API = 'https://arthur-joly.fr:4242/';
 
 //action types
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
@@ -16,10 +21,29 @@ export const REQUEST_DELETE_TIMELINE = 'REQUEST_DELETE_TIMELINE';
 export const REQUEST_DELETE_IMAGE = 'REQUEST_DELETE_IMAGE';
 export const REQUEST_NAVIGATION = 'REQUEST_NAVIGATION';
 
-const API = 'https://arthur-joly.fr:4242/';
+//flow types
+export type Action =
+    { type: 'REQUEST_LOGIN', connectionToken: string }
+    | { type: 'REQUEST_LOGIN_FAILED' }
+    | { type: 'REQUEST_LOGOUT' }
+    | { type: 'REQUEST_ADD_PROJECT' }
+    | { type: 'REQUEST_GET_PROJECTS', projects: Array<Object> }
+    | { type: 'REQUEST_DISPLAY_PROJECT', project: Object }
+    | { type: 'REQUEST_UPDATE_PROJECT' }
+    | { type: 'REQUEST_DELETE_PROJECT' }
+    | { type: 'REQUEST_ADD_TIMELINE' }
+    | { type: 'REQUEST_GET_TIMELINES', timelines: ?Array<Object> }
+    | { type: 'REQUEST_DELETE_TIMELINE' }
+    | { type: 'REQUEST_DELETE_IMAGE' }
+    | { type: 'REQUEST_NAVIGATION', destinationPage: string }
+
+type GetState = () => State;
+type PromiseAction = Promise<Action>;
+type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
+type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
 
 //action creators
-const requestLogin = function (token) {
+const requestLogin = function (token): Action {
     console.log("requestLogin");
     console.log(token);
     return {
@@ -28,15 +52,14 @@ const requestLogin = function (token) {
     }
 };
 
-const requestLoginFailed = function () {
+const requestLoginFailed = function (): Action {
     return {
         type: REQUEST_LOGIN_FAILED
     }
 };
 
-export function login(login, password) {
+export function login(login: string, password: string): ThunkAction {
     return (dispatch) => {
-
         fetch(API + "user/login", {
             headers: new Headers({
                 "Content-Type": "application/json"
@@ -63,7 +86,7 @@ export function login(login, password) {
     }
 }
 
-export function logout() {
+export function logout(): Action {
     console.log(cookie.load('portfolioToken'));
     cookie.remove('portfolioToken', {path: '/'});
     console.log(cookie.load('portfolioToken'));
@@ -72,13 +95,13 @@ export function logout() {
     }
 }
 
-const requestAddProject = function () {
+const requestAddProject = function (): Action {
     return {
         type: REQUEST_ADD_PROJECT
     }
 };
 
-export function addProject(title, description, beginDate, endDate, images, token) {
+export function addProject(title: string, description: string, beginDate: string, endDate: string, images: Array<Object>, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/create", {
@@ -105,7 +128,7 @@ export function addProject(title, description, beginDate, endDate, images, token
     }
 }
 
-export function uploadImages(images, projectId, token) {
+export function uploadImages(images: Array<Object>, projectId: string, token: string): ThunkAction {
     if (images.length === 0 || !images[0])
         return () => {
         };
@@ -129,13 +152,13 @@ export function uploadImages(images, projectId, token) {
     }
 }
 
-const requestDeleteImage = function () {
+const requestDeleteImage = function (): Action {
     return {
         type: REQUEST_DELETE_IMAGE
     }
 };
 
-export function deleteImage(id, projectId, token) {
+export function deleteImage(id: string, projectId: string, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/deleteImage/" + projectId, {
@@ -160,14 +183,14 @@ export function deleteImage(id, projectId, token) {
 }
 
 
-const requestGetProjects = function (projects) {
+const requestGetProjects = function (projects: Array<Object>): Action {
     return {
         type: REQUEST_GET_PROJECTS,
         projects: projects
     }
 };
 
-export function getProjects() {
+export function getProjects(): ThunkAction {
     return (dispatch) => {
         fetch(API + "project/list", {
             headers: new Headers({
@@ -184,14 +207,14 @@ export function getProjects() {
     }
 }
 
-const requestDisplayProject = function (project) {
+const requestDisplayProject = function (project: Object): Action {
     return {
         type: REQUEST_DISPLAY_PROJECT,
         project: project
     }
 };
 
-export function displayProject(id) {
+export function displayProject(id: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/detail/" + id, {
@@ -210,13 +233,13 @@ export function displayProject(id) {
     }
 }
 
-const requestUpdateProject = function () {
+const requestUpdateProject = function (): Action {
     return {
         type: REQUEST_UPDATE_PROJECT
     }
 };
 
-export function updateProject(id, title, description, beginDate, endDate, token) {
+export function updateProject(id: string, title: string, description: string, beginDate: string, endDate: string, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/update/" + id, {
@@ -244,13 +267,13 @@ export function updateProject(id, title, description, beginDate, endDate, token)
     }
 }
 
-const requestDeleteProject = function () {
+const requestDeleteProject = function (): Action {
     return {
         type: REQUEST_DELETE_PROJECT
     }
 };
 
-export function deleteProject(id, token) {
+export function deleteProject(id: string, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/delete/" + id, {
@@ -271,14 +294,14 @@ export function deleteProject(id, token) {
     }
 }
 
-const requestGetTimelines = function (timelines = null) {
+const requestGetTimelines = function (timelines: ?Array<Object> = null): Action {
     return {
         type: REQUEST_GET_TIMELINES,
         timelines: timelines
     }
 };
 
-export function getTimelines() {
+export function getTimelines(): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "timeline/list", {
@@ -296,13 +319,13 @@ export function getTimelines() {
     }
 }
 
-const requestAddTimeline = function () {
+const requestAddTimeline = function (): Action {
     return {
         type: REQUEST_ADD_TIMELINE
     }
 };
 
-export function addTimeline(title, description, beginDate, endDate, token) {
+export function addTimeline(title: string, description: string, beginDate: string, endDate: string, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "timeline/create", {
@@ -322,20 +345,20 @@ export function addTimeline(title, description, beginDate, endDate, token) {
         })
             .then(data => {
                 console.log("add", data);
-                dispatch(requestAddTimeline(data));
+                dispatch(requestAddTimeline());
             }).then(function () {
             dispatch(getTimelines());
         });
     }
 }
 
-const requestDeleteTimeline = function () {
+const requestDeleteTimeline = function (): Action {
     return {
         type: REQUEST_DELETE_TIMELINE
     }
 };
 
-export function deleteTimeline(id, token) {
+export function deleteTimeline(id: string, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "timeline/delete/" + id, {
@@ -356,7 +379,7 @@ export function deleteTimeline(id, token) {
     }
 }
 
-export function requestNavigation(destinationPage = 'projectsList') {
+export function requestNavigation(destinationPage: string = 'projectsList'): Action {
     return {
         type: REQUEST_NAVIGATION,
         destinationPage: destinationPage

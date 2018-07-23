@@ -1,8 +1,12 @@
-import {Component} from 'react'
+// @flow
+
+import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
 
-class ProjectsListScreen extends Component {
+type Props = {}
+
+class ProjectsListScreen extends Component<Props> {
     constructor(props) {
         super(props)
     }
@@ -12,14 +16,12 @@ class ProjectsListScreen extends Component {
   
     render() {
         return (
-            <div>
-            </div>
+            <div/>
         )
    }
 }
 
 function mapStateToProps(state) {
-    
     return {
         state
     };

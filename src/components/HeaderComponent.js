@@ -1,16 +1,25 @@
+// @flow
+
 import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import type {Dispatch} from "redux"
 
 import {styles} from './styles/HeaderComponentStyles'
 
 
-import {Parallax} from 'react-parallax';
+import Parallax from 'react-parallax';
 
 import {requestNavigation} from '../actions/actions';
 
-class HeaderComponent extends Component {
+type Props = {
+    currentPage: string,
+    requestNavigation: (currentPage: string) => any,
+    history: Object
+}
+
+class HeaderComponent extends Component<Props> {
     constructor(props) {
         super(props);
     }
@@ -67,7 +76,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<*>) {
     return {
         requestNavigation: (newPage) => {
             dispatch(requestNavigation(newPage));

@@ -4,12 +4,11 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import type {Dispatch} from "redux"
+import type {Dispatch} from "redux";
 
-import {styles} from './styles/HeaderComponentStyles'
-
-
-import Parallax from 'react-parallax';
+import {styles} from './styles/HeaderComponentStyles';
+import backgroundImage from '../images/backgroundImage.jpg';
+import LazyHero from 'react-lazy-hero';
 
 import {requestNavigation} from '../actions/actions';
 
@@ -19,37 +18,33 @@ type Props = {
     history: Object
 }
 
-class HeaderComponent extends Component<Props> {
-    constructor(props) {
+export class HeaderComponent extends Component<Props> {
+    constructor(props: Props) {
         super(props);
     }
 
     render() {
         let description = "";
-        if (this.props.currentPage === 'timeline')
+        let buttonTitle = "";
+        if (this.props.currentPage === 'timeline') {
             description = "Here are both my professional and school my experience";
-        else if (this.props.currentPage === 'projectsList')
+            buttonTitle = 'Timeline';
+        }
+        else if (this.props.currentPage === 'projectsList') {
             description = "Here is a list of my projects";
+            buttonTitle = "Projects list"
+        }
 
         return (
-            <div>
-                <Parallax
-                    blur={3}
-                    bgImage={require('../images/backgroundImage.jpg')}
-                    bgImageAlt="the background image"
-                    strength={500}>
-                    <div style={styles.backgroundOverlay}>
-                        <h1 style={styles.centerName}>Arthur Joly's portfolio</h1>
-                        <h4 style={styles.centerDescription}>
-                            {description}
-                            <br/>
-                        </h4>
-                        <button onClick={this.handleTimelineRedirect.bind(this)}>
-                            {(this.props.currentPage !== 'timeline' ? 'Timeline' : 'Projects list')}
-                        </button>
-                        <div style={{height: 200}}/>
-                    </div>
-                </Parallax>
+            <div key={0}>
+                <LazyHero imageSrc={backgroundImage} color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
+                    <h1 style={styles.centerName}>Arthur Joly's portfolio</h1>
+                    <h4 style={styles.centerDescription}>
+                        {description}
+                        <br/>
+                    </h4>
+                    <button onClick={this.handleTimelineRedirect.bind(this)}>{buttonTitle}</button>
+                </LazyHero>
             </div>
         )
     }

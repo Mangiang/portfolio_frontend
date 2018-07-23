@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>> HEADER COMPONENT --- Snapshot +++capturing Snapshot of MyHeaderComponent 1`] = `
+<div>
+  <div
+    className="sc-bwzfXH jcxrUP"
+  >
+    <div
+      className="sc-htpNat VxUFJ sc-bdVaJa bkBxAm"
+      height={null}
+      src="backgroundImage.jpg"
+      style={
+        Object {
+          "backgroundPositionY": "center",
+        }
+      }
+      width={null}
+    />
+    <div
+      className="sc-bxivhb fEUpac sc-bdVaJa bkBxAm"
+      color="#4F4943"
+      opacity={0.5}
+    >
+      <div>
+        <h1
+          style={
+            Object {
+              "color": "white",
+              "paddingTop": 50,
+            }
+          }
+        >
+          Arthur Joly's portfolio
+        </h1>
+        <h4
+          style={
+            Object {
+              "color": "white",
+              "marginTop": 50,
+            }
+          }
+        >
+          
+          <br />
+        </h4>
+        <button
+          onClick={[Function]}
+        >
+          
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "react-hot-loader/babel",
+    "syntax-dynamic-import"
+  ],
+  "presets": [
+    "es2015",
+    "flow",
+    "react",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions"
+          ]
+        },
+        "modules": false
+      }
+    ]
+  ]
+}

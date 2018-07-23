@@ -6,23 +6,31 @@
   "author": "Noemie Galvada (gavald_n) | Arthur Joly (joly_p)",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^23.4.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
     "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "file-loader": "^1.1.11",
     "flow-bin": "^0.77.0",
     "flow-typed": "^2.5.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^4.3.1",
+    "jest": "^23.4.1",
     "mini-css-extract-plugin": "^0.4.0",
+    "react-addons-test-utils": "^15.6.2",
     "react-hot-loader": "^4.1.1",
     "react-loadable": "^5.4.0",
+    "react-test-renderer": "^16.4.1",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
@@ -32,6 +40,7 @@
     "webpack-monitor": "^1.0.14"
   },
   "scripts": {
+    "test": "jest",
     "start": "./node_modules/.bin/webpack-dev-server --hot --config ./config/webpack/server.js",
     "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js",
     "headless_build": "./node_modules/.bin/webpack --env.PROD_ENV=headless --config ./config/webpack/build.js"
@@ -42,33 +51,12 @@
     "react": "^16.2.0",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.1",
-    "react-parallax": "^1.8.0",
+    "react-lazy-hero": "^0.4.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
     "webpack-unused": "^0.1.0"
-  },
-  "babel": {
-    "plugins": [
-      "react-hot-loader/babel",
-      "syntax-dynamic-import"
-    ],
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "browsers": [
-              "last 2 versions"
-            ]
-          },
-          "modules": false
-        }
-      ],
-      "flow"
-    ]
   }
 }

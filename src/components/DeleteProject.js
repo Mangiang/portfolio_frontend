@@ -1,19 +1,14 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { deleteProject } from '../actions/actions';
+import {connect} from 'react-redux';
+import {deleteProject} from '../actions/actions';
 
-import 'react-datepicker/dist/react-datepicker.css';
 
 class DeleteProject extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = {
-
-        }
+        super(props);
+        this.state = {};
 
         this.onClick = this.onClick.bind(this);
     }

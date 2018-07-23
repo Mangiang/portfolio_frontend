@@ -1,23 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import Switch from 'react-router-dom/Switch';
 import {store} from './store/store';
 import {getNext} from './actions/actions';
+import Loadable from 'react-loadable';
 
-import './design.css'
-import './bootstrap.min.css'
+import './design.css';
+import './bootstrap.min.css';
 
-import HeaderComponent from './components/HeaderComponent';
 
-import TimelineScreen from './screens/TimelineScreen'
-import ProjectsListScreen from './screens/ProjectsListScreen'
+//TODO: Add loading gif
+function AppLoader() {
+    return <h3>Loading...</h3>;
+}
 
-let render = function(component, eltId) {
-  ReactDOM.render( 
+const App = Loadable({
+    loader: () =>
+        import ('./components/App'),
+    loading: AppLoader
+});
+const HeaderComponent = Loadable({
+    loader: () =>
+        import ('./components/HeaderComponent'),
+    loading: AppLoader
+});
+const TimelineScreen = Loadable({
+    loader: () =>
+        import ('./screens/TimelineScreen'),
+    loading: AppLoader
+});
+const ProjectsListScreen = Loadable({
+    loader: () =>
+        import ('./screens/ProjectsListScreen'),
+    loading: AppLoader
+});
+
+const render = function (component, eltId) {
+    ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
@@ -35,7 +57,3 @@ let render = function(component, eltId) {
 if(document.getElementById('rootIndex')) {
     render(<App/>, 'rootIndex')
 }
-
-/*if(document.getElementById('rootProfil')) {
-    render(<App/>, 'rootProfil')
-}*/

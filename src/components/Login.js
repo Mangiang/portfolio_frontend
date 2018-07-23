@@ -1,19 +1,18 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
+import {Component} from 'react';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { login, logout } from '../actions/actions';
+import {connect} from 'react-redux';
+import {login, logout} from '../actions/actions';
 
 
-
-class Login extends React.Component {
+class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             inputLogin: "",
             inputPassword: "",
             token: "none"
-        }
+        };
 
         this.onClickLogin = this.onClickLogin.bind(this);
         this.updateInputLogin = this.updateInputLogin.bind(this);
@@ -82,7 +81,7 @@ class Login extends React.Component {
 function mapStateToProps(state) {
     const token = state.loginInfos.token;
     const loginFailed = state.loginInfos.loginFailed;
-    console.log(token + "  miaou")
+    console.log(token + "  miaou");
 
     return {
         token,

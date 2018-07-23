@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
@@ -11,13 +11,12 @@ import {Parallax} from 'react-parallax';
 
 import {requestNavigation} from '../actions/actions';
 
-class HeaderComponent extends React.Component {
+class HeaderComponent extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        console.log(this.props.currentPage);
         return (
             <div>
                 <Parallax

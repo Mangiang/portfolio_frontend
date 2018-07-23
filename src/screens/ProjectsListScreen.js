@@ -1,8 +1,8 @@
-import React from 'react'
+import {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
 
-class ProjectsListScreen extends React.Component {
+class ProjectsListScreen extends Component {
     constructor(props) {
         super(props)
     }

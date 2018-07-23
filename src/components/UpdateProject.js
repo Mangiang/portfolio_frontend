@@ -1,22 +1,21 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { updateProject } from '../actions/actions';
+import {parse} from 'date-fns';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import {connect} from 'react-redux';
+import {updateProject} from '../actions/actions';
+
 
 class UpdateProject extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             inputTitle: "",
             inputDescription: "",
-            beginDate: moment(),
-            endDate: moment()
-        }
+            beginDate: new Date(),
+            endDate: new Date()
+        };
 
         this.onClickUpdate = this.onClickUpdate.bind(this);
         this.updateInputDescription = this.updateInputDescription.bind(this);
@@ -30,8 +29,8 @@ class UpdateProject extends React.Component {
         this.setState({
             inputTitle: nextProps.project.title,
             inputDescription: nextProps.project.description,
-            beginDate: moment(nextProps.project.beginDate),
-            endDate: moment(nextProps.project.endDate)
+            beginDate: parse(nextProps.project.beginDate),
+            endDate: parse(nextProps.project.endDate)
         })
     }
 
@@ -90,11 +89,9 @@ class UpdateProject extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="beginDate">Begining date</label>
-                            <DatePicker name="beginDate" selected={this.state.beginDate} onChange={this.updateBeginDate} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="endDate">Ending date</label>
-                            <DatePicker name="endDate" selected={this.state.endDate} onChange={this.updateEndDate} />
                         </div>
                         <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
                     </form>                

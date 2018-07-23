@@ -1,22 +1,19 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { addTimeline } from '../actions/actions';
+import {connect} from 'react-redux';
+import {addTimeline} from '../actions/actions';
 
-import 'react-datepicker/dist/react-datepicker.css';
 
 class AddTimeline extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             inputTitle: "",
             inputDescription: "",
-            beginDate:moment(),
-            endDate:moment()
-        }
+            beginDate: new Date(),
+            endDate: new Date()
+        };
 
         this.onClickAdd = this.onClickAdd.bind(this);
         this.updateInputDescription = this.updateInputDescription.bind(this);
@@ -44,8 +41,8 @@ class AddTimeline extends React.Component {
         this.setState({
             inputDescription: "",
             inputTitle: "",
-            beginDate:moment(),
-            endDate:moment()
+            beginDate: new Date(),
+            endDate: new Date()
         })      
     }
 
@@ -93,11 +90,9 @@ class AddTimeline extends React.Component {
                         </div>
                         <div className="form-group">
                             <label htmlFor="beginDate">Begining date</label>
-                            <DatePicker name="beginDate" selected={this.state.beginDate} onChange={this.updateBeginDate} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="endDate">Ending date</label>
-                            <DatePicker name="endDate" selected={this.state.endDate} onChange={this.updateEndDate} />
                         </div>
                         <button type="button" className="btn btn-default" onClick={() => this.onClickAdd()}>Add</button>
                     </form>                

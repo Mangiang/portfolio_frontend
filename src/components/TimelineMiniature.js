@@ -1,17 +1,15 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import moment from 'moment';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { deleteTimeline } from '../actions/actions';
+import {connect} from 'react-redux';
+import {deleteTimeline} from '../actions/actions';
 
 
-
+import {format} from 'date-fns';
 
 class TimelineMiniature extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
 
         }
@@ -34,9 +32,9 @@ class TimelineMiniature extends React.Component {
     }
 
     render() {
-        let buttonDelete = {}
+        let buttonDelete = {};
         if (this.state.token != "none") {
-            console.log("testetstetsets")
+            console.log("testetstetsets");
             buttonDelete =
                 <form>
                     <button type="button" className="btn btn-default" onClick={() => this.onClick()}>X</button>
@@ -52,8 +50,8 @@ class TimelineMiniature extends React.Component {
                 { buttonDelete }
                 <h4>{this.props.timeline.title}</h4>
                 <p>{this.props.timeline.description}</p>
-                <p>Begin date : {moment(this.props.timeline.beginDate).format("DD-MM-YYYY")}</p>
-                <p>End date : {moment(this.props.timeline.endDate).format("DD-MM-YYYY")}</p>
+                <p>Begin date : {format(this.props.timeline.beginDate, "DD-MM-YYYY")}</p>
+                <p>End date : {format(this.props.timeline.endDate, "DD-MM-YYYY")}</p>
             </div>
         )
     }

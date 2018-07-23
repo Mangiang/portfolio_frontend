@@ -1,20 +1,15 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
-import moment from 'moment';
-
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {hot} from 'react-hot-loader';
+import {format} from 'date-fns';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import DeleteProject from './DeleteProject';
-
-
 
 
 class ProjectMiniature extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = {
-
-        }
+        super(props);
+        this.state = {};
 
         this.onClick = this.onClick.bind(this);
     }
@@ -30,8 +25,8 @@ class ProjectMiniature extends React.Component {
 
     render() {
         let image = "";
-        if (this.props.project.images != undefined
-            && this.props.project.images[0] != undefined) {
+        if (this.props.project.images !== undefined
+            && this.props.project.images[0] !== undefined) {
             image = <img src={this.props.project.images[0][0].url} />
         }
 
@@ -44,8 +39,8 @@ class ProjectMiniature extends React.Component {
                         <div className="projectName">
                             <p>{this.props.project.title}</p>
                             <p>{this.props.project.description}</p>
-                            <p>Begin date : {moment(this.props.project.beginDate).format("DD-MM-YYYY")}</p>
-                            <p>End date : {moment(this.props.project.endDate).format("DD-MM-YYYY")}</p>
+                            <p>Begin date : {format(this.props.project.beginDate, "DD-MM-YYYY")}</p>
+                            <p>End date : {format(this.props.project.endDate, "DD-MM-YYYY")}</p>
                         </div>
                     </div>
                 </Link>

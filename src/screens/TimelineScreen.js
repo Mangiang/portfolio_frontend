@@ -1,10 +1,10 @@
-import React from 'react'
+import {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
 import Timeline from '../components/Timeline';
 
 
-class TimelineScreen extends React.Component {
+class TimelineScreen extends Component {
     constructor(props) {
         super(props)
     }

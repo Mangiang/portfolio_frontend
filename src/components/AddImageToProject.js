@@ -1,19 +1,16 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import {Component} from 'react';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { uploadImages } from '../actions/actions';
+import {connect} from 'react-redux';
+import {uploadImages} from '../actions/actions';
 
-import 'react-datepicker/dist/react-datepicker.css';
 
-class AddImageToProject extends React.Component {
+class AddImageToProject extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             images:[]
-        }
+        };
 
         this.onClickUpdate = this.onClickUpdate.bind(this);
         this.updateImages = this.updateImages.bind(this);
@@ -77,7 +74,7 @@ class AddImageToProject extends React.Component {
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 }
 

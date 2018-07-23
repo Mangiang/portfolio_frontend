@@ -1,29 +1,25 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
-import moment from 'moment';
+import {Component} from 'react';
+import {hot} from 'react-hot-loader';
 
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 
-import { displayProject, deleteImage } from '../actions/actions';
+import {deleteImage, displayProject} from '../actions/actions';
 import UpdateProject from './UpdateProject';
 import AddImageToProject from './AddImageToProject';
 
 
+import {format} from 'date-fns';
 
-
-class Project extends React.Component {
+class Project extends Component {
     constructor(props) {
-        super(props)
-        this.state = {
-
-        }
+        super(props);
+        this.state = {};
 
         this.onClickDelete = this.onClickDelete.bind(this)
     }
 
     onClickDelete(id) {
-        console.log("token", this.props.token)
+        console.log("token", this.props.token);
         this.props.dispatch(deleteImage(id, this.props.project.id, this.props.token));
     }
 
@@ -78,8 +74,8 @@ class Project extends React.Component {
                 <div id="projectDetails">
                     <h3>{this.props.project.title}</h3>
                     <p>Description : {this.props.project.description}</p>
-                    <p>Begin date : {moment(this.props.project.beginDate).format("DD-MM-YYYY")}</p>
-                    <p>End date : {moment(this.props.project.endDate).format("DD-MM-YYYY")}</p>
+                    <p>Begin date : {format(this.props.project.beginDate, "DD-MM-YYYY")}</p>
+                    <p>End date : {format(this.props.project.endDate, "DD-MM-YYYY")}</p>
                     <div id="projectImages"> 
                         <AddImageToProject id={this.props.project.id}/>
                         {images}

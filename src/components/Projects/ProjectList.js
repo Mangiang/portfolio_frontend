@@ -1,67 +1,59 @@
-import {Component} from 'react';
+// @flow
+
+import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 
-import {displayProject} from '../../actions/actions';
-import UpdateProject from './UpdateProject';
-import AddImageToProject from './AddImageToProject';
+import type {Dispatch} from '../../actions/actions';
+import {getProjects} from '../../actions/actions';
 
-import format from 'date-fns/format';
+import ProjectMiniature from './ProjectMiniature'
 
-class ProjectList extends Component {
-    constructor(props) {
+type Props = {
+    projects: Array<Object>,
+    getProjects: () => any
+}
+
+export class ProjectList extends Component<Props> {
+    constructor(props: Props) {
         super(props);
     }
 
     componentWillMount() {
-        this.props.dispatch(displayProject(this.props.id))
-    }
-
-    componentWillReceiveProps(nextProps) {
-
+        this.props.getProjects();
     }
 
     render() {
-        let images = "";
-        if (this.props.project.images !== undefined) {
-            images = (
-                this.props.project.images.map((img, i) => {
-                    return (
-                        <div key={i} className="image">
-                            <a href={img[0].url}>
-                                <img src={img[0].url}/>
-                            </a>
-                        </div>
-                    )
-                })
-            )
-        }
-
+        let key = -1;
         return (
             <div>
-                <UpdateProject id={this.props.id} project={this.props.project}/>
-                <div id="projectDetails">
-                    <h3>{this.props.project.title}</h3>
-                    <p>Description : {this.props.project.description}</p>
-                    <p>Begin date : {format(this.props.project.beginDate, "DD-MM-YYYY")}</p>
-                    <p>End date : {format(this.props.project.endDate, "DD-MM-YYYY")}</p>
-                    <div id="projectImages">
-                        <AddImageToProject id={this.props.project.id}/>
-                        {images}
-                    </div>
-                </div>
+                {
+                    this.props.projects.map(() => {
+                        key++;
+                        return <ProjectMiniature projectIdx={key} key={key}/>;
+                    })
+                }
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    const project = state.currentProject;
+    const projects = state.projects;
 
     return {
-        project,
+        projects,
     };
 }
 
-export default hot(module)(connect(mapStateToProps)(ProjectList));
+function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+        getProjects: () => {
+            dispatch(getProjects());
+        }
+    }
+}
+
+export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectList)));

@@ -14,23 +14,17 @@ function AppLoader() {
 }
 
 const App = Loadable({
-    loader: () =>
-        import ('./components/Other/App'),
+    loader: () => import ('./components/Other/App'),
     loading: AppLoader
 });
-const HeaderComponent = Loadable({
-    loader: () =>
-        import ('./components/Other/HeaderComponent'),
-    loading: AppLoader
-});
+
 const TimelineScreen = Loadable({
-    loader: () =>
-        import ('./screens/TimelineScreen'),
+    loader: () => import ('./screens/TimelineScreen'),
     loading: AppLoader
 });
+
 const ProjectsListScreen = Loadable({
-    loader: () =>
-        import ('./screens/ProjectsListScreen'),
+    loader: () => import ('./screens/ProjectsListScreen'),
     loading: AppLoader
 });
 
@@ -38,19 +32,18 @@ const render = function (component, eltId) {
     const root = document.getElementById(eltId);
 
     if (root) {
-        import('react-router-dom').then(parameters => {
-            let BrowserRouter = parameters.BrowserRouter;
-            let Switch = parameters.Switch;
-            import('react-router').then(parameters => {
-                let Route = parameters.Route;
-                import('react-redux').then(parameters => {
-                    let Provider = parameters.Provider;
+        import('react-router-dom').then(parametersDom => {
+            let BrowserRouter = parametersDom.BrowserRouter;
+            let Switch = parametersDom.Switch;
+            import('react-router').then(parametersRouter => {
+                let Route = parametersRouter.Route;
+                import('react-redux').then(parametersRedux => {
+                    let Provider = parametersRedux.Provider;
                     import('react-dom').then(ReactDOM => {
                         ReactDOM.render(
                             <Provider store={store}>
                                 <BrowserRouter>
                                     <Switch>
-                                        <HeaderComponent page="projects"/>
                                         <Route exact path='/' component={App}/>
                                         <Route path='/timeline' component={TimelineScreen}/>
                                         <Route path='/projectsList' component={ProjectsListScreen}/>

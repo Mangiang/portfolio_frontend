@@ -3,10 +3,9 @@ import {hot} from 'react-hot-loader'
 
 import {connect} from 'react-redux';
 
-import {getProjects} from '../../actions/actions';
 import ProjectsListScreen from '../../screens/ProjectsListScreen';
 
-class App extends React.Component {
+export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +18,6 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getProjects());
         this.state.projects = this.props.projects;
     }
 

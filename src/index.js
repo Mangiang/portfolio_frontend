@@ -1,10 +1,6 @@
 // @flow
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Route} from 'react-router';
-import {BrowserRouter, Switch} from 'react-router-dom';
-import {Provider} from 'react-redux';
 import {store} from './store/store';
 import Loadable from 'react-loadable';
 
@@ -42,19 +38,31 @@ const render = function (component, eltId) {
     const root = document.getElementById(eltId);
 
     if (root) {
-        ReactDOM.render(
-            <Provider store={store}>
-                <BrowserRouter>
-                    <Switch>
-                        <HeaderComponent page="projects"/>
-                        <Route exact path='/' component={App}/>
-                        <Route path='/timeline' component={TimelineScreen}/>
-                        <Route path='/projectsList' component={ProjectsListScreen}/>
-                    </Switch>
-                </BrowserRouter>
-            </Provider>,
-            root
-        );
+        import('react-router-dom').then(parameters => {
+            let BrowserRouter = parameters.BrowserRouter;
+            let Switch = parameters.Switch;
+            import('react-router').then(parameters => {
+                let Route = parameters.Route;
+                import('react-redux').then(parameters => {
+                    let Provider = parameters.Provider;
+                    import('react-dom').then(ReactDOM => {
+                        ReactDOM.render(
+                            <Provider store={store}>
+                                <BrowserRouter>
+                                    <Switch>
+                                        <HeaderComponent page="projects"/>
+                                        <Route exact path='/' component={App}/>
+                                        <Route path='/timeline' component={TimelineScreen}/>
+                                        <Route path='/projectsList' component={ProjectsListScreen}/>
+                                    </Switch>
+                                </BrowserRouter>
+                            </Provider>,
+                            root
+                        );
+                    });
+                });
+            });
+        });
     }
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
 
-import {parse} from 'date-fns';
+import parse from 'date-fns/parse';
 
 import {connect} from 'react-redux';
 import {updateProject} from '../actions/actions';

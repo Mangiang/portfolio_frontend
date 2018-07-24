@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {deleteTimeline} from '../actions/actions';
 
 
-import {format} from 'date-fns';
+import format from 'date-fns/format';
 
 class TimelineMiniature extends React.Component {
     constructor(props) {

@@ -7,10 +7,10 @@ import {withRouter} from 'react-router';
 import type {Dispatch} from "redux";
 
 import {styles} from './styles/HeaderComponentStyles';
-import backgroundImage from '../images/backgroundImage.jpg';
+import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
 
-import {requestNavigation} from '../actions/actions';
+import {requestNavigation} from '../../actions/actions';
 
 type Props = {
     currentPage: string,

@@ -15,12 +15,12 @@ function AppLoader() {
 
 const App = Loadable({
     loader: () =>
-        import ('./components/App'),
+        import ('./components/Other/App'),
     loading: AppLoader
 });
 const HeaderComponent = Loadable({
     loader: () =>
-        import ('./components/HeaderComponent'),
+        import ('./components/Other/HeaderComponent'),
     loading: AppLoader
 });
 const TimelineScreen = Loadable({

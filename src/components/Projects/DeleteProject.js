@@ -2,7 +2,7 @@ import React from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {deleteProject} from '../actions/actions';
+import {deleteProject} from '../../actions/actions';
 
 
 class DeleteProject extends React.Component {

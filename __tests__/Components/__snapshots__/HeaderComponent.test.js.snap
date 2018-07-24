@@ -27,7 +27,6 @@ exports[`>>> HEADER COMPONENT --- Snapshot +++capturing Snapshot of MyHeaderComp
           style={
             Object {
               "color": "white",
-              "paddingTop": 50,
             }
           }
         >

@@ -2,7 +2,7 @@ import {Component} from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {uploadImages} from '../actions/actions';
+import {uploadImages} from '../../actions/actions';
 
 
 class AddImageToProject extends Component {

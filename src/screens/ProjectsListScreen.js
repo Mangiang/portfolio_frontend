@@ -3,6 +3,7 @@
 import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
+import ProjectList from '../components/Projects/ProjectList'
 
 type Props = {}
 
@@ -16,7 +17,7 @@ class ProjectsListScreen extends Component<Props> {
   
     render() {
         return (
-            <div/>
+            <ProjectList/>
         )
    }
 }

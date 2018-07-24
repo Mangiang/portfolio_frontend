@@ -2,7 +2,7 @@ import {Component} from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {login, logout} from '../actions/actions';
+import {login, logout} from '../../actions/actions';
 
 
 class Login extends Component {

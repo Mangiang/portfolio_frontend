@@ -4,7 +4,7 @@ import React from 'react'
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer'
 
-import {HeaderComponent} from '../../src/components/HeaderComponent'
+import {HeaderComponent} from '../../src/components/Other/HeaderComponent'
 
 // Snapshot for MyHeaderComponent React Component
 describe('>>> HEADER COMPONENT', () => {

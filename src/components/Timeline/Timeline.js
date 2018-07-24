@@ -1,18 +1,17 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
-import '../design.css'
-import '../bootstrap.min.css'
+import {hot} from 'react-hot-loader'
+import '../../design.css'
+import '../../bootstrap.min.css'
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-import { getTimelines } from '../actions/actions';
+import {getTimelines} from '../../actions/actions';
 import TimelineMiniature from './TimelineMiniature';
 import AddTimeline from './AddTimeline'
-import HeaderComponent from './HeaderComponent';
 
 class Timeline extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             timelines: []
         }
@@ -47,8 +46,8 @@ class Timeline extends React.Component {
 
 function mapStateToProps(state) {
     const timelines = state.timelines;
-    console.log("asdasd")
-    console.log(state.timelines)
+    console.log("asdasd");
+    console.log(state.timelines);
 
     return {
         timelines

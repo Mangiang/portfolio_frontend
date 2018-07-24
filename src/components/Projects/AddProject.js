@@ -2,7 +2,7 @@ import React from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {addProject} from '../actions/actions';
+import {addProject} from '../../actions/actions';
 
 
 class AddProject extends React.Component {

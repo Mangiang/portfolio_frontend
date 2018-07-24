@@ -26,4 +26,3 @@ chrome-user-data
 dist/
 config/webpack/dist/
 monitor/
-flow-typed/

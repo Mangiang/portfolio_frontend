@@ -1,0 +1,43 @@
+.projectMiniatureLink {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    background-color: mediumpurple;
+    color: white;
+    vertical-align: top;
+    transition: background-color 0.7s;
+    overflow: hidden;
+}
+
+.projectMiniatureLink:hover {
+    background-color: mediumpurple;
+}
+
+.projectMiniature {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+    margin: 20px;
+}
+
+.projectMiniature img {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.projectMiniature .projectName {
+    background-color: mediumpurple;
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 2;
+    padding: 10px;
+}
+
+.projectMiniature .projectName:hover {
+    opacity: 0.8;
+}

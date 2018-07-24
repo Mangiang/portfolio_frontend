@@ -26,12 +26,12 @@ export class HeaderComponent extends Component<Props> {
     render() {
         let description = "";
         let buttonTitle = "";
-        if (this.props.currentPage === 'timeline') {
-            description = "Here are both my professional and school my experience";
+        if (this.props.currentPage === 'projectsList') {
+            description = "Here is a list of my projects";
             buttonTitle = 'Timeline';
         }
-        else if (this.props.currentPage === 'projectsList') {
-            description = "Here is a list of my projects";
+        else if (this.props.currentPage === 'timeline') {
+            description = "Here are both my professional and school my experience";
             buttonTitle = "Projects list"
         }
 

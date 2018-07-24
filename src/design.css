@@ -68,54 +68,10 @@ h1 {
     transition: opacity 1s;
 }
 
-.projectMiniatureLink {
-    width: 200px;
-    height: 200px;
-    display: inline-block;
-    background-color: mediumpurple;
-    color: white;
-    vertical-align: top;
-    transition: background-color 0.7s;
-    overflow: hidden;
-}
-
-.projectMiniatureLink:hover {
-    background-color: mediumpurple;
-}
-
-.projectMiniature {
-    position: relative;
-    display: inline-block;
-    padding: 0px;
-    vertical-align: top;
-    margin: 20px;
-}
-
-.projectMiniature img {
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.projectMiniature .projectName {
-    background-color: mediumpurple;
-    opacity: 0;
-    transition: opacity 0.5s;
-    position: absolute;
-    top: 0px;
-    width: 200px;
-    height: 200px;
-    z-index: 2;
-    padding: 10px;
-}
-
-.projectMiniature .projectName:hover {
-    opacity: 0.8;
-}
-
 .deleteForm {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     z-index: 3;
 }
 
@@ -134,8 +90,8 @@ h1 {
 
 #projectImages .image form {
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
 }
 
 #projectDetails {
@@ -154,8 +110,8 @@ h1 {
 
 .timelineMiniature form {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
 }
 
 #mainBodyTimeline {

@@ -6,6 +6,10 @@ import {format} from 'date-fns';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
+import {styles} from './styles/ProjectMiniatureStyles';
+import Radium from 'radium';
+
+import './styles/ProjectMiniature.css';
 
 type Props = {
     projects: Object,
@@ -20,7 +24,7 @@ class ProjectMiniature extends React.Component<Props> {
         this.project = props.projects[props.projectIdx];
     }
 
-    onClick(id): void {
+    static onClick(id): void {
         console.log("click" + id)
     }
 
@@ -37,9 +41,10 @@ class ProjectMiniature extends React.Component<Props> {
                 {
                     this.project &&
                     <Link to={'/project/' + this.project.id}>
-                        <div className="projectMiniatureLink" onClick={() => this.onClick.bind(this, this.project._id)}>
+                        <div key="0" style={styles.link}
+                             onClick={() => ProjectMiniature.onClick.bind(this, this.project._id)}>
                             {image}
-                            <div className="projectName">
+                            <div key="1" style={styles.projectName}>
                                 <p>{this.project.title}</p>
                                 <p>{this.project.description}</p>
                                 <p>Begin date : {format(this.project.beginDate, "DD-MM-YYYY")}</p>
@@ -61,5 +66,7 @@ function mapStateToProps(state, ownProps) {
         index: projectIdx
     };
 }
+
+ProjectMiniature = Radium(ProjectMiniature);
 
 export default hot(module)(withRouter(connect(mapStateToProps)(ProjectMiniature)));

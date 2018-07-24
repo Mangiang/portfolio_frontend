@@ -4,12 +4,12 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import type {Dispatch} from "redux";
 
 import {styles} from './styles/HeaderComponentStyles';
 import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
 
+import type {Dispatch} from "../../actions/actions";
 import {requestNavigation} from '../../actions/actions';
 
 type Props = {
@@ -73,7 +73,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<*>) {
+function mapDispatchToProps(dispatch: Dispatch) {
     return {
         requestNavigation: (newPage) => {
             dispatch(requestNavigation(newPage));

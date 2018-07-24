@@ -95,7 +95,7 @@ class AddProject extends React.Component {
     }
 
     render() {
-        if (this.state.token != "none")
+        if (this.state.token !== "none")
             return (
                 <div id="projectForm">
                     <form>

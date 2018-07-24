@@ -4,6 +4,8 @@ import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
 import ProjectList from '../components/Projects/ProjectList'
+import HeaderComponent from '../components/Other/HeaderComponent'
+import {withRouter} from 'react-router';
 
 type Props = {}
 
@@ -12,14 +14,15 @@ class ProjectsListScreen extends Component<Props> {
         super(props)
     }
 
-    componentWillMount() {
-    }
-  
     render() {
+        console.log("Test");
         return (
-            <ProjectList/>
+            <div>
+                <HeaderComponent/>
+                <ProjectList/>
+            </div>
         )
-   }
+    }
 }
 
 function mapStateToProps(state) {
@@ -28,4 +31,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default hot(module)(connect(mapStateToProps)(ProjectsListScreen));
+export default hot(module)(withRouter(connect(mapStateToProps)(ProjectsListScreen)));

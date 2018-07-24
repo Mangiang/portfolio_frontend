@@ -2,7 +2,6 @@
 
 import React from 'react'
 import {shallow} from 'enzyme';
-import renderer from 'react-test-renderer'
 
 import {HeaderComponent} from '../../src/components/Other/HeaderComponent'
 
@@ -19,8 +18,7 @@ describe('>>> HEADER COMPONENT', () => {
 
     describe('--- Snapshot', () => {
         it('+++capturing Snapshot of MyHeaderComponent', () => {
-            const renderedValue = renderer.create(wrapper).toJSON();
-            expect(renderedValue).toMatchSnapshot();
+            expect(wrapper).toMatchSnapshot();
         });
     });
 });

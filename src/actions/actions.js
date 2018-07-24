@@ -4,7 +4,7 @@ import cookie from 'react-cookies';
 import axios from 'axios';
 import type {State} from '../store/store';
 
-const API = 'https://arthur-joly.fr:4242/';
+const API = 'https://arthur-joly.fr/api/';
 
 //action types
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
@@ -40,7 +40,7 @@ export type Action =
 type GetState = () => State;
 type PromiseAction = Promise<Action>;
 type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
-type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
+export type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
 
 //action creators
 const requestLogin = function (token): Action {

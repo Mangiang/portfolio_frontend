@@ -1,59 +1,65 @@
+// @flow
+
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import format from 'date-fns/format';
+import {format} from 'date-fns';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import DeleteProject from './DeleteProject';
 
-class ProjectMiniature extends React.Component {
-    constructor(props) {
+type Props = {
+    projects: Object,
+    projectIdx: number
+}
+
+class ProjectMiniature extends React.Component<Props> {
+    project: Object;
+
+    constructor(props: Props) {
         super(props);
-        this.state = {};
-
-        this.onClick = this.onClick.bind(this);
+        this.project = props.projects[props.projectIdx];
     }
 
-    componentWillReceiveProps(nextProps) {
-
-    }
-
-    onClick(id) {
+    onClick(id): void {
         console.log("click" + id)
-        
     }
 
     render() {
         let image = "";
-        if (this.props.project.images !== undefined
-            && this.props.project.images[0] !== undefined) {
-            image = <img src={this.props.project.images[0][0].url} />
+        if (this.project
+            && this.project.images !== undefined
+            && this.project.images[0] !== undefined) {
+            image = <img src={this.project.images[0][0].url}/>
         }
 
         return (
             <div className="projectMiniature">
-                <DeleteProject id={this.props.project.id} />
-                <Link to={'/project/' + this.props.project.id}>
-                    <div className="projectMiniatureLink" onClick={() => this.onClick(this.props.project._id)}>
-                        {image}
-                        <div className="projectName">
-                            <p>{this.props.project.title}</p>
-                            <p>{this.props.project.description}</p>
-                            <p>Begin date : {format(this.props.project.beginDate, "DD-MM-YYYY")}</p>
-                            <p>End date : {format(this.props.project.endDate, "DD-MM-YYYY")}</p>
+                {
+                    this.project &&
+                    <Link to={'/project/' + this.project.id}>
+                        <div className="projectMiniatureLink" onClick={() => this.onClick.bind(this, this.project._id)}>
+                            {image}
+                            <div className="projectName">
+                                <p>{this.project.title}</p>
+                                <p>{this.project.description}</p>
+                                <p>Begin date : {format(this.project.beginDate, "DD-MM-YYYY")}</p>
+                                <p>End date : {format(this.project.endDate, "DD-MM-YYYY")}</p>
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                }
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    const token = state.loginInfos.token;
-
+function mapStateToProps(state, ownProps) {
+    const projects = state.projects;
+    const projectIdx = ownProps.projectIdx;
     return {
-        token: token
-     };
+        projects: projects,
+        index: projectIdx
+    };
 }
 
-export default hot(module)(connect(mapStateToProps)(ProjectMiniature));
+export default hot(module)(withRouter(connect(mapStateToProps)(ProjectMiniature)));

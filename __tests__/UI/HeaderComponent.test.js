@@ -19,7 +19,7 @@ describe('>>> HEADER COMPONENT', () => {
             userAgent: ''
         }, 16000);
 
-        await page.goto('http://localhost:8080/');
+        await page.goto('http://localhost:8082/');
         console.log("FINISHED");
         done();
     });

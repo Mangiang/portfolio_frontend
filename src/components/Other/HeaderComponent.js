@@ -50,12 +50,14 @@ export class HeaderComponent extends Component<Props> {
     }
 
     handleTimelineRedirect() {
-        if (this.props.currentPage === "timeline")
+        if (this.props.currentPage === "timeline") {
+            this.props.history.push('/projectsList');
             this.props.requestNavigation('projectsList');
+        }
         else {
             this.props.requestNavigation('timeline');
+            this.props.history.push('/timeline');
         }
-        this.props.history.push('/' + this.props.currentPage);
     }
 }
 

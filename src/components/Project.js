@@ -8,7 +8,7 @@ import UpdateProject from './UpdateProject';
 import AddImageToProject from './AddImageToProject';
 
 
-import {format} from 'date-fns';
+import format from 'date-fns/format';
 
 class Project extends Component {
     constructor(props) {

@@ -6,19 +6,19 @@ const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack
 const imageLoader = require('image-webpack-loader');
 const urlLoader = require('url-loader');
 const path = require('path');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = env => {
     const pluginList = [];
-    pluginList.push(
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        })
-    );
-    pluginList.push(
-        new DuplicatePackageCheckerPlugin()
-    );
+    pluginList.push(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}));
+    pluginList.push(new DuplicatePackageCheckerPlugin());
+    pluginList.push(new CompressionPlugin({
+        asset: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240,
+        minRatio: 0.8
+    }));
 
     if (!env || env.PROD_ENV !== "headless") {
         const WebpackMonitor = require('webpack-monitor');
@@ -34,9 +34,9 @@ module.exports = env => {
         mode: 'production',
         plugins: [...pluginList],
         entry: {
-	    index: path.resolve('./src/index.js')
-	},
-	output: {
+            index: path.resolve('./src/index.js')
+        },
+        output: {
             path: __dirname + '../../../dist',
             filename: 'bundle.js'
         },
@@ -50,7 +50,25 @@ module.exports = env => {
                         }
                     }
                 })
-            ]
+            ],
+            splitChunks: {
+                cacheGroups: {
+                    default: false,
+                    commons: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendor_app',
+                        chunks: 'all',
+                        minChunks: 2
+                    },
+                    styles: {
+                        name: 'styles',
+                        test: /\.css$/,
+                        chunks: 'all',
+                        enforce: true
+                    }
+                }
+            },
+            runtimeChunk: true
         },
         module: {
             rules: [

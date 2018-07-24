@@ -1,6 +1,6 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import {format} from 'date-fns';
+import format from 'date-fns/format';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import DeleteProject from './DeleteProject';

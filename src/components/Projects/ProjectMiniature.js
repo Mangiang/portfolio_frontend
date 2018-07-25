@@ -55,11 +55,13 @@ class ProjectMiniature extends React.Component<Props> {
                             </div>
                         </div>
                         <div className={styles['projectMiniatureStatus']}>
-                            <div className={styles['projectMiniatureStatusHolder']}>
                                 <div className={styles['projectMiniatureStatusIconHolder']}>
                                     <div className={styles['projectMiniatureStatusIconOngoing']}/>
                                 </div>
-                                <div className={styles['projectMiniatureStatusText']}>{StatusToString(this.project.status)}</div>
+                            <div className={styles['projectMiniatureStatusTextHolder']}>
+                                <div className={styles['projectMiniatureStatusText']}>
+                                    {StatusToString(this.project.status)}
+                                </div>
                             </div>
                         </div>
                     </Link>

@@ -59,7 +59,7 @@ export class HeaderComponent extends Component<Props> {
     }
 }
 
-function mapStateToProps(state) {
+export function mapStateToProps(state) {
     const destinationPage = state.navHeader;
     if (!destinationPage || Object.keys(destinationPage).length === 0) {
         return {

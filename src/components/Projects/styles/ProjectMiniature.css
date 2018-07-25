@@ -3,7 +3,7 @@
     display: inline-block;
     padding: 0;
     vertical-align: top;
-    margin: 20px;
+    margin-top: 5%;
 }
 
 :local(.projectMiniature img) {
@@ -28,8 +28,7 @@
 }
 
 :local(.projectMiniatureLink) {
-    min-width: 480px;
-    max-width: 800px;
+    max-width: 700px;
     height: auto;
     display: inline-block;
     background-color: mediumpurple;
@@ -37,7 +36,6 @@
     vertical-align: top;
     transition: background-color 0.7s;
     overflow: hidden;
-    resize: both;
 }
 
 :local(.projectMiniatureImage) {
@@ -46,20 +44,101 @@
     max-height: 100%;
 }
 
-:local(p) {
-    font-size: 30px;
-}
-
 :local(.projectMiniatureTitle) {
     margin-top: 10%;
     text-align: center;
+    font-size: 50px;
+    position: relative;
 }
 
 :local(.projectMiniatureBody) {
     text-align: center;
+    position: relative;
     margin: 0;
+    top: 10%;
+    width: 100%;
+    font-size: 25px;
+}
+
+:local(.projectMiniatureStatus) {
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    border-color: black;
+    opacity: 1;
+    text-align: center;
+}
+
+:local(.projectMiniatureStatusHolder) {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    left: 40%;
+}
+
+:local(.projectMiniatureStatusIconHolder) {
+    position: relative;
+    height: 100%;
+}
+
+:local(.projectMiniatureStatusText) {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
+    left: 15%;
+}
+
+:local(.projectMiniatureStatusIcon) {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+:local(.projectMiniatureStatusIconCompleted) {
+    composes: projectMiniatureStatusIcon;
+    color: #00b100;
+    background-color: #00b100;
+}
+
+:local(.projectMiniatureStatusIconOngoing) {
+    composes: projectMiniatureStatusIcon;
+    color: #03b17d;
+    background-color: #03b17d;
+}
+
+:local(.projectMiniatureStatusIconAborted) {
+    composes: projectMiniatureStatusIcon;
+    color: #b10005;
+    background-color: #b10005;
+}
+
+:local(.projectMiniatureStatusIconOnHold) {
+    composes: projectMiniatureStatusIcon;
+    color: #b15e00;
+    background-color: #b15e00;
+}
+
+@media screen and (max-width: 1000px) {
+    :local(.projectMiniatureBody) {
+        font-size: 20px;
+    }
+
+    :local(.projectMiniatureTitle) {
+        font-size: 45px;
+    }
+
+    :local(.projectMiniatureLink) {
+        min-width: 400px;
+    }
+
+    :local(.projectMiniatureStatusIcon) {
+        width: 20px;
+        height: 20px;
+    }
 }

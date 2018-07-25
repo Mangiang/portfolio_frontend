@@ -1,9 +1,12 @@
 :local(.projectList) {
     position: relative;
-    display: inline-block;
     padding: 0;
     vertical-align: top;
     margin-left: 20%;
     margin-right: 20%;
+    min-width: 180px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 

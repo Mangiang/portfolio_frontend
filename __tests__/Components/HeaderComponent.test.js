@@ -1,79 +1,80 @@
 // @flow
 
-import React from 'react'
+import React from 'react';
 import {shallow} from 'enzyme';
-import renderer from 'react-test-renderer'
-import {HeaderComponent} from '../../src/components/Other/HeaderComponent'
+import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk'
 
-//region ************************************ SNAPSHOT ***************************************************************
+import {HeaderComponent, HeaderComponentConnected} from '../../src/components/Other/HeaderComponent';
+
+jest.mock('react-router-dom');
+
+const middlewares = [thunk];
 
 describe('>>> HEADER COMPONENT --- Snapshot', () => {
-    it('+++ capturing Snapshot of Projects list', () => {
-        const renderedValue = renderer.create(<headerComponent currentPage={"CurrentPage"} history={{}} requestNavigation={(str: string): any => {
-            return str;
-        }}/>).toJSON();
-        expect(renderedValue).toMatchSnapshot();
-    });
-});
-//endregion
-
-//region ************************************ DUMB COMPONENT *********************************************************
-describe('>>> HEADER COMPONENT', () => {
-    let wrapper;
-    const currentPage = "projectList";
+    const currentPage = "projectsList";
     const history = {};
     const requestNavigation = (str: string): any => "currentPage";
 
-    beforeEach(() => {
-        wrapper = shallow(<HeaderComponent currentPage={currentPage} history={history} requestNavigation={requestNavigation("")}/>)
-    });
-
-    it('+++ render the DUMB component', () => {
-        expect(wrapper.length).toEqual(1);
-    });
-
-    it('+++ contains header h1', () => {
-        expect(wrapper.find('h1')).not.toBe(null);
-        expect(wrapper.find('h1')).not.toBe(undefined);
-    });
-
-    it('+++ contains only one header h1', () => {
-        expect(wrapper.find('h1')).toHaveLength(1);
-    });
-
-    it('+++ check header h1 value', () => {
-        let expectedValue = "Arthur Joly's portfolio";
-        expect(wrapper.find('h1').text()).toBe(expectedValue);
-    });
-
-    it('+++ contains header h4', () => {
-        expect(wrapper.find('h4')).not.toBe(null);
-        expect(wrapper.find('h4')).not.toBe(undefined);
-    });
-
-    it('+++ contains only one header h4', () => {
-        expect(wrapper.find('h4')).toHaveLength(1);
-    });
-
-    it('+++ contains header LazyHero', () => {
-        expect(wrapper.find('LazyHero')).not.toBe(null);
-        expect(wrapper.find('LazyHero')).not.toBe(undefined);
-    });
-
-    it('+++ contains only one header LazyHero', () => {
-        expect(wrapper.find('LazyHero')).toHaveLength(1);
-    });
-
-    it('+++ contains header button', () => {
-        expect(wrapper.find('button')).not.toBe(null);
-        expect(wrapper.find('button')).not.toBe(undefined);
-    });
-
-    it('+++ contains only one header button', () => {
-        expect(wrapper.find('button')).toHaveLength(1);
+    it('+++ capturing Snapshot of Projects list dumb component', () => {
+        const renderedValue = renderer.create(<HeaderComponent currentPage={currentPage} history={history} requestNavigation={requestNavigation}/>).toJSON();
+        expect(renderedValue).toMatchSnapshot();
     });
 });
-//endregion
 
-//region ************************************ REACT REDUX COMPONENT **************************************************
-//endregion
+describe('>>> HEADER REDUX COMPONENT', () => {
+    const mockStore = configureStore(middlewares);
+
+    it('+++ render the component', () => {
+        const initialState = {navHeader: "projectsList"};
+
+        let store = mockStore(initialState);
+        store.dispatch = jest.fn();
+
+        let component = shallow(<HeaderComponentConnected store={store}/>);
+
+        expect(component).not.toBe(null);
+        expect(component).not.toBe(undefined);
+    });
+
+    it('+++ check currentPage value setting projectsList', () => {
+        const initialState = {navHeader: "projectsList"};
+
+        let store = mockStore(initialState);
+        let component = shallow(<HeaderComponentConnected store={store}/>);
+
+        expect(component.prop('currentPage')).toEqual(initialState.navHeader);
+    });
+
+    it('+++ check currentPage value setting timeline', () => {
+        const initialState = {navHeader: "timeline "};
+
+        let store = mockStore(initialState);
+        let component = shallow(<HeaderComponentConnected store={store}/>);
+
+        expect(component.prop('currentPage')).toEqual(initialState.navHeader);
+    });
+
+    it('+++ check description value on Projects list page', () => {
+        const initialState = {navHeader: "projectsList"};
+        const expectedValue = "Here is a list of my projects";
+
+        let store = mockStore(initialState);
+        let wrapper = shallow(<HeaderComponentConnected store={store}/>);
+        let component = wrapper.dive().find('h4');
+
+        expect(component.text()).toEqual(expectedValue);
+    });
+
+    it('+++ check description value on Timeline page', () => {
+        const initialState = {navHeader: "timeline"};
+        const expectedValue = "Here are both my professional and school my experience";
+
+        let store = mockStore(initialState);
+        let wrapper = shallow(<HeaderComponentConnected store={store}/>);
+        let component = wrapper.dive().find('h4');
+
+        expect(component.text()).toEqual(expectedValue);
+    });
+});

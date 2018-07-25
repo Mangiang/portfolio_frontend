@@ -1,10 +1,19 @@
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 describe('>>> HEADER COMPONENT', () => {
     let browser = null;
     let page = null;
+    let httpServer = null;
 
     beforeAll(async (done) => {
+        let express = require('express');
+        let app = express();
+
+        app.use(express.static(path.join(__dirname, '../../dist')));
+        httpServer = app.listen(8082, () => console.log("Server listening on 8082"));
+
+
         browser = await puppeteer.launch({
 	    args:['--no-sandbox'],
             headless: true
@@ -63,7 +72,9 @@ describe('>>> HEADER COMPONENT', () => {
         expect(titleColor).toBe("white");
     });
 
-    afterAll(() => {
-        browser.close();
+    afterAll(async (done) => {
+        await browser.close();
+        await httpServer.close();
+        done();
     }, 16000)
 });

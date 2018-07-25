@@ -104,7 +104,8 @@ export type ProjectWithoutId = {
     description: string,
     beginDate: Date,
     endDate: Date,
-    images: Array<Object>
+    images: Array<Object>,
+    status: number
 };
 
 export function addProject(project: ProjectWithoutId, token: string): ThunkAction {
@@ -120,7 +121,8 @@ export function addProject(project: ProjectWithoutId, token: string): ThunkActio
                 title: project.title,
                 description: project.description,
                 beginDate: project.beginDate,
-                endDate: project.endDate
+                endDate: project.endDate,
+                status: project.status
             })
         }).then(function (response) {
             return response.json();
@@ -220,7 +222,8 @@ export function getProjects(): ThunkAction {
                         beginDate: (project.beginDate ? new Date(project.beginDate) : new Date(0)),
                         endDate: (project.endDate ? new Date(project.endDate) : new Date(0)),
                         description: project.description,
-                        images: project.images
+                        images: project.images,
+                        status: project.status
                     })
                 });
                 console.log("GetProjects", data, projectsList);
@@ -267,7 +270,8 @@ export type Project = {
     description: string,
     beginDate: Date,
     endDate: Date,
-    images: Array<Object>
+    images: Array<Object>,
+    status: number
 };
 
 export function updateProject(project: Project, token: string): ThunkAction {
@@ -282,7 +286,8 @@ export function updateProject(project: Project, token: string): ThunkAction {
                 title: project.title,
                 description: project.description,
                 beginDate: project.beginDate,
-                endDate: project.endDate
+                endDate: project.endDate,
+                status: project.status
             })
         }).then(function (response) {
             return response.json();

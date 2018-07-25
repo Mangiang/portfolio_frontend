@@ -31,6 +31,7 @@ export class ProjectsList extends Component<Props> {
         let key = -1;
         return (
             <div className={styles['projectList']}>
+                {}
                 {
                     this.props.projects.map(() => {
                         key++;
@@ -41,6 +42,10 @@ export class ProjectsList extends Component<Props> {
         )
     }
 }
+
+/*
+
+ */
 
 function mapStateToProps(state) {
     const projects = state.projects;

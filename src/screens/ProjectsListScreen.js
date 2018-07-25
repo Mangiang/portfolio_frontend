@@ -14,7 +14,6 @@ class ProjectsListScreen extends Component<Props> {
     }
 
     render() {
-        console.log("Test");
         return (
                 <ProjectList/>
         )

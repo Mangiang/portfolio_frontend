@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import styles from './styles/ProjectMiniature.css';
+import {StatusToString} from '../../Utilities/ProjectStatus'
 
 type Props = {
     projects: Object,
@@ -25,6 +26,7 @@ class ProjectMiniature extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
         this.project = props.projects[props.projectIdx];
+        console.log(props.projectIdx, this.project);
     }
 
     static onClick(id): void {
@@ -50,6 +52,14 @@ class ProjectMiniature extends React.Component<Props> {
                             <div className={styles['projectName']}>
                                 <p className={styles['projectMiniatureTitle']}>{this.project.title}</p>
                                 <p className={styles['projectMiniatureBody']}>{this.project.description}</p>
+                            </div>
+                        </div>
+                        <div className={styles['projectMiniatureStatus']}>
+                            <div className={styles['projectMiniatureStatusHolder']}>
+                                <div className={styles['projectMiniatureStatusIconHolder']}>
+                                    <div className={styles['projectMiniatureStatusIconOngoing']}/>
+                                </div>
+                                <div className={styles['projectMiniatureStatusText']}>{StatusToString(this.project.status)}</div>
                             </div>
                         </div>
                     </Link>

@@ -13,8 +13,7 @@ export const format = (date: Date): string => {
         return "Work in progress";
     }
     let day = padStr(date.getDate().toString(), 2);
-    let month = padStr(date.getMonth().toString(), 2);
     let year = date.getFullYear();
 
-    return `${day}th ${months[month - 1]} ${year}`;
+    return `${day}th ${months[date.getMonth() - 1]} ${year}`;
 };

@@ -7,9 +7,14 @@ function padStr(str: string, size: number): string {
 }
 
 export const format = (date: Date): string => {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    if (date.getTime() === (new Date(0).getTime())) {
+        return "Work in progress";
+    }
     let day = padStr(date.getDate().toString(), 2);
     let month = padStr(date.getMonth().toString(), 2);
     let year = date.getFullYear();
 
-    return [day, month, year].join("-");
+    return `${day}th ${months[month - 1]} ${year}`;
 };

@@ -11,6 +11,8 @@ import {getProjects} from '../../actions/actions';
 
 import ProjectMiniature from './ProjectMiniature'
 
+import styles from './styles/ProjectList.css'
+
 type Props = {
     projects: Array<Object>,
     getProjects: () => any
@@ -28,7 +30,7 @@ export class ProjectsList extends Component<Props> {
     render() {
         let key = -1;
         return (
-            <div>
+            <div className={styles['projectList']}>
                 {
                     this.props.projects.map(() => {
                         key++;

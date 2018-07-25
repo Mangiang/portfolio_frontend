@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import {format} from '../../Utilities/DateUtilities';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
@@ -37,21 +36,20 @@ class ProjectMiniature extends React.Component<Props> {
         if (this.project
             && this.project.images !== undefined
             && this.project.images[0] !== undefined) {
-            image = <img src={this.project.images[0][0].url}/>
+            image = <img className={styles['projectMiniatureImage']} src={this.project.images[0][0].url}/>
         }
+
         return (
-            <div className={styles.projectMiniature}>
+            <div className={styles['projectMiniature']}>
                 {
                     this.project &&
                     <Link to={'/project/' + this.project.id}>
-                        <div className={styles.projectMiniatureLink}
+                        <div className={styles['projectMiniatureLink']}
                              onClick={() => ProjectMiniature.onClick.bind(this, this.project.id)}>
                             {image}
-                            <div className={styles.projectName}>
-                                <p>{this.project.title}</p>
-                                <p>{this.project.description}</p>
-                                <p>Begin date : {format(this.project.beginDate)}</p>
-                                <p>End date : {format(this.project.endDate)}</p>
+                            <div className={styles['projectName']}>
+                                <p className={styles['projectMiniatureTitle']}>{this.project.title}</p>
+                                <p className={styles['projectMiniatureBody']}>{this.project.description}</p>
                             </div>
                         </div>
                     </Link>

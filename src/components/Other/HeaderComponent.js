@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
-import styles from './styles/HeaderComponent.css';
+import {centerDescription, centerName} from './styles/HeaderComponent.css';
 
 import type {Dispatch} from "../../actions/actions";
 import {requestNavigation} from '../../actions/actions';
@@ -35,9 +35,9 @@ export class HeaderComponent extends Component<Props> {
         }
         return (
             <div>
-                <LazyHero imageSrc={backgroundImage} color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
-                    <h1 id="title" className={styles.centerName}>Arthur Joly's portfolio</h1>
-                    <h4 id="description" className={styles.centerDescription}>{description}</h4>
+                <LazyHero imageSrc={backgroundImage} minHeight='500px' color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
+                    <h1 id="title" className={centerName}>Arthur Joly's portfolio</h1>
+                    <h4 id="description" className={centerDescription}>{description}</h4>
                     <br/>
                     <button onClick={this.handlePageRediection.bind(this)}>{buttonTitle}</button>
                 </LazyHero>
@@ -62,7 +62,7 @@ type State = { navHeader: '' }
 function mapStateToProps(state: State) {
     const destinationPage = state.navHeader;
 
-    if (!destinationPage || Object.keys(destinationPage).length === 0
+    if (!destinationPage
         || (destinationPage !== 'projectsList' && destinationPage !== 'timeline')) {
         return {
             currentPage: 'projectsList'

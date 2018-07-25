@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 
-import {HeaderComponent, HeaderComponentConnected} from '../../src/components/Other/HeaderComponent';
+import {HeaderComponent, HeaderComponentConnected, mapStateToProps} from '../../src/components/Other/HeaderComponent';
 
 jest.mock('react-router-dom');
 
@@ -76,5 +76,31 @@ describe('>>> HEADER REDUX COMPONENT', () => {
         let component = wrapper.dive().find('h4');
 
         expect(component.text()).toEqual(expectedValue);
+    });
+});
+
+describe('>>> HEADER REDUX MAPSTATETOPROPS', () => {
+    it('+++ check default mapStateToProps value', () => {
+        const actual = mapStateToProps({});
+
+        expect(actual).not.toBe(null);
+        expect(actual).not.toBe(undefined);
+        expect(actual.currentPage).toEqual('projectsList');
+    });
+
+    it('+++ check mapStateToProps value setting projectsList', () => {
+        const actual = mapStateToProps({navHeader: "projectsList"});
+
+        expect(actual).not.toBe(null);
+        expect(actual).not.toBe(undefined);
+        expect(actual.currentPage).toEqual('projectsList');
+    });
+
+    it('+++ check mapStateToProps value setting timeline', () => {
+        const actual = mapStateToProps({navHeader: "timeline"});
+
+        expect(actual).not.toBe(null);
+        expect(actual).not.toBe(undefined);
+        expect(actual.currentPage).toEqual('timeline');
     });
 });

@@ -16,7 +16,7 @@ type Props = {
     getProjects: () => any
 }
 
-export class ProjectList extends Component<Props> {
+export class ProjectsList extends Component<Props> {
     constructor(props: Props) {
         super(props);
     }
@@ -56,4 +56,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
     }
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectList)));
+export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectsList)));

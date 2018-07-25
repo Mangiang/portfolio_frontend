@@ -4,8 +4,6 @@ import '../../design.css'
 import '../../bootstrap.min.css'
 
 import {connect} from 'react-redux';
-
-import {getTimelines} from '../../actions/actions';
 import TimelineMiniature from './TimelineMiniature';
 import AddTimeline from './AddTimeline'
 
@@ -22,7 +20,7 @@ class Timeline extends React.Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getTimelines());
+        //this.props.dispatch(getTimelines());
         this.state.timelines = this.props.timelines;
     }
 

@@ -3,11 +3,10 @@
 import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
 
-import {styles} from './styles/HeaderComponentStyles';
 import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
+import styles from './styles/HeaderComponent.css';
 
 import type {Dispatch} from "../../actions/actions";
 import {requestNavigation} from '../../actions/actions';
@@ -34,12 +33,11 @@ export class HeaderComponent extends Component<Props> {
             description = "Here are both my professional and school my experience";
             buttonTitle = "Projects list"
         }
-
         return (
             <div>
                 <LazyHero imageSrc={backgroundImage} color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
-                    <h1 id="title" style={styles.centerName}>Arthur Joly's portfolio</h1>
-                    <h4 id="description" style={styles.centerDescription}>{description}</h4>
+                    <h1 id="title" className={styles.centerName}>Arthur Joly's portfolio</h1>
+                    <h4 id="description" className={styles.centerDescription}>{description}</h4>
                     <br/>
                     <button onClick={this.handlePageRediection.bind(this)}>{buttonTitle}</button>
                 </LazyHero>
@@ -49,12 +47,10 @@ export class HeaderComponent extends Component<Props> {
 
     handlePageRediection() {
         if (this.props.currentPage === "timeline") {
-            this.props.history.push('/projectsList');
             this.props.requestNavigation('projectsList');
         }
         else {
             this.props.requestNavigation('timeline');
-            this.props.history.push('/timeline');
         }
     }
 }
@@ -86,4 +82,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 export const HeaderComponentConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
-export default hot(module)(withRouter(HeaderComponentConnected));
+export default hot(module)(HeaderComponentConnected);

@@ -1,0 +1,8 @@
+:local(.centerName) {
+    color: white;
+}
+
+:local(.centerDescription) {
+    margin-top: 50px;
+    color: white;
+}

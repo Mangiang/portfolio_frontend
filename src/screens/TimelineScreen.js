@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
 import Timeline from '../components/Timeline/Timeline';
-import HeaderComponent from "../components/Other/HeaderComponent";
 
 
 class TimelineScreen extends Component {
@@ -13,7 +12,6 @@ class TimelineScreen extends Component {
     render() {
         return (
             <div>
-                <HeaderComponent/>
                 <Timeline/>
             </div>
         )
@@ -21,7 +19,6 @@ class TimelineScreen extends Component {
 }
 
 function mapStateToProps(state) {
-
     return {
         state
     };

@@ -1,15 +1,12 @@
-//const fs = require('fs');
-//const path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-require('css-loader');
-require('style-loader');
 require('file-loader');
 require('html-loader');
-//const appDirectory = fs.realpathSync(process.cwd());
-//const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
-
+const appDirectory = fs.realpathSync(process.cwd());
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 require('url-loader');
 
 module.exports = {
@@ -56,8 +53,7 @@ module.exports = {
                     },
                     {
                         test: /\.css$/,
-                        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader'],
-                        include: __dirname + '/src'
+                        use: [MiniCssExtractPlugin.loader, 'css-loader']
                     },
                     // "file" loader makes sure assets end up in the `build` folder.
                     // When you `import` an asset, you get its filename.
@@ -89,8 +85,8 @@ module.exports = {
           filename: './profil.html',
         }),*/
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css',
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css',
         }),
     ],
 

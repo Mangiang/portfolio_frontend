@@ -23,23 +23,14 @@ exports[`>>> HEADER COMPONENT --- Snapshot +++ capturing Snapshot of Projects li
     >
       <div>
         <h1
+          className="centerName"
           id="title"
-          style={
-            Object {
-              "color": "white",
-            }
-          }
         >
           Arthur Joly's portfolio
         </h1>
         <h4
+          className="centerDescription"
           id="description"
-          style={
-            Object {
-              "color": "white",
-              "marginTop": 50,
-            }
-          }
         >
           Here is a list of my projects
         </h4>

@@ -1,12 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('file-loader');
 require('html-loader');
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 require('url-loader');
 
 module.exports = {
@@ -53,7 +48,15 @@ module.exports = {
                     },
                     {
                         test: /\.css$/,
-                        use: [MiniCssExtractPlugin.loader, 'css-loader']
+                        use:
+                            [MiniCssExtractPlugin.loader,
+                                {
+                                    loader: 'css-loader',
+                                    options: {
+                                        camelCase: true
+                                    }
+                                }
+                            ]
                     },
                     // "file" loader makes sure assets end up in the `build` folder.
                     // When you `import` an asset, you get its filename.

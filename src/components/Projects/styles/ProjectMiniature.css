@@ -67,37 +67,41 @@
     border-color: black;
     opacity: 1;
     text-align: center;
-}
-
-:local(.projectMiniatureStatusHolder) {
-    position: relative;
-    height: 100%;
     display: flex;
     flex-direction: row;
-    width: 50%;
-    left: 40%;
+    align-items: center;
+}
+
+:local(.projectMiniatureStatusTextHolder) {
+    position: relative;
+    height: 100%;
+    flex: 1;
+    padding: 5px;
+}
+
+:local(.projectMiniatureStatusText) {
+    position: relative;
+    top: 10%;
+    float: left;
+    font-size: 20px;
 }
 
 :local(.projectMiniatureStatusIconHolder) {
     position: relative;
     height: 100%;
-}
-
-:local(.projectMiniatureStatusText) {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 15%;
+    flex: 1;
+    padding: 5px;
 }
 
 :local(.projectMiniatureStatusIcon) {
-    height: 40px;
-    width: 40px;
+    height: 70%;
+    width: 9%;
     border-radius: 50%;
     display: inline-block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(15%);
+    float: right;
+    margin-right: 5px;
+    overflow: hidden;
 }
 
 :local(.projectMiniatureStatusIconCompleted) {
@@ -137,8 +141,7 @@
         min-width: 400px;
     }
 
-    :local(.projectMiniatureStatusIcon) {
-        width: 20px;
-        height: 20px;
+    :local(.projectMiniatureStatusText) {
+        font-size: 14px;
     }
 }

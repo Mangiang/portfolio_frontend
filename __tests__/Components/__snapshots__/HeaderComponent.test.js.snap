@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`>>> HEADER COMPONENT --- Snapshot +++ capturing Snapshot of Projects list 1`] = `
+<headerComponent
+  currentPage="CurrentPage"
+  history={Object {}}
+  requestNavigation={[Function]}
+/>
+`;
+
 exports[`>>> HEADER COMPONENT --- Snapshot +++capturing Snapshot of MyHeaderComponent 1`] = `
 ShallowWrapper {
   "length": 1,

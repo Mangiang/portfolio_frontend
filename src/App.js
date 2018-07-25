@@ -22,7 +22,9 @@ export class App extends React.Component {
         return (
             <div>
                 <HeaderComponent/>
-                {this.props.children}
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         )
     }

@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
@@ -48,9 +49,11 @@ export class HeaderComponent extends Component<Props> {
     handlePageRediection() {
         if (this.props.currentPage === "timeline") {
             this.props.requestNavigation('projectsList');
+            this.props.history.push('/projectsList');
         }
         else {
             this.props.requestNavigation('timeline');
+            this.props.history.push('/timeline');
         }
     }
 }
@@ -59,7 +62,7 @@ type State = { navHeader: '' }
     | { navHeader: 'projectsList' }
     | { navHeader: 'timeline' }
 
-function mapStateToProps(state: State) {
+function mapStateToProps(state: State, ownProps) {
     const destinationPage = state.navHeader;
 
     if (!destinationPage
@@ -68,8 +71,9 @@ function mapStateToProps(state: State) {
             currentPage: 'projectsList'
         };
     }
+
     return {
-        currentPage: destinationPage
+        currentPage: destinationPage,
     };
 }
 
@@ -82,4 +86,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 export const HeaderComponentConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
-export default hot(module)(HeaderComponentConnected);
+export default hot(module)(withRouter(HeaderComponentConnected));

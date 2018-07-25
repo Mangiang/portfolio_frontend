@@ -2,9 +2,7 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 describe('>>> HEADER COMPONENT', () => {
-    let browser = null;
-    let page = null;
-    let httpServer = null;
+    let browser, page, httpServer;
 
     beforeAll(async (done) => {
         let express = require('express');
@@ -14,10 +12,7 @@ describe('>>> HEADER COMPONENT', () => {
         httpServer = app.listen(8082, () => console.log("Server listening on 8082"));
 
 
-        browser = await puppeteer.launch({
-	    args:['--no-sandbox'],
-            headless: true
-        });
+        browser = await puppeteer.launch({args: ['--no-sandbox'], headless: true});
         page = await browser.newPage();
 
         page.emulate({
@@ -62,14 +57,6 @@ describe('>>> HEADER COMPONENT', () => {
         let titleVal = await page.$eval('#title', e => e.innerHTML);
 
         expect(titleVal).toBe("Arthur Joly's portfolio");
-    });
-
-    test('Check the title color', async () => {
-        await page.waitForSelector('#title');
-
-        let titleColor = await page.$eval('#title', e => e.style.color);
-
-        expect(titleColor).toBe("white");
     });
 
     afterAll(async (done) => {

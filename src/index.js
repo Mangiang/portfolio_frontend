@@ -14,7 +14,7 @@ function AppLoader() {
 }
 
 const App = Loadable({
-    loader: () => import ('./components/Other/App'),
+    loader: () => import ('./App'),
     loading: AppLoader
 });
 
@@ -25,6 +25,11 @@ const TimelineScreen = Loadable({
 
 const ProjectsListScreen = Loadable({
     loader: () => import ('./screens/ProjectsListScreen'),
+    loading: AppLoader
+});
+
+const HeaderComponent = Loadable({
+    loader: () => import ('./components/Other/HeaderComponent'),
     loading: AppLoader
 });
 
@@ -42,13 +47,15 @@ const render = function (component, eltId) {
                     import('react-dom').then(ReactDOM => {
                         ReactDOM.render(
                             <Provider store={store}>
-                                <BrowserRouter>
-                                    <Switch>
-                                        <Route exact path='/' component={App}/>
-                                        <Route path='/timeline' component={TimelineScreen}/>
-                                        <Route path='/projectsList' component={ProjectsListScreen}/>
-                                    </Switch>
-                                </BrowserRouter>
+                                <App>
+                                    <BrowserRouter>
+                                        <Switch>
+                                            <Route exact path='/' component={ProjectsListScreen}/>
+                                            <Route path='/timeline' component={TimelineScreen}/>
+                                            <Route path='/projectsList' component={ProjectsListScreen}/>
+                                        </Switch>
+                                    </BrowserRouter>
+                                </App>
                             </Provider>,
                             root
                         );
@@ -60,5 +67,5 @@ const render = function (component, eltId) {
 };
 
 if (document.getElementById('rootIndex')) {
-    render(<App/>, 'rootIndex')
+    render(<ProjectsListScreen/>, 'rootIndex')
 }

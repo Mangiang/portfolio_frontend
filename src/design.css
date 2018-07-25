@@ -10,21 +10,6 @@ h1 {
     color:  #333333;
 }
 
-#title {
-    color: white;
-    margin: 10px;
-}
-
-#title a {
-    color: white;
-    transition: color 0.5s;
-}
-
-#title a:hover {
-    text-decoration: none;
-    color: orange
-}
-
 #loginForm {
     text-align: center;
 }

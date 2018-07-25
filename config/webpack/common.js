@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
+//const fs = require('fs');
+//const path = require('path');
 
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const cssLoader = require('css-loader');
-const fileLoader = require('file-loader');
-const htmlLoader = require('html-loader');
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+require('css-loader');
+require('file-loader');
+require('html-loader');
+//const appDirectory = fs.realpathSync(process.cwd());
+//const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-const urlLoader = require('url-loader');
+require('url-loader');
 
 module.exports = {
     output: {

@@ -26,7 +26,7 @@ class DeleteProject extends React.Component {
     }
 
     render() {
-        if (this.state.token != "none")
+        if (this.state.token !== "none")
             return (
                 <div className="deleteForm">
                     <form>
@@ -35,7 +35,7 @@ class DeleteProject extends React.Component {
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 }
 

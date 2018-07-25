@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
@@ -22,7 +22,7 @@ class Login extends Component {
     componentWillReceiveProps(nextProps) {
         this.state.token = nextProps.token;
         if (nextProps.loginFailed)
-            this.blinkForm("#CC0000");
+            Login.blinkForm("#CC0000");
     }
 
     componentWillMount() {
@@ -30,14 +30,14 @@ class Login extends Component {
     }
 
     onClickLogin() {
-        this.props.dispatch(login(this.state.inputLogin, this.state.inputPassword));      
+        this.props.dispatch(login(this.state.inputLogin, this.state.inputPassword));
     }
 
     onClickLogout() {
         this.props.dispatch(logout());
     }
 
-    blinkForm(color) {
+    static blinkForm(color) {
         let elt = document.getElementById("loginForm").childNodes[0];
         elt.style.backgroundColor = color;
     }
@@ -55,26 +55,27 @@ class Login extends Component {
     }
 
     render() {
-        if (this.state.token == "none")
-            return (
-                <form className="form-inline" id="loginForm">
-                    <div className="form-group">
-                        <label htmlFor="login">Login</label>
-                        <input className="form-control" type="text" name="login" id="login" onChange={this.updateInputLogin} />
-                    </div>
-                    <div className="form-group"> 
-                        <label htmlFor="password">Password</label>
-                        <input className="form-control" type="password" name="password" id="password" onChange={this.updateInputPassword} />
-                    </div>
-                    <button type="button" className="btn btn-default" onClick={() => this.onClickLogin()}>Log in</button>
-                </form>             
-            );
-        else
-            return (
-                <div id="logoutButton">
-                    <button type="button" className="btn btn-default" onClick={() => this.onClickLogout()}>Log out</button>
+        let loginDiv = null;
+
+        if (this.state.token === "none") {
+            loginDiv = <form className="form-inline" id="loginForm">
+                <div className="form-group">
+                    <label htmlFor="login">Login</label>
+                    <input className="form-control" type="text" name="login" id="login" onChange={this.updateInputLogin}/>
                 </div>
-            );
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input className="form-control" type="password" name="password" id="password" onChange={this.updateInputPassword}/>
+                </div>
+                <button type="button" className="btn btn-default" onClick={() => this.onClickLogin()}>Log in</button>
+            </form>
+        }
+        else {
+            loginDiv = <div id="logoutButton">
+                <button type="button" className="btn btn-default" onClick={() => this.onClickLogout()}>Log out</button>
+            </div>
+        }
+        return ({loginDiv});
     }
 }
 
@@ -86,7 +87,7 @@ function mapStateToProps(state) {
     return {
         token,
         loginFailed
-     };
+    };
 }
 
 export default hot(module)(connect(mapStateToProps)(Login));

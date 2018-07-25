@@ -13,7 +13,7 @@ class AddProject extends React.Component {
             inputDescription: "",
             beginDate: new Date(),
             endDate: new Date(),
-            images:[]
+            images: []
         };
 
         this.onClickAdd = this.onClickAdd.bind(this);
@@ -33,12 +33,13 @@ class AddProject extends React.Component {
     }
 
     onClickAdd() {
-        this.props.dispatch(addProject(
-            this.state.inputTitle,
-            this.state.inputDescription,
-            this.state.beginDate,
-            this.state.endDate,
-            this.state.images,
+        this.props.dispatch(addProject({
+                title: this.state.inputTitle,
+                description: this.state.inputDescription,
+                beginDate: this.state.beginDate,
+                endDate: this.state.endDate,
+                images: this.state.images
+            },
             this.state.token
         ));
         this.setState({
@@ -47,11 +48,11 @@ class AddProject extends React.Component {
             beginDate: new Date(),
             endDate: new Date(),
             images: []
-        })      
+        })
     }
 
     onClickHide() {
-        
+
     }
 
     updateInputTitle(e) {
@@ -65,29 +66,29 @@ class AddProject extends React.Component {
             inputDescription: e.target.value
         })
     }
-    
+
     updateBeginDate(date) {
         this.setState({
-            beginDate:date 
+            beginDate: date
         })
     }
-    
+
     updateEndDate(date) {
         this.setState({
-            endDate:date 
+            endDate: date
         })
     }
-    
+
     updateImages(imgList) {
-        let imgs = [];
+        let images = [];
         console.log(imgList);
         Array.from(imgList).forEach(elt => {
             let reader = new FileReader();
             console.log(elt);
             reader.onload = (e) => {
-                imgs.push({url:e.target.result, blob:elt});
+                images.push({url: e.target.result, blob: elt});
                 this.setState({
-                    images:imgs,
+                    images: images,
                 })
             };
             reader.readAsDataURL(elt);
@@ -104,17 +105,18 @@ class AddProject extends React.Component {
                             <label htmlFor="titlep">Title</label>
                             <input className="form-control" type="text" name="titlep" id="titlep" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
                         </div>
-                        <div className="form-group"> 
+                        <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription} value={this.state.inputDescription}/>
+                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription}
+                                   value={this.state.inputDescription}/>
                         </div>
-                        <div className="form-group"> 
+                        <div className="form-group">
                             <label htmlFor="images">Images</label>
-                            <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple />
-                            { this.state.images.length > 0 &&
-                                this.state.images.map(function (img, i) {
-                                    return <img key={i} src={img.url} style={{height:200, width:'auto'}}/>
-                                })
+                            <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple/>
+                            {this.state.images.length > 0 &&
+                            this.state.images.map(function (img, i) {
+                                return <img key={i} src={img.url} style={{height: 200, width: 'auto'}}/>
+                            })
                             }
                         </div>
                         <div className="form-group">
@@ -124,11 +126,11 @@ class AddProject extends React.Component {
                             <label htmlFor="endDate">Ending date</label>
                         </div>
                         <button type="button" className="btn btn-default" onClick={() => this.onClickAdd()}>Add</button>
-                    </form>                
+                    </form>
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 }
 
@@ -137,7 +139,7 @@ function mapStateToProps(state) {
 
     return {
         token
-     };
+    };
 }
 
 export default hot(module)(connect(mapStateToProps)(AddProject));

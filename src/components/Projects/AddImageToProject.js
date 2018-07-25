@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
@@ -9,7 +9,7 @@ class AddImageToProject extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            images:[]
+            images: []
         };
 
         this.onClickUpdate = this.onClickUpdate.bind(this);
@@ -19,7 +19,7 @@ class AddImageToProject extends Component {
     componentWillReceiveProps(nextProps) {
         this.state.token = nextProps.token;
         this.setState({
-            images:[]
+            images: []
         })
     }
 
@@ -39,15 +39,15 @@ class AddImageToProject extends Component {
     }
 
     updateImages(imgList) {
-        let imgs = [];
+        let images = [];
         console.log(imgList);
         Array.from(imgList).forEach(elt => {
             let reader = new FileReader();
             console.log(elt);
             reader.onload = (e) => {
-                imgs.push({url:e.target.result, blob:elt});
+                images.push({url: e.target.result, blob: elt});
                 this.setState({
-                    images:imgs,
+                    images: images,
                 })
             };
             reader.readAsDataURL(elt);
@@ -55,26 +55,30 @@ class AddImageToProject extends Component {
     }
 
     render() {
-        if (this.state.token != "none")
-            return (
-                <div id="projectForm"> 
-                    <form>
-                        <h3>Add image to this project</h3>
-                        <div className="form-group"> 
-                            <label htmlFor="images">Images</label>
-                            <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple />
-                            { this.state.images.length > 0 &&
-                                this.state.images.map(function (img, i) {
-                                    return <img key={i} src={img.url} style={{height:200, width:'auto'}}/>
-                                })
-                            }
-                        </div>
-                        <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
-                    </form>                
-                </div>
-            );
-        else
-            return <div/>
+        let renderDiv = null;
+
+        if (this.state.token !== "none") {
+            renderDiv = <div id="projectForm">
+                <form>
+                    <h3>Add image to this project</h3>
+                    <div className="form-group">
+                        <label htmlFor="images">Images</label>
+                        <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple/>
+                        {this.state.images.length > 0 &&
+                        this.state.images.map(function (img, i) {
+                            return <img key={i} src={img.url} style={{height: 200, width: 'auto'}}/>
+                        })
+                        }
+                    </div>
+                    <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
+                </form>
+            </div>;
+        }
+        else {
+            renderDiv = <div/>;
+        }
+
+        return renderDiv;
     }
 }
 
@@ -83,7 +87,7 @@ function mapStateToProps(state) {
 
     return {
         token
-     };
+    };
 }
 
 export default hot(module)(connect(mapStateToProps)(AddImageToProject));

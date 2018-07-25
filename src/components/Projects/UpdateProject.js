@@ -39,12 +39,13 @@ class UpdateProject extends React.Component {
     }
 
     onClickUpdate() {
-        this.props.dispatch(updateProject(
-            this.props.id,
-            this.state.inputTitle,
-            this.state.inputDescription,
-            this.state.beginDate,
-            this.state.endDate,
+        this.props.dispatch(updateProject({
+                id: this.props.id,
+                title: this.state.inputTitle,
+                description: this.state.inputDescription,
+                beginDate: this.state.beginDate,
+                endDate: this.state.endDate
+            },
             this.state.token
         ));
     }
@@ -60,32 +61,33 @@ class UpdateProject extends React.Component {
             inputDescription: e.target.value
         })
     }
-    
+
     updateBeginDate(date) {
         this.setState({
-            beginDate:date 
+            beginDate: date
         })
     }
-    
+
     updateEndDate(date) {
         this.setState({
-            endDate:date 
+            endDate: date
         })
     }
 
     render() {
-        if (this.state.token != "none")
+        if (this.state.token !== "none")
             return (
-                <div id="projectForm">           
+                <div id="projectForm">
                     <form>
                         <h3>Update</h3>
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
                             <input className="form-control" type="text" name="title" id="title" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
                         </div>
-                        <div className="form-group"> 
+                        <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription} value={this.state.inputDescription}/>
+                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription}
+                                   value={this.state.inputDescription}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="beginDate">Begining date</label>
@@ -94,11 +96,11 @@ class UpdateProject extends React.Component {
                             <label htmlFor="endDate">Ending date</label>
                         </div>
                         <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
-                    </form>                
+                    </form>
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 }
 
@@ -107,7 +109,7 @@ function mapStateToProps(state) {
 
     return {
         token
-     };
+    };
 }
 
 export default hot(module)(connect(mapStateToProps)(UpdateProject));

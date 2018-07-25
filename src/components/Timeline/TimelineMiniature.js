@@ -16,10 +16,6 @@ class TimelineMiniature extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
         this.state.token = nextProps.token;
     }
 
@@ -33,7 +29,7 @@ class TimelineMiniature extends React.Component {
 
     render() {
         let buttonDelete = {};
-        if (this.state.token != "none") {
+        if (this.state.token !== "none") {
             console.log("testetstetsets");
             buttonDelete =
                 <form>
@@ -41,7 +37,7 @@ class TimelineMiniature extends React.Component {
                 </form>
         }
         else {
-            buttonDelete = <form></form>
+            buttonDelete = <form/>
         }
         
         return (

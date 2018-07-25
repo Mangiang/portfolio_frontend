@@ -36,20 +36,18 @@ export class HeaderComponent extends Component<Props> {
         }
 
         return (
-            <div key={0}>
+            <div>
                 <LazyHero imageSrc={backgroundImage} color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
                     <h1 id="title" style={styles.centerName}>Arthur Joly's portfolio</h1>
-                    <h4 id="description" style={styles.centerDescription}>
-                        {description}
-                        <br/>
-                    </h4>
-                    <button onClick={this.handleTimelineRedirect.bind(this)}>{buttonTitle}</button>
+                    <h4 id="description" style={styles.centerDescription}>{description}</h4>
+                    <br/>
+                    <button onClick={this.handlePageRediection.bind(this)}>{buttonTitle}</button>
                 </LazyHero>
             </div>
         )
     }
 
-    handleTimelineRedirect() {
+    handlePageRediection() {
         if (this.props.currentPage === "timeline") {
             this.props.history.push('/projectsList');
             this.props.requestNavigation('projectsList');
@@ -81,4 +79,5 @@ function mapDispatchToProps(dispatch: Dispatch) {
     }
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderComponent)));
+export const HeaderComponentConnected = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
+export default hot(module)(withRouter(HeaderComponentConnected));

@@ -47,15 +47,15 @@ const render = function (component, eltId) {
                     import('react-dom').then(ReactDOM => {
                         ReactDOM.render(
                             <Provider store={store}>
-                                <App>
-                                    <BrowserRouter>
+                                <BrowserRouter>
+                                    <App>
                                         <Switch>
                                             <Route exact path='/' component={ProjectsListScreen}/>
                                             <Route path='/timeline' component={TimelineScreen}/>
                                             <Route path='/projectsList' component={ProjectsListScreen}/>
                                         </Switch>
-                                    </BrowserRouter>
-                                </App>
+                                    </App>
+                                </BrowserRouter>
                             </Provider>,
                             root
                         );

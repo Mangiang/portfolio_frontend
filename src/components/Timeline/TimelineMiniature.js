@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {deleteTimeline} from '../../actions/actions';
 
 
-import format from 'date-fns/format';
+import {format} from '../../Utilities/DateUtilities';
 
 class TimelineMiniature extends React.Component {
     constructor(props) {
@@ -46,8 +46,8 @@ class TimelineMiniature extends React.Component {
                 { buttonDelete }
                 <h4>{this.props.timeline.title}</h4>
                 <p>{this.props.timeline.description}</p>
-                <p>Begin date : {format(this.props.timeline.beginDate, "DD-MM-YYYY")}</p>
-                <p>End date : {format(this.props.timeline.endDate, "DD-MM-YYYY")}</p>
+                <p>Begin date : {format(this.props.timeline.beginDate)}</p>
+                <p>End date : {format(this.props.timeline.endDate)}</p>
             </div>
         )
     }

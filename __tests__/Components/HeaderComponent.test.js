@@ -10,10 +10,10 @@ describe('>>> HEADER COMPONENT', () => {
     let wrapper;
     const currentPage = "The current page";
     const history = {};
-    const requestNavigation = () => "requestNavigation";
+    const requestNavigation = (str: string): any => "currentPage";
 
     beforeEach(() => {
-        wrapper = shallow(<HeaderComponent currentPage={currentPage} history={history} requestNavigation={requestNavigation()}/>)
+        wrapper = shallow(<HeaderComponent currentPage={currentPage} history={history} requestNavigation={requestNavigation("")}/>)
     });
 
     describe('--- Snapshot', () => {

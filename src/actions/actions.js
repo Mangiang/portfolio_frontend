@@ -102,8 +102,8 @@ const requestAddProject = function (): Action {
 export type ProjectWithoutId = {
     title: string,
     description: string,
-    beginDate: string,
-    endDate: string,
+    beginDate: Date,
+    endDate: Date,
     images: Array<Object>
 };
 
@@ -212,8 +212,19 @@ export function getProjects(): ThunkAction {
             return response.json();
         })
             .then(data => {
-                console.log("GetProjects", data);
-                dispatch(requestGetProjects(data.projects));
+                let projectsList: Array<Project> = [];
+                data.projects.forEach((project) => {
+                    projectsList.push({
+                        id: project._id,
+                        title: project.title,
+                        beginDate: (project.beginDate ? new Date(project.beginDate) : new Date(0)),
+                        endDate: (project.endDate ? new Date(project.endDate) : new Date(0)),
+                        description: project.description,
+                        images: project.images
+                    })
+                });
+                console.log("GetProjects", data, projectsList);
+                dispatch(requestGetProjects(projectsList));
             });
     }
 }
@@ -254,8 +265,8 @@ export type Project = {
     id: string,
     title: string,
     description: string,
-    beginDate: string,
-    endDate: string,
+    beginDate: Date,
+    endDate: Date,
     images: Array<Object>
 };
 

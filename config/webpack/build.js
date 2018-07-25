@@ -7,6 +7,8 @@ require('image-webpack-loader');
 require('url-loader');
 const path = require('path');
 const CompressionPlugin = require("compression-webpack-plugin");
+const purifyCSSPlugin = require("purifycss-webpack");
+const glob = require("glob-all");
 
 module.exports = env => {
     const pluginList = [];
@@ -19,6 +21,13 @@ module.exports = env => {
         test: /\.js$|\.css$|\.html$/,
         threshold: 10240,
         minRatio: 0.8
+    }));
+    pluginList.push(new purifyCSSPlugin({
+        paths: glob.sync([
+            path.join(__dirname, "src/**/*.cshtml"),
+            path.join(__dirname, "src/**/*.html"),
+            path.join(__dirname, "src/**/*.js")
+        ])
     }));
 
     if (!env || env.PROD_ENV !== "headless") {

@@ -75,7 +75,7 @@ class AddTimeline extends React.Component {
     }
 
     render() {
-        if (this.state.token != "none")
+        if (this.state.token !== "none")
             return (
                 <div id="projectForm">
                     <form>
@@ -99,7 +99,7 @@ class AddTimeline extends React.Component {
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 }
 

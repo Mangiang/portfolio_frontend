@@ -73,8 +73,6 @@ export function login(login: string, password: string): ThunkAction {
             return response.json();
         })
             .then(data => {
-                console.log("fffffgf");
-                console.log(data);
                 if (data.success) {
                     cookie.save('portfolioToken', data.token, {path: '/'});
                     dispatch(requestLogin(data.token));
@@ -101,7 +99,15 @@ const requestAddProject = function (): Action {
     }
 };
 
-export function addProject(title: string, description: string, beginDate: string, endDate: string, images: Array<Object>, token: string): ThunkAction {
+export type ProjectWithoutId = {
+    title: string,
+    description: string,
+    beginDate: string,
+    endDate: string,
+    images: Array<Object>
+};
+
+export function addProject(project: ProjectWithoutId, token: string): ThunkAction {
     return (dispatch) => {
 
         fetch(API + "project/create", {
@@ -111,45 +117,50 @@ export function addProject(title: string, description: string, beginDate: string
             }),
             method: 'POST',
             body: JSON.stringify({
-                title: title,
-                description: description,
-                beginDate: beginDate,
-                endDate: endDate
+                title: project.title,
+                description: project.description,
+                beginDate: project.beginDate,
+                endDate: project.endDate
             })
         }).then(function (response) {
             return response.json();
         })
             .then(data => {
-                console.log("add", data, images, token);
-                if (images && data && token)
-                    dispatch(uploadImages(images, data.id, token));
+                console.log("add", data, project.images, token);
+                if (project.images && data && token)
+                    dispatch(uploadImages(project.images, data.id, token));
                 dispatch(requestAddProject());
             }).then(() => dispatch(getProjects()));
     }
 }
 
 export function uploadImages(images: Array<Object>, projectId: string, token: string): ThunkAction {
-    if (images.length === 0 || !images[0])
-        return () => {
-        };
+    let returnLambda = null;
 
-    return (dispatch) => {
-        images.forEach((elt) => {
-            let formData = new FormData();
-            formData.append('image', elt.blob);
-            axios({
-                method: 'post',
-                url: API + "project/upload/" + projectId.toString(),
-                data: formData,
-                headers: {"authorization": "Bearer " + token, "Content-Type": "multipart/form-data"}
-            }).then(function () {
-                dispatch(getProjects());
-                dispatch(displayProject(projectId));
-            }).catch(function (error) {
-                console.log("UploadImages ", error);
-            })
-        })
+    if (images.length === 0 || !images[0]) {
+        returnLambda = () => {
+        };
     }
+    else {
+        returnLambda = (dispatch) => {
+            images.forEach((elt) => {
+                let formData = new FormData();
+                formData.append('image', elt.blob);
+                axios({
+                    method: 'post',
+                    url: API + "project/upload/" + projectId.toString(),
+                    data: formData,
+                    headers: {"authorization": "Bearer " + token, "Content-Type": "multipart/form-data"}
+                }).then(function () {
+                    dispatch(getProjects());
+                    dispatch(displayProject(projectId));
+                }).catch(function (error) {
+                    console.log("UploadImages ", error);
+                })
+            })
+        }
+    }
+    return returnLambda;
 }
 
 const requestDeleteImage = function (): Action {
@@ -239,30 +250,36 @@ const requestUpdateProject = function (): Action {
     }
 };
 
-export function updateProject(id: string, title: string, description: string, beginDate: string, endDate: string, token: string): ThunkAction {
-    return (dispatch) => {
+export type Project = {
+    id: string,
+    title: string,
+    description: string,
+    beginDate: string,
+    endDate: string,
+    images: Array<Object>
+};
 
-        fetch(API + "project/update/" + id, {
+export function updateProject(project: Project, token: string): ThunkAction {
+    return (dispatch) => {
+        fetch(API + "project/update/" + project.id, {
             headers: new Headers({
                 "Content-Type": "application/json",
                 "authorization": "Bearer " + token
             }),
             method: 'PUT',
             body: JSON.stringify({
-                title: title,
-                description: description,
-                beginDate: beginDate,
-                endDate: endDate
+                title: project.title,
+                description: project.description,
+                beginDate: project.beginDate,
+                endDate: project.endDate
             })
         }).then(function (response) {
-            console.log("miaou", response);
             return response.json();
         })
-            .then(data => {
-                console.log("miaou", data);
+            .then(() => {
                 dispatch(requestUpdateProject());
             }).then(function () {
-            dispatch(displayProject(id));
+            dispatch(displayProject(project.id));
         });
     }
 }

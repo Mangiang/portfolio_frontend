@@ -13,7 +13,7 @@ describe('>>> HEADER COMPONENT', () => {
     const requestNavigation = () => "requestNavigation";
 
     beforeEach(() => {
-        wrapper = shallow(<HeaderComponent currentPage={""} history={{}} requestNavigation={() => "toto"}/>)
+        wrapper = shallow(<HeaderComponent currentPage={currentPage} history={history} requestNavigation={requestNavigation()}/>)
     });
 
     describe('--- Snapshot', () => {

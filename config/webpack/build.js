@@ -3,13 +3,14 @@ const commonConfiguration = require('./common');
 const webpack = require('webpack');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
-const imageLoader = require('image-webpack-loader');
-const urlLoader = require('url-loader');
+require('image-webpack-loader');
+require('url-loader');
 const path = require('path');
 const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = env => {
     const pluginList = [];
+    // noinspection JSUnresolvedFunction
     pluginList.push(new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}));
     pluginList.push(new DuplicatePackageCheckerPlugin());
     pluginList.push(new CompressionPlugin({

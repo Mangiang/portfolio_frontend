@@ -4,6 +4,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('css-loader');
+require('style-loader');
 require('file-loader');
 require('html-loader');
 //const appDirectory = fs.realpathSync(process.cwd());
@@ -55,7 +56,8 @@ module.exports = {
                     },
                     {
                         test: /\.css$/,
-                        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader'],
+                        include: __dirname + '/src'
                     },
                     // "file" loader makes sure assets end up in the `build` folder.
                     // When you `import` an asset, you get its filename.

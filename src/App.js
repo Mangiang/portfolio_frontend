@@ -36,4 +36,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default hot(module)(connect(mapStateToProps)(App));
+export default hot(module)(connect(mapStateToProps, null, null, {pure: false})(App));

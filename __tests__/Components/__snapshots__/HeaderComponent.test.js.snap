@@ -26,7 +26,7 @@ exports[`>>> HEADER COMPONENT --- Snapshot +++ capturing Snapshot of Projects li
           className="centerName"
           id="title"
         >
-          Arthur Joly's portfolio
+          Arthur Joly
         </h1>
         <h4
           className="centerDescription"

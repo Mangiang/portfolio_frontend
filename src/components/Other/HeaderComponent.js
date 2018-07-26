@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 
 import backgroundImage from '../../images/backgroundImage.jpg';
 import LazyHero from 'react-lazy-hero';
-import {centerDescription, centerName} from './styles/HeaderComponent.css';
+import {centerDescription, centerName} from './HeaderComponent.css';
 
 import type {Dispatch} from "../../actions/actions";
 import {requestNavigation} from '../../actions/actions';
@@ -37,7 +37,7 @@ export class HeaderComponent extends Component<Props> {
         return (
             <div>
                 <LazyHero imageSrc={backgroundImage} minHeight='500px' color={'#4F4943'} opacity={0.5} parallaxOffset={50}>
-                    <h1 id="title" className={centerName}>Arthur Joly's portfolio</h1>
+                    <h1 id="title" className={centerName}>Arthur Joly</h1>
                     <h4 id="description" className={centerDescription}>{description}</h4>
                     <br/>
                     <button onClick={this.handlePageRediection.bind(this)}>{buttonTitle}</button>

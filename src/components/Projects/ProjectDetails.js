@@ -43,13 +43,11 @@ export class ProjectDetails extends Component<Props> {
                     completion={50} //TODO: Do not hard code
                     beginValue={(project.beginDate ? format(project.beginDate) : "")}
                     endValue={(project.endDate ? format(project.endDate) : "")}/>
-                <div>
-                    {project.description}
-                </div>
+                <div className={style['projectDescription']}>{project.description}</div>
                 <div className={style['carouselContainer']}>
                     {
                         project.images && project.images[0].map((img) => {
-                            return ( <img key={img.id} src={img.url}/> );
+                            return ( <img className={style['carouselImage']} key={img.id} src={img.url}/> );
                         })
                     }
                 </div>

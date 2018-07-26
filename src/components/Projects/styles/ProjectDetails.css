@@ -2,7 +2,19 @@
     padding: 20px;
 }
 
+:local(.projectDescription) {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
 :local(.carouselContainer) {
-    border: black solid medium;
     width: 50%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+:local(.carouselImage) {
+    height: 100%;
+    width: auto;
 }

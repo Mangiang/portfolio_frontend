@@ -27,7 +27,7 @@
 
 :local(.divLine) {
     margin: 20px 0 0 0;
-    width: 80%;
+    width: 60%;
     background-color: black;
     height: 3px;
 }

@@ -8,13 +8,14 @@ import {withRouter} from 'react-router';
 
 type Props = {}
 
-class ProjectsListScreen extends Component<Props> {
+class ProjectDetailsScreen extends Component<Props> {
     constructor(props) {
         super(props)
     }
 
     render() {
-        return (<ProjectDetails/>)
+        const {match: {params}} = this.props;
+        return (<ProjectDetails projectID={params.id}/>)
     }
 }
 
@@ -24,4 +25,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps)(ProjectsListScreen)));
+export default hot(module)(withRouter(connect(mapStateToProps)(ProjectDetailsScreen)));

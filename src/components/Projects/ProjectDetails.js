@@ -23,9 +23,7 @@ export class ProjectDetails extends Component<Props> {
         this.props.getProject(this.props.projectID);
     }
 
-    render() {
-        "Test"
-    }
+    render() { return <div>Test</div> }
 }
 
 /*
@@ -50,4 +48,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
     }
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectsList)));
+export default hot(module)(withRouter(connect(mapStateToProps, mapDispatchToProps)(ProjectDetails)));

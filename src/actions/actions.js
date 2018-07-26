@@ -217,7 +217,7 @@ export function getProjects(): ThunkAction {
                 let projectsList: Array<Project> = [];
                 data.projects.forEach((project) => {
                     projectsList.push({
-                        id: project._id,
+                        id: project.id,
                         title: project.title,
                         beginDate: (project.beginDate ? new Date(project.beginDate) : new Date(0)),
                         endDate: (project.endDate ? new Date(project.endDate) : new Date(0)),

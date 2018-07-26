@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
-import Timeline from '../components/Timeline/Timeline';
 
 
 class TimelineScreen extends Component {
@@ -12,7 +11,6 @@ class TimelineScreen extends Component {
     render() {
         return (
             <div>
-                <Timeline/>
             </div>
         )
    }

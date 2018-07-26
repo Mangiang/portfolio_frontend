@@ -5,8 +5,7 @@ import {store} from './store/store';
 import Loadable from 'react-loadable';
 
 import './design.css';
-import './bootstrap.min.css';
-
+import 'normalize.css';
 
 //TODO: Add loading gif
 function AppLoader() {

@@ -28,8 +28,8 @@ const ProjectsListScreen = Loadable({
     loading: AppLoader
 });
 
-const HeaderComponent = Loadable({
-    loader: () => import ('./components/Other/HeaderComponent'),
+const ProjectDetailsScreen = Loadable({
+    loader: () => import ('./screens/ProjectsDetailScreen'),
     loading: AppLoader
 });
 
@@ -53,6 +53,7 @@ const render = function (component, eltId) {
                                             <Route exact path='/' component={ProjectsListScreen}/>
                                             <Route path='/timeline' component={TimelineScreen}/>
                                             <Route path='/projectsList' component={ProjectsListScreen}/>
+                                            <Route path='/project/:id' component={ProjectDetailsScreen}/>
                                         </Switch>
                                     </App>
                                 </BrowserRouter>

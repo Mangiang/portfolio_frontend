@@ -7,6 +7,7 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import styles from './styles/ProjectMiniature.css';
 import {StatusToString} from '../../Utilities/ProjectStatus'
+import type {Project} from '../../actions/actions';
 
 type Props = {
     projects: Object,
@@ -14,23 +15,12 @@ type Props = {
 }
 
 class ProjectMiniature extends React.Component<Props> {
-    project: {
-        id: string,
-        title: string,
-        description: string,
-        beginDate: Date,
-        endDate: Date,
-        images: Array<Object>
-    };
+    project: Project;
 
     constructor(props: Props) {
         super(props);
         this.project = props.projects[props.projectIdx];
         console.log(props.projectIdx, this.project);
-    }
-
-    static onClick(): void {
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>> click" + this.project.id);
     }
 
     render() {

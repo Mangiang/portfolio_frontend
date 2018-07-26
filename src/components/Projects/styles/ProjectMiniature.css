@@ -1,3 +1,19 @@
+:local(Link){
+    color: white;
+}
+
+:local(Link:hover){
+    color: white;
+}
+
+:local(a){
+    color: white;
+}
+
+:local(a:hover){
+    color: white;
+}
+
 :local(.projectMiniature) {
     position: relative;
     display: inline-block;
@@ -20,7 +36,6 @@
     width: 100%;
     height: 50%;
     z-index: 2;
-    padding: 10px;
 }
 
 :local(.projectName:hover) {
@@ -81,7 +96,7 @@
 
 :local(.projectMiniatureStatusText) {
     position: relative;
-    top: 10%;
+    top: 20%;
     float: left;
     font-size: 20px;
 }
@@ -95,10 +110,10 @@
 
 :local(.projectMiniatureStatusIcon) {
     height: 70%;
-    width: 9%;
+    width: 15%;
     border-radius: 50%;
     display: inline-block;
-    transform: translateY(15%);
+    transform: translateY(18%);
     float: right;
     margin-right: 5px;
     overflow: hidden;
@@ -139,9 +154,5 @@
 
     :local(.projectMiniatureLink) {
         min-width: 400px;
-    }
-
-    :local(.projectMiniatureStatusText) {
-        font-size: 14px;
     }
 }

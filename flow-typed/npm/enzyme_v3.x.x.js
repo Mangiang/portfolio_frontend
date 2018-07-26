@@ -12,7 +12,7 @@ declare module "enzyme" {
     declare type EnzymeSelector = string | Class<React.Component<*, *>> | Object;
 
     // CheerioWrapper is a type alias for an actual cheerio instance
-    // TODO: Reference correct type from cheerio's type declarations
+    // Reference correct type from cheerio's type declarations
     declare type CheerioWrapper = any;
 
     declare class Wrapper {

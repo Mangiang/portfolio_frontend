@@ -3,6 +3,8 @@ import {hot} from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import {connect} from 'react-redux';
 
+import styles from './App.css';
+
 //TODO: Add loading gif
 function AppLoader() {
     return <h3>Loading...</h3>;
@@ -20,7 +22,7 @@ export class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={styles['contentContainer']}>
                 <HeaderComponent/>
                 <div>
                     {this.props.children}

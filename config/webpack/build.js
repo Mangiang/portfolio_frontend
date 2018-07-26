@@ -3,12 +3,12 @@ const commonConfiguration = require('./common');
 const webpack = require('webpack');
 const uglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
-require('image-webpack-loader');
 require('url-loader');
 const path = require('path');
 const CompressionPlugin = require("compression-webpack-plugin");
 const purifyCSSPlugin = require("purifycss-webpack");
 const glob = require("glob-all");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => {
     const pluginList = [];
@@ -27,7 +27,10 @@ module.exports = env => {
             path.join(__dirname, "src/**/*.cshtml"),
             path.join(__dirname, "src/**/*.html"),
             path.join(__dirname, "src/**/*.js")
-        ])
+        ]),
+        purifyOptions:{
+            whitelist: ['*mod*']
+        }
     }));
 
     if (!env || env.PROD_ENV !== "headless") {
@@ -47,28 +50,37 @@ module.exports = env => {
             index: path.resolve('./src/index.js')
         },
         output: {
-            path: __dirname + '../../../dist',
+            path: path.resolve('./dist'),
             filename: 'bundle.js'
         },
         optimization: {
             minimizer: [
                 new uglifyJSPlugin({
                     parallel: true,
+                    cache: true,
                     uglifyOptions: {
                         compress: {
                             drop_console: true,
-                        }
-                    }
-                })
+                        },
+                        output: {comments: false}
+                    },
+                }),
+                new OptimizeCSSAssetsPlugin({})
             ],
             splitChunks: {
                 cacheGroups: {
                     default: false,
                     commons: {
-                        test: /[\\/]node_modules[\\/]/,
-                        name: 'vendor_app',
+                        name: 'commons',
                         chunks: 'all',
-                        minChunks: 2
+                        minChunks: 3,
+                        enforce: true
+                    },
+                    vendor: {
+                        chunks: 'initial',
+                        name: 'vendor',
+                        priority: -10,
+                        test: /node_modules\/(.*)\.js/
                     },
                     styles: {
                         name: 'styles',
@@ -79,15 +91,6 @@ module.exports = env => {
                 }
             },
             runtimeChunk: true
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.(png|jpg|gif)$/,
-                    loader: 'image-webpack-loader',
-                    enforce: 'pre',
-                }
-            ]
         }
     });
 };

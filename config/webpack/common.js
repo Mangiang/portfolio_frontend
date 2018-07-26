@@ -3,6 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('file-loader');
 require('html-loader');
 require('url-loader');
+require('image-webpack-loader');
+const path = require('path');
 
 module.exports = {
     output: {
@@ -53,10 +55,12 @@ module.exports = {
                                 {
                                     loader: 'css-loader',
                                     options: {
-                                        camelCase: true
+                                        importLoaders: 1,
+                                        modules: true,
+                                        sourceMap: true,
+                                        localIdentName: 'mod_[path]___[name]__[local]___[hash:base64:5]'
                                     }
-                                }
-                            ]
+                                }]
                     },
                     // "file" loader makes sure assets end up in the `build` folder.
                     // When you `import` an asset, you get its filename.
@@ -73,6 +77,11 @@ module.exports = {
                             name: 'static/media/[name].[hash:8].[ext]',
                         },
                     },
+                    {
+                        test: /\.(png|jpg|gif)$/,
+                        loader: 'image-webpack-loader',
+                        enforce: 'pre',
+                    }
                 ],
             },
         ],
@@ -83,13 +92,9 @@ module.exports = {
             template: './src/index.html',
             filename: './index.html',
         }),
-        /*new HtmlWebPackPlugin({
-          template: './src/profil.html',
-          filename: './profil.html',
-        }),*/
         new MiniCssExtractPlugin({
-            filename: '[name].[hash].css',
-            chunkFilename: '[id].[hash].css',
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         }),
     ],
 

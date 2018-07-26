@@ -1,47 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`>>> HEADER COMPONENT --- Snapshot +++ capturing Snapshot of Projects list dumb component 1`] = `
-<div>
-  <div
-    className="sc-bwzfXH kgcwpP"
+<div
+  className="centerName"
+  id="title"
+>
+  <h2
+    className="title"
   >
-    <div
-      className="sc-htpNat VxUFJ sc-bdVaJa bkBxAm"
-      height={null}
-      src="backgroundImage.jpg"
-      style={
-        Object {
-          "backgroundPositionY": "center",
-        }
-      }
-      width={null}
-    />
-    <div
-      className="sc-bxivhb fEUpac sc-bdVaJa bkBxAm"
-      color="#4F4943"
-      opacity={0.5}
-    >
-      <div>
-        <h1
-          className="centerName"
-          id="title"
-        >
-          Arthur Joly
-        </h1>
-        <h4
-          className="centerDescription"
-          id="description"
-        >
-          Here is a list of my projects
-        </h4>
-        <br />
-        <button
-          onClick={[Function]}
-        >
-          Timeline
-        </button>
-      </div>
-    </div>
+    Arthur Joly
+  </h2>
+  <div
+    className="subTitle"
+    id="subTitle"
+  >
+    Computer science engineer student
   </div>
+  <div
+    className="divLine"
+  />
 </div>
 `;

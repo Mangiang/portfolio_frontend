@@ -59,19 +59,21 @@
     "start": "./node_modules/.bin/webpack-dev-server --hot --port 8082 --config ./config/webpack/server.js",
     "headless_start": "./node_modules/.bin/webpack-dev-server --port 8082 --env.PROD_ENV=headless --hot --config ./config/webpack/server.js",
     "build": "./node_modules/.bin/webpack --config ./config/webpack/build.js",
-    "headless_build": "./node_modules/.bin/webpack --env.PROD_ENV=headless --config ./config/webpack/build.js"
+    "headless_build": "./node_modules/.bin/webpack --env.PROD_ENV=headless --config ./config/webpack/build.js",
+    "flow-typed": "./node_modules/.bin/flow-typed"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bricks.js": "^1.8.0",
+    "normalize.css": "^8.0.0",
     "radium": "^0.24.1",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.1",
     "react-lazy-hero": "^0.4.0",
+    "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
-    "react-responsive-carousel": "^3.1.41",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",

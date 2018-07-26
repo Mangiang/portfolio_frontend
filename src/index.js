@@ -29,7 +29,7 @@ const ProjectsListScreen = Loadable({
 });
 
 const ProjectDetailsScreen = Loadable({
-    loader: () => import ('./screens/ProjectsDetailScreen'),
+    loader: () => import ('./screens/ProjectDetailsScreen'),
     loading: AppLoader
 });
 

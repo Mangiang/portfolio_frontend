@@ -253,7 +253,16 @@ export function displayProject(id: string): ThunkAction {
         })
             .then(data => {
                 console.log("project", data);
-                dispatch(requestDisplayProject(data));
+                let project : Project = {
+                    id: data.id,
+                    title: data.title,
+                    beginDate: (data.beginDate ? new Date(data.beginDate) : new Date(0)),
+                    endDate: (data.endDate ? new Date(data.endDate) : new Date(0)),
+                    description: data.description,
+                    images: data.images,
+                    status: data.status
+                };
+                dispatch(requestDisplayProject(project));
             });
     }
 }

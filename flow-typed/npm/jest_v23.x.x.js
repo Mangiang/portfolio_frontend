@@ -1129,7 +1129,7 @@ declare var expect: {
     },
 };
 
-// TODO handle return type
+// handle return type
 // http://jasmine.github.io/2.4/introduction.html#section-Spies
 declare function spyOn(value: mixed, method: string): Object;
 

@@ -2,26 +2,7 @@
     padding: 20px;
 }
 
-:local(.progress) {
-    background-color: #545454;
-    position: relative;
-}
-
-:local(.progressBar) {
-    background-color: #43b7e1;
-    min-height: 20px;
-}
-
-:local(.progressValueHolder) {
-    width: 100%;
-}
-:local(.progressValue) {
-    float: right;
-}
-
 :local(.carouselContainer) {
     border: black solid medium;
-    height: 40%;
-    margin: 0;
-    width: 40%;
+    width: 50%;
 }

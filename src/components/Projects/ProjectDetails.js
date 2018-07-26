@@ -5,6 +5,8 @@ import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
+import {ProgressBar} from '../Other/ProgressBar/ProgressBar';
+
 import type {Dispatch, Project} from '../../actions/actions';
 import {displayProject} from '../../actions/actions';
 
@@ -12,11 +14,10 @@ import {format} from '../../Utilities/DateUtilities';
 
 import style from './styles/ProjectDetails.css'
 
-import {Carousel} from 'react-responsive-carousel';
-
 type Props = {
-    projects: Array<Object>,
-    getProject: (id: string) => Project
+    project: Project,
+    getProject: (id: string) => Project,
+    projectID : string,
 }
 
 export class ProjectDetails extends Component<Props> {
@@ -30,45 +31,27 @@ export class ProjectDetails extends Component<Props> {
 
     render() {
 
-        //TODO: Do not hard code
-        let progressStyle = {
-            width: "50%"
-        };
 
-        console.log("images", this.props.project.images);
+        let project = this.props.project;
 
         return (
-            <div className={style['container']}>
+            <div key={project.id} className={style['container']}>
                 <h1>
-                    {this.props.project.title}
+                    {project.title}
                 </h1>
-                <div className={style['progress']}>
-                    <div className={style['progressBar']} style={progressStyle}/>
-                </div>
-                <div className={style['progressValueHolder']}>
-                    <div className={style['progressValue']} style={progressStyle}>
-                        {this.props.project.endDate && format(this.props.project.endDate)}
-                    </div>
-                </div>
+                <ProgressBar
+                    completion={50} //TODO: Do not hard code
+                    beginValue={(project.beginDate ? format(project.beginDate) : "")}
+                    endValue={(project.endDate ? format(project.endDate) : "")}/>
                 <div>
-                    {this.props.project.beginDate && format(this.props.project.beginDate)}
-                </div>
-                <div>
-                    {this.props.project.description}
+                    {project.description}
                 </div>
                 <div className={style['carouselContainer']}>
-                    <Carousel>
                     {
-                        this.props.project.images && this.props.project.images[0].map((img) => {
-                            return (
-                                <div>
-                                    <img src={img.url}/>
-                                    <p className="legend">Image 1</p>
-                                </div>
-                            );
+                        project.images && project.images[0].map((img) => {
+                            return ( <img key={img.id} src={img.url}/> );
                         })
                     }
-                    </Carousel>
                 </div>
             </div>
         )
@@ -87,7 +70,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
-        getProject: (id: string): Project => {
+        getProject: (id: string) => {
             dispatch(displayProject(id));
         }
     }

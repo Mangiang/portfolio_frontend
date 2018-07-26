@@ -1,8 +1,35 @@
-:local(.centerName) {
+:local(.text){
+    font-family: "Open Sans", sans-serif;
     color: white;
 }
 
+:local(.centerName) {
+    composes: text;
+    text-align: left;
+    font-size: 40px;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+}
+
+:local(.title){
+    margin: 0;
+}
+
+:local(.subTitle) {
+    composes: text;
+    font-size: 20px;
+    padding: 10px 0 0 0;
+}
+
 :local(.centerDescription) {
-    margin-top: 50px;
-    color: white;
+    composes: text;
+    text-align: left;
+    font-size: 20px;
+}
+
+:local(.footer) {
+    bottom: 0;
+    position: absolute;
 }

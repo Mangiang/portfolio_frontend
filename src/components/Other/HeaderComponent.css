@@ -1,13 +1,12 @@
 :local(.text){
     font-family: "Open Sans", sans-serif;
-    color: white;
+    color: black;
 }
 
 :local(.centerName) {
     composes: text;
     text-align: left;
     font-size: 40px;
-    position: absolute;
     margin: 0 10% 0 10%;
 }
 
@@ -26,4 +25,11 @@
     composes: text;
     text-align: left;
     font-size: 20px;
+}
+
+:local(.divLine) {
+    margin: 20px 0 0 0;
+    width: 80%;
+    background-color: black;
+    height: 3px;
 }

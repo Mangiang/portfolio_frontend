@@ -56,7 +56,7 @@ describe('>>> HEADER COMPONENT', () => {
 
         let titleVal = await page.$eval('#title', e => e.innerHTML);
 
-        expect(titleVal).toBe("Arthur Joly's portfolio");
+        expect(titleVal).toBe("Arthur Joly");
     });
 
     afterAll(async (done) => {

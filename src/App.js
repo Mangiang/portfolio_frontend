@@ -23,8 +23,8 @@ export class App extends React.Component {
     render() {
         return (
             <div className={styles['contentContainer']}>
-                <HeaderComponent/>
-                <div>
+                <div className={styles['content']}>
+                    <HeaderComponent/>
                     {this.props.children}
                 </div>
             </div>

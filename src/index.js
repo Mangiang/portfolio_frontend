@@ -40,7 +40,7 @@ const render = function (component, eltId) {
         import('react-router-dom').then(parametersDom => {
             let BrowserRouter = parametersDom.BrowserRouter;
             let Switch = parametersDom.Switch;
-            import('react-router').then(parametersRouter => {
+            import('react-router-dom').then(parametersRouter => {
                 let Route = parametersRouter.Route;
                 import('react-redux').then(parametersRedux => {
                     let Provider = parametersRedux.Provider;
@@ -51,8 +51,8 @@ const render = function (component, eltId) {
                                     <App>
                                         <Switch>
                                             <Route exact path='/' component={ProjectsListScreen}/>
-                                            <Route path='/timeline' component={TimelineScreen}/>
-                                            <Route path='/projectsList' component={ProjectsListScreen}/>
+                                            <Route exact path='/timeline' component={TimelineScreen}/>
+                                            <Route exact path='/projectsList' component={ProjectsListScreen}/>
                                             <Route path='/project/:id' component={ProjectDetailsScreen}/>
                                         </Switch>
                                     </App>

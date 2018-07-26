@@ -45,7 +45,7 @@ class ProjectMiniature extends React.Component<Props> {
             <div className={styles['projectMiniature']}>
                 {
                     this.project &&
-                    <Link to={'/project/' + this.project.id} onClick={this.handleClick}>
+                    <Link to={'/project/' + this.project.id}>
                         <div className={styles['projectMiniatureLink']}>
                             {image}
                             <div className={styles['projectName']}>
@@ -79,4 +79,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps)(ProjectMiniature)));
+export default hot(module)(withRouter(connect(mapStateToProps, null, null, {pure: false})(ProjectMiniature)));

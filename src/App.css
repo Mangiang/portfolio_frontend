@@ -3,3 +3,8 @@
     background: url("./images/wood.png") repeat;
     height:100vh;
 }
+
+:local(.content) {
+    padding: 50px 20% 0 20%;
+    min-width: 180px;
+}

@@ -29,8 +29,8 @@ class ProjectMiniature extends React.Component<Props> {
         console.log(props.projectIdx, this.project);
     }
 
-    static onClick(id): void {
-        console.log("click" + id)
+    static onClick(): void {
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>> click" + this.project.id);
     }
 
     render() {
@@ -47,7 +47,7 @@ class ProjectMiniature extends React.Component<Props> {
                     this.project &&
                     <Link to={'/project/' + this.project.id}>
                         <div className={styles['projectMiniatureLink']}
-                             onClick={() => ProjectMiniature.onClick.bind(this, this.project.id)}>
+                             onClick={this.handleClick}>
                             {image}
                             <div className={styles['projectName']}>
                                 <p className={styles['projectMiniatureTitle']}>{this.project.title}</p>

@@ -76,12 +76,6 @@ module.exports = env => {
                         minChunks: 3,
                         enforce: true
                     },
-                    vendor: {
-                        chunks: 'initial',
-                        name: 'vendor',
-                        priority: -10,
-                        test: /node_modules\/(.*)\.js/
-                    },
                     styles: {
                         name: 'styles',
                         test: /\.css$/,

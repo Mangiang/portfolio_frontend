@@ -36,29 +36,51 @@ const render = function (component, eltId) {
     const root = document.getElementById(eltId);
 
     if (root) {
-        import('react-router-dom').then(parametersDom => {
-            let BrowserRouter = parametersDom.BrowserRouter;
-            let Switch = parametersDom.Switch;
+        import('react-router-dom').then(parametersRouterDom => {
+            let BrowserRouter = parametersRouterDom.BrowserRouter;
+            let Switch = parametersRouterDom.Switch;
             import('react-router-dom').then(parametersRouter => {
                 let Route = parametersRouter.Route;
                 import('react-redux').then(parametersRedux => {
                     let Provider = parametersRedux.Provider;
-                    import('react-dom').then(ReactDOM => {
-                        ReactDOM.render(
-                            <Provider store={store}>
-                                <BrowserRouter>
-                                    <App>
-                                        <Switch>
-                                            <Route exact path='/' component={ProjectsListScreen}/>
-                                            <Route exact path='/timeline' component={TimelineScreen}/>
-                                            <Route exact path='/projectsList' component={ProjectsListScreen}/>
-                                            <Route path='/project/:id' component={ProjectDetailsScreen}/>
-                                        </Switch>
-                                    </App>
-                                </BrowserRouter>
-                            </Provider>,
-                            root
-                        );
+                    import('react-dom').then(parametersDom => {
+                        let hydrate = parametersDom.hydrate;
+                        let render = parametersDom.render;
+
+                        if (root.hasChildNodes()) {
+                            hydrate(
+                                <Provider store={store}>
+                                    <BrowserRouter>
+                                        <App>
+                                            <Switch>
+                                                <Route exact path='/' component={ProjectsListScreen}/>
+                                                <Route exact path='/timeline' component={TimelineScreen}/>
+                                                <Route exact path='/projectsList' component={ProjectsListScreen}/>
+                                                <Route path='/project/:id' component={ProjectDetailsScreen}/>
+                                            </Switch>
+                                        </App>
+                                    </BrowserRouter>
+                                </Provider>,
+                                root
+                            );
+                        } else {
+                            render(
+                                <Provider store={store}>
+                                    <BrowserRouter>
+                                        <App>
+                                            <Switch>
+                                                <Route exact path='/' component={ProjectsListScreen}/>
+                                                <Route exact path='/timeline' component={TimelineScreen}/>
+                                                <Route exact path='/projectsList' component={ProjectsListScreen}/>
+                                                <Route path='/project/:id' component={ProjectDetailsScreen}/>
+                                            </Switch>
+                                        </App>
+                                    </BrowserRouter>
+                                </Provider>,
+                                root
+                            );
+                        }
+
                     });
                 });
             });

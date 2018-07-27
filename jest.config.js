@@ -10,4 +10,5 @@ module.exports = {
     moduleNameMapper: {
         "\\.(css|less)$": "identity-obj-proxy"
     },
+    testRegex: '__tests__/.*\.test\.js$',
 };

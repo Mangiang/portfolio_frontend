@@ -3,7 +3,7 @@
 import React from 'react'
 import {shallow} from 'enzyme';
 import renderer from 'react-test-renderer'
-import {ProjectsList} from '../../src/components/Projects/ProjectsList'
+import {ProjectsList} from '../../src/Components/Projects/ProjectsList'
 
 describe('>>> PROJECTS LIST COMPONENT --- Snapshot', () => {
     it('+++ capturing Snapshot of Projects list', () => {

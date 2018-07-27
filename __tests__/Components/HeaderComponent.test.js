@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import thunk from 'redux-thunk'
 
-import {HeaderComponent} from '../../src/components/Other/HeaderComponent';
+import {HeaderComponent} from '../../src/Components/Other/HeaderComponent';
 
 jest.mock('react-router-dom');
 

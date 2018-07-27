@@ -6,8 +6,8 @@ import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 
-import type {Dispatch} from '../../actions/actions';
-import {getProjects} from '../../actions/actions';
+import type {Dispatch} from '../../Actions/Actions';
+import {getProjects} from '../../Actions/Actions';
 
 import ProjectMiniature from './ProjectMiniature'
 
@@ -31,7 +31,6 @@ export class ProjectsList extends Component<Props> {
         let key = -1;
         return (
             <div className={styles['projectList']}>
-                {}
                 {
                     this.props.projects.map(() => {
                         key++;
@@ -48,7 +47,7 @@ export class ProjectsList extends Component<Props> {
  */
 
 function mapStateToProps(state) {
-    const projects = state.projects;
+    const projects = state.projectsReducer;
 
     return {
         projects,

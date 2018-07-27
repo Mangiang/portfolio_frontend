@@ -11,7 +11,7 @@ function AppLoader() {
 }
 
 const HeaderComponent = Loadable({
-    loader: () => import ('./components/Other/HeaderComponent'),
+    loader: () => import ('./Components/Other/HeaderComponent'),
     loading: AppLoader
 });
 

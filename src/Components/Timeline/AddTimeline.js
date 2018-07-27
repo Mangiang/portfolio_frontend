@@ -2,10 +2,10 @@ import React from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {updateProject} from '../../actions/actions';
+import {addTimeline} from '../../Actions/Actions';
 
 
-class UpdateProject extends React.Component {
+class AddTimeline extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ class UpdateProject extends React.Component {
             endDate: new Date()
         };
 
-        this.onClickUpdate = this.onClickUpdate.bind(this);
+        this.onClickAdd = this.onClickAdd.bind(this);
         this.updateInputDescription = this.updateInputDescription.bind(this);
         this.updateInputTitle = this.updateInputTitle.bind(this);
         this.updateBeginDate = this.updateBeginDate.bind(this);
@@ -24,28 +24,30 @@ class UpdateProject extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.state.token = nextProps.token;
-        this.setState({
-            inputTitle: nextProps.project.title,
-            inputDescription: nextProps.project.description,
-            beginDate: new Date(nextProps.project.beginDate),
-            endDate: new Date(nextProps.project.endDate)
-        })
     }
 
     componentWillMount() {
         this.state.token = this.props.token;
     }
 
-    onClickUpdate() {
-        this.props.dispatch(updateProject({
-                id: this.props.id,
-                title: this.state.inputTitle,
-                description: this.state.inputDescription,
-                beginDate: this.state.beginDate,
-                endDate: this.state.endDate
-            },
+    onClickAdd() {
+        this.props.dispatch(addTimeline(
+            this.state.inputTitle,
+            this.state.inputDescription,
+            this.state.beginDate,
+            this.state.endDate,
             this.state.token
         ));
+        this.setState({
+            inputDescription: "",
+            inputTitle: "",
+            beginDate: new Date(),
+            endDate: new Date()
+        })      
+    }
+
+    onClickHide() {
+        
     }
 
     updateInputTitle(e) {
@@ -59,16 +61,16 @@ class UpdateProject extends React.Component {
             inputDescription: e.target.value
         })
     }
-
+    
     updateBeginDate(date) {
         this.setState({
-            beginDate: date
+            beginDate:date 
         })
     }
-
+    
     updateEndDate(date) {
         this.setState({
-            endDate: date
+            endDate:date 
         })
     }
 
@@ -77,15 +79,14 @@ class UpdateProject extends React.Component {
             return (
                 <div id="projectForm">
                     <form>
-                        <h3>Update</h3>
+                        <h3>New timeline</h3>
                         <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input className="form-control" type="text" name="title" id="title" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
+                            <label htmlFor="titlet">Title</label>
+                            <input className="form-control" type="text" name="titlet" id="titlet" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group"> 
                             <label htmlFor="description">Description</label>
-                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription}
-                                   value={this.state.inputDescription}/>
+                            <input className="form-control" type="description" name="description" id="description" onChange={this.updateInputDescription} value={this.state.inputDescription}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="beginDate">Begining date</label>
@@ -93,8 +94,8 @@ class UpdateProject extends React.Component {
                         <div className="form-group">
                             <label htmlFor="endDate">Ending date</label>
                         </div>
-                        <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
-                    </form>
+                        <button type="button" className="btn btn-default" onClick={() => this.onClickAdd()}>Add</button>
+                    </form>                
                 </div>
             );
         else
@@ -107,7 +108,7 @@ function mapStateToProps(state) {
 
     return {
         token
-    };
+     };
 }
 
-export default hot(module)(connect(mapStateToProps)(UpdateProject));
+export default hot(module)(connect(mapStateToProps)(AddTimeline));

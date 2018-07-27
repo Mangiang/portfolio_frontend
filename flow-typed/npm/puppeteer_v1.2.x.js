@@ -450,7 +450,7 @@ declare module 'puppeteer' {
          */
         path?: string,
 
-        /** The quality of the image, between 0-100. Not applicable to png images. */
+        /** The quality of the image, between 0-100. Not applicable to png Images. */
         quality?: number,
 
         /**

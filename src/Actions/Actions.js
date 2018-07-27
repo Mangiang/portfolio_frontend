@@ -2,7 +2,7 @@
 
 import cookie from 'react-cookies';
 import axios from 'axios';
-import type {State} from '../store/store';
+import type {State} from '../Store/store';
 
 const API = 'https://arthur-joly.fr/api/';
 

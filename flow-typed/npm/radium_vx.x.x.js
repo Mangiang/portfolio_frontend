@@ -644,15 +644,15 @@ declare module 'radium/es/clean-state-key.js' {
 ;
 }
 declare module 'radium/es/components/style-root.js' {
-    declare module .exports: $Exports<'radium/es/components/style-root'>
+    declare module .exports: $Exports<'radium/es/Components/style-root'>
 ;
 }
 declare module 'radium/es/components/style-sheet.js' {
-    declare module .exports: $Exports<'radium/es/components/style-sheet'>
+    declare module .exports: $Exports<'radium/es/Components/style-sheet'>
 ;
 }
 declare module 'radium/es/components/style.js' {
-    declare module .exports: $Exports<'radium/es/components/style'>
+    declare module .exports: $Exports<'radium/es/Components/style'>
 ;
 }
 declare module 'radium/es/config.js' {
@@ -788,15 +788,15 @@ declare module 'radium/lib/clean-state-key.js' {
 ;
 }
 declare module 'radium/lib/components/style-root.js' {
-    declare module .exports: $Exports<'radium/lib/components/style-root'>
+    declare module .exports: $Exports<'radium/lib/Components/style-root'>
 ;
 }
 declare module 'radium/lib/components/style-sheet.js' {
-    declare module .exports: $Exports<'radium/lib/components/style-sheet'>
+    declare module .exports: $Exports<'radium/lib/Components/style-sheet'>
 ;
 }
 declare module 'radium/lib/components/style.js' {
-    declare module .exports: $Exports<'radium/lib/components/style'>
+    declare module .exports: $Exports<'radium/lib/Components/style'>
 ;
 }
 declare module 'radium/lib/config.js' {
@@ -984,15 +984,15 @@ declare module 'radium/src/clean-state-key.js' {
 ;
 }
 declare module 'radium/src/components/style-root.js' {
-    declare module .exports: $Exports<'radium/src/components/style-root'>
+    declare module .exports: $Exports<'radium/src/Components/style-root'>
 ;
 }
 declare module 'radium/src/components/style-sheet.js' {
-    declare module .exports: $Exports<'radium/src/components/style-sheet'>
+    declare module .exports: $Exports<'radium/src/Components/style-sheet'>
 ;
 }
 declare module 'radium/src/components/style.js' {
-    declare module .exports: $Exports<'radium/src/components/style'>
+    declare module .exports: $Exports<'radium/src/Components/style'>
 ;
 }
 declare module 'radium/src/config.js' {

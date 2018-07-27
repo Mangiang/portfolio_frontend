@@ -25,10 +25,10 @@ declare module "redux-mock-store" {
 
 // Filename aliases
 declare module "redux-mock-store/src/index" {
-    declare module .exports: $Exports<"redux-mock-store">
+    declare module .exports: $Exports<"redux-mock-Store">
 ;
 }
 declare module "redux-mock-store/src/index.js" {
-    declare module .exports: $Exports<"redux-mock-store">
+    declare module .exports: $Exports<"redux-mock-Store">
 ;
 }

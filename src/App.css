@@ -1,6 +1,6 @@
 :local(.contentContainer){
     background-clip: content-box;
-    background: url("./images/wood.png") repeat;
+    background: url("./Images/wood.png") repeat;
     height:100vh;
 }
 

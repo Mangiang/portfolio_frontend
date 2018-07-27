@@ -2,57 +2,50 @@ import React from 'react';
 import {hot} from 'react-hot-loader';
 
 import {connect} from 'react-redux';
-import {addProject} from '../../actions/actions';
+import {updateProject} from '../../Actions/Actions';
 
 
-class AddProject extends React.Component {
+class UpdateProject extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             inputTitle: "",
             inputDescription: "",
             beginDate: new Date(),
-            endDate: new Date(),
-            images: []
+            endDate: new Date()
         };
 
-        this.onClickAdd = this.onClickAdd.bind(this);
+        this.onClickUpdate = this.onClickUpdate.bind(this);
         this.updateInputDescription = this.updateInputDescription.bind(this);
         this.updateInputTitle = this.updateInputTitle.bind(this);
         this.updateBeginDate = this.updateBeginDate.bind(this);
         this.updateEndDate = this.updateEndDate.bind(this);
-        this.updateImages = this.updateImages.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         this.state.token = nextProps.token;
+        this.setState({
+            inputTitle: nextProps.project.title,
+            inputDescription: nextProps.project.description,
+            beginDate: new Date(nextProps.project.beginDate),
+            endDate: new Date(nextProps.project.endDate)
+        })
     }
 
     componentWillMount() {
         this.state.token = this.props.token;
     }
 
-    onClickAdd() {
-        this.props.dispatch(addProject({
+    onClickUpdate() {
+        this.props.dispatch(updateProject({
+                id: this.props.id,
                 title: this.state.inputTitle,
                 description: this.state.inputDescription,
                 beginDate: this.state.beginDate,
-                endDate: this.state.endDate,
-                images: this.state.images
+                endDate: this.state.endDate
             },
             this.state.token
         ));
-        this.setState({
-            inputDescription: "",
-            inputTitle: "",
-            beginDate: new Date(),
-            endDate: new Date(),
-            images: []
-        })
-    }
-
-    onClickHide() {
-
     }
 
     updateInputTitle(e) {
@@ -79,31 +72,15 @@ class AddProject extends React.Component {
         })
     }
 
-    updateImages(imgList) {
-        let images = [];
-        console.log(imgList);
-        Array.from(imgList).forEach(elt => {
-            let reader = new FileReader();
-            console.log(elt);
-            reader.onload = (e) => {
-                images.push({url: e.target.result, blob: elt});
-                this.setState({
-                    images: images,
-                })
-            };
-            reader.readAsDataURL(elt);
-        });
-    }
-
     render() {
         if (this.state.token !== "none")
             return (
                 <div id="projectForm">
                     <form>
-                        <h3>New project</h3>
+                        <h3>Update</h3>
                         <div className="form-group">
-                            <label htmlFor="titlep">Title</label>
-                            <input className="form-control" type="text" name="titlep" id="titlep" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
+                            <label htmlFor="title">Title</label>
+                            <input className="form-control" type="text" name="title" id="title" onChange={this.updateInputTitle} value={this.state.inputTitle}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
@@ -111,21 +88,12 @@ class AddProject extends React.Component {
                                    value={this.state.inputDescription}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="images">Images</label>
-                            <input className="form-control" type="file" name="images" id="images" accept="image/*" onChange={(e) => this.updateImages(e.target.files)} multiple/>
-                            {this.state.images.length > 0 &&
-                            this.state.images.map(function (img, i) {
-                                return <img key={i} src={img.url} style={{height: 200, width: 'auto'}}/>
-                            })
-                            }
-                        </div>
-                        <div className="form-group">
                             <label htmlFor="beginDate">Begining date</label>
                         </div>
                         <div className="form-group">
                             <label htmlFor="endDate">Ending date</label>
                         </div>
-                        <button type="button" className="btn btn-default" onClick={() => this.onClickAdd()}>Add</button>
+                        <button type="button" className="btn btn-default" onClick={() => this.onClickUpdate()}>Update</button>
                     </form>
                 </div>
             );
@@ -142,4 +110,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default hot(module)(connect(mapStateToProps)(AddProject));
+export default hot(module)(connect(mapStateToProps)(UpdateProject));

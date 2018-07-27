@@ -7,7 +7,7 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import styles from './styles/ProjectMiniature.css';
 import {StatusToString} from '../../Utilities/ProjectStatus'
-import type {Project} from '../../actions/actions';
+import type {Project} from '../../Actions/Actions';
 
 type Props = {
     projects: Object,
@@ -61,7 +61,7 @@ class ProjectMiniature extends React.Component<Props> {
 }
 
 function mapStateToProps(state, ownProps) {
-    const projects = state.projects;
+    const projects = state.projectsReducer;
     const projectIdx = ownProps.projectIdx;
     return {
         projects: projects,

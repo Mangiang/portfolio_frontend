@@ -218,7 +218,7 @@ declare module 'babel-core/lib/helpers/resolve.js' {
 ;
 }
 declare module 'babel-core/lib/store.js' {
-    declare module .exports: $Exports<'babel-core/lib/store'>
+    declare module .exports: $Exports<'babel-core/lib/Store'>
 ;
 }
 declare module 'babel-core/lib/tools/build-external-helpers.js' {

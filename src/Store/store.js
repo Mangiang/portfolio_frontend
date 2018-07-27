@@ -2,11 +2,11 @@
 
 import type {Store} from 'redux';
 import {applyMiddleware, createStore} from 'redux';
-import portfolio from '../reducers/reducers';
+import portfolio from '../Reducers/Reducers';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 import cookie from 'react-cookies'
-import type {Action} from '../actions/actions'
+import type {Action} from '../Actions/Actions'
 
 let middlewares = [thunkMiddleware];
 
@@ -25,13 +25,13 @@ export type State = {
 export const store: Store<State, Action> = createStore(
     portfolio,
     {
-        loginInfos: {
+        loginReducer: {
             token: cookie.load('portfolioToken') === undefined ? "none" : cookie.load('portfolioToken'),
             loginFailed: false
         },
-        projects: [],
-        currentProject: {},
-        timelines: []
+        projectsReducer: [],
+        projectDetailsReducer: {},
+        timelineReducer: []
     },
     applyMiddleware(
         ...middlewares

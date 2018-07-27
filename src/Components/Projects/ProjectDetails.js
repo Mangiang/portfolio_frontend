@@ -7,8 +7,8 @@ import {withRouter} from 'react-router';
 
 import {ProgressBar} from '../Other/ProgressBar/ProgressBar';
 
-import type {Dispatch, Project} from '../../actions/actions';
-import {displayProject} from '../../actions/actions';
+import type {Dispatch, Project} from '../../Actions/Actions';
+import {displayProject} from '../../Actions/Actions';
 
 import {format} from '../../Utilities/DateUtilities';
 
@@ -57,7 +57,7 @@ export class ProjectDetails extends Component<Props> {
 }
 
 function mapStateToProps(state, ownProps) {
-    const project = state.currentProject;
+    const project = state.projectDetailsReducer;
     const projectID = ownProps.projectID;
 
     return {

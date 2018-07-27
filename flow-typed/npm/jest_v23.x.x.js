@@ -141,7 +141,7 @@ type JestPromiseType = {
 type JestTestName = string | Function;
 
 /**
- *  Plugin: jest-styled-components
+ *  Plugin: jest-styled-Components
  */
 
 type JestStyledComponentsMatcherValue =

@@ -3,20 +3,19 @@
 import React, {Component} from 'react'
 import {hot} from 'react-hot-loader'
 import {connect} from 'react-redux';
-import ProjectList from '../components/Projects/ProjectsList'
+import ProjectDetails from '../Components/Projects/ProjectDetails'
 import {withRouter} from 'react-router';
 
 type Props = {}
 
-class ProjectsListScreen extends Component<Props> {
+class ProjectDetailsScreen extends Component<Props> {
     constructor(props) {
         super(props)
     }
 
     render() {
-        return (
-                <ProjectList/>
-        )
+        const {match: {params}} = this.props;
+        return (<ProjectDetails projectID={params.id}/>)
     }
 }
 
@@ -26,4 +25,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default hot(module)(withRouter(connect(mapStateToProps)(ProjectsListScreen)));
+export default hot(module)(withRouter(connect(mapStateToProps)(ProjectDetailsScreen)));

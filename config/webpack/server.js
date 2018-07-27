@@ -14,8 +14,6 @@ module.exports = env => {
         output: {
             path: __dirname + '/dist',
             filename: 'bundle.js'
-        },
-        publicPath: '/',
-        historyApiFallback: true
+        }
     });
 };

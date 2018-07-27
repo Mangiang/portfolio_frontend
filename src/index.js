@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {store} from './store/store';
+import {store} from './Store/store';
 import Loadable from 'react-loadable';
 
 import './design.css';
@@ -18,17 +18,17 @@ const App = Loadable({
 });
 
 const TimelineScreen = Loadable({
-    loader: () => import ('./screens/TimelineScreen'),
+    loader: () => import ('./Screens/TimelineScreen'),
     loading: AppLoader
 });
 
 const ProjectsListScreen = Loadable({
-    loader: () => import ('./screens/ProjectsListScreen'),
+    loader: () => import ('./Screens/ProjectsListScreen'),
     loading: AppLoader
 });
 
 const ProjectDetailsScreen = Loadable({
-    loader: () => import ('./screens/ProjectDetailsScreen'),
+    loader: () => import ('./Screens/ProjectDetailsScreen'),
     loading: AppLoader
 });
 

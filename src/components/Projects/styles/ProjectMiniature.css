@@ -28,7 +28,7 @@
 }
 
 :local(.projectName) {
-    background-color: #49464b;
+    background-color: #403d42;
     opacity: 0;
     transition: opacity 0.5s;
     position: absolute;
@@ -70,9 +70,9 @@
     text-align: center;
     position: relative;
     margin: 0;
-    top: 10%;
     width: 100%;
     font-size: 25px;
+    bottom: 0;
 }
 
 :local(.projectMiniatureStatus) {

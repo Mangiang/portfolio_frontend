@@ -62,7 +62,6 @@ module.exports = env => {
                         compress: {
                             drop_console: true,
                         },
-                        output: {comments: false}
                     },
                 }),
                 new OptimizeCSSAssetsPlugin({})

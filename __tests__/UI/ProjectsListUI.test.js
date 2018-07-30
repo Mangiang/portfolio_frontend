@@ -10,6 +10,10 @@ const port = 8083;
 describe('>>> PROJECTS LIST', () => {
     let browser, page, httpServer;
 
+    beforeAll(()=>{
+        jest.setTimeout(10000);
+    });
+
     beforeEach(async (done) => {
         [browser, httpServer] = await serverStart(url, port);
         done();

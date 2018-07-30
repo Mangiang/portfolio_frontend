@@ -36,14 +36,14 @@ export class ProjectDetails extends Component<Props> {
 
         return (
             <div key={project.id} className={style['container']}>
-                <h1>
+                <h1 id={"projectTitle"}>
                     {project.title}
                 </h1>
                 <ProgressBar
                     completion={50} //TODO: Do not hard code
                     beginValue={(project.beginDate ? format(project.beginDate) : "")}
                     endValue={(project.endDate ? format(project.endDate) : "")}/>
-                <div className={style['projectDescription']}>{project.description}</div>
+                <div id={"projectDescription"} className={style['projectDescription']}>{project.description}</div>
                 <div className={style['carouselContainer']}>
                     {
                         project.images && project.images[0].map((img) => {

@@ -15,7 +15,8 @@ export type ProjectWithoutId = {
     beginDate: Date,
     endDate: Date,
     images: Array<Object>,
-    status: number
+    status: number,
+    smallDescription: string
 };
 
 export function addProject(project: ProjectWithoutId, token: string): ThunkAction {
@@ -32,7 +33,8 @@ export function addProject(project: ProjectWithoutId, token: string): ThunkActio
                 description: project.description,
                 beginDate: project.beginDate,
                 endDate: project.endDate,
-                status: project.status
+                status: project.status,
+                smallDescription: project.smallDescription
             })
         }).then(function (response) {
             return response.json();
@@ -133,7 +135,8 @@ export function getProjects(): ThunkAction {
                         endDate: (project.endDate ? new Date(project.endDate) : new Date(0)),
                         description: project.description,
                         images: project.images,
-                        status: project.status
+                        status: project.status,
+                        smallDescription: project.smallDescription
                     })
                 });
                 console.log("GetProjects", data, projectsList);
@@ -170,7 +173,8 @@ export function displayProject(id: string): ThunkAction {
                     endDate: (data.endDate ? new Date(data.endDate) : new Date(0)),
                     description: data.description,
                     images: data.images,
-                    status: data.status
+                    status: data.status,
+                    smallDescription: data.smallDescription
                 };
                 dispatch(requestDisplayProject(project));
             });
@@ -190,7 +194,8 @@ export type Project = {
     beginDate: Date,
     endDate: Date,
     images: Array<Object>,
-    status: number
+    status: number,
+    smallDescription: string
 };
 
 export function updateProject(project: Project, token: string): ThunkAction {
@@ -206,7 +211,8 @@ export function updateProject(project: Project, token: string): ThunkAction {
                 description: project.description,
                 beginDate: project.beginDate,
                 endDate: project.endDate,
-                status: project.status
+                status: project.status,
+                smallDescription: project.smallDescription
             })
         }).then(function (response) {
             return response.json();

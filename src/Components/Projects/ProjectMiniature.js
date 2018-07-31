@@ -40,7 +40,7 @@ class ProjectMiniature extends React.Component<Props> {
                             {image}
                             <div className={styles['projectName']}>
                                 <p className={styles['projectMiniatureTitle']}>{this.project.title}</p>
-                                <p className={styles['projectMiniatureBody']}>{this.project.description}</p>
+                                <p className={styles['projectMiniatureBody']}>{this.project.smallDescription}</p>
                             </div>
                         </div>
                         <div className={styles['projectMiniatureStatus']}>

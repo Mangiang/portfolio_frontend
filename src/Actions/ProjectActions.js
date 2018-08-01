@@ -131,8 +131,8 @@ export function getProjects(): ThunkAction {
                     projectsList.push({
                         id: project.id,
                         title: project.title,
-                        beginDate: (project.beginDate ? new Date(project.beginDate) : new Date(0)),
-                        endDate: (project.endDate ? new Date(project.endDate) : new Date(0)),
+                        beginDate: (project.beginDate ? new Date(Date.parse(project.beginDate)) : new Date(0)),
+                        endDate: (project.endDate ? new Date(Date.parse(project.endDate)) : new Date(0)),
                         description: project.description,
                         images: project.images,
                         status: project.status,
@@ -169,8 +169,8 @@ export function displayProject(id: string): ThunkAction {
                 let project : Project = {
                     id: data.id,
                     title: data.title,
-                    beginDate: (data.beginDate ? new Date(data.beginDate) : new Date(0)),
-                    endDate: (data.endDate ? new Date(data.endDate) : new Date(0)),
+                    beginDate: (data.beginDate ? new Date(Date.parse(data.beginDate)) : new Date(0)),
+                    endDate: (data.endDate ? new Date(Date.parse(data.endDate)) : new Date(0)),
                     description: data.description,
                     images: data.images,
                     status: data.status,

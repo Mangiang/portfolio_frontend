@@ -20,6 +20,11 @@
     padding: 0;
     vertical-align: top;
     margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: 250px;
+    height: 250px;
 }
 
 :local(.projectMiniature img) {
@@ -43,14 +48,15 @@
 }
 
 :local(.projectMiniatureLink) {
-    max-width: 350px;
-    height: auto;
     display: inline-block;
     background-color: mediumpurple;
     color: white;
     vertical-align: top;
     transition: background-color 0.7s;
     overflow: hidden;
+    width: 250px;
+    height: 250px;
+    position: relative;
 }
 
 :local(.projectMiniatureImage) {
@@ -62,7 +68,7 @@
 :local(.projectMiniatureTitle) {
     margin-top: 5%;
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
     position: relative;
 }
 
@@ -71,7 +77,7 @@
     position: relative;
     margin: 0;
     width: 100%;
-    font-size: 25px;
+    font-size: 20px;
     bottom: 0;
 }
 
@@ -96,7 +102,7 @@
 
 :local(.projectMiniatureStatusText) {
     position: relative;
-    top: 20%;
+    top: 5%;
     float: left;
     font-size: 20px;
 }
@@ -106,6 +112,17 @@
     height: 100%;
     flex: 1;
     padding: 5px;
+}
+
+:local(.projectMiniatureStatusIconSVG) {
+    height: 70%;
+    width: 15%;
+    border-radius: 50%;
+    display: inline-block;
+    transform: translateY(18%);
+    float: right;
+    margin-right: 5px;
+    overflow: hidden;
 }
 
 :local(.projectMiniatureStatusIcon) {
@@ -149,10 +166,10 @@
     }
 
     :local(.projectMiniatureTitle) {
-        font-size: 45px;
+        font-size: 30px;
     }
 
     :local(.projectMiniatureLink) {
-        min-width: 300px;
+        min-width: 250px;
     }
 }

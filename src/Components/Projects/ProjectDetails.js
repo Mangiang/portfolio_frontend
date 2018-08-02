@@ -46,7 +46,7 @@ export class ProjectDetails extends Component<Props> {
                 <div id={"projectDescription"} className={style['projectDescription']}>{project.description}</div>
                 <div className={style['carouselContainer']}>
                     {
-                        project.images && project.images[0].map((img) => {
+                        project.images && project.images.map((img) => {
                             return ( <img className={style['carouselImage']} key={img.id} src={img.url}/> );
                         })
                     }

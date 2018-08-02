@@ -26,9 +26,8 @@ class ProjectMiniature extends React.Component<Props> {
     render() {
         let image = "";
         if (this.project
-            && this.project.images !== undefined
-            && this.project.images[0] !== undefined) {
-            image = <img className={styles['projectMiniatureImage']} src={this.project.images[0][0].url}/>
+            && this.project.images !== undefined) {
+            image = <img className={styles['projectMiniatureImage']} src={this.project.images[0].url}/>
         }
 
         return (

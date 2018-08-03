@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import ReactHtmlParser from 'react-html-parser';
 
 import {ProgressBar} from '../Other/ProgressBar/ProgressBar';
 
@@ -43,7 +44,7 @@ export class ProjectDetails extends Component<Props> {
                     completion={50} //TODO: Do not hard code
                     beginValue={(project.beginDate ? format(project.beginDate) : "")}
                     endValue={(project.endDate ? format(project.endDate) : "")}/>
-                <div id={"projectDescription"} className={style['projectDescription']}>{project.description}</div>
+                <div id={"projectDescription"} className={style['projectDescription']}>{ReactHtmlParser(project.description)}</div>
                 <div className={style['carouselContainer']}>
                     {
                         project.images && project.images.map((img) => {

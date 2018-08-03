@@ -8,7 +8,7 @@ describe('>>> MAIN PAGE', () => {
     let browser, page, httpServer;
 
     beforeAll(()=>{
-        jest.setTimeout(10000);
+        jest.setTimeout(20000);
     });
 
     beforeAll(async (done) => {
@@ -29,7 +29,7 @@ describe('>>> MAIN PAGE', () => {
     });
 
     test('Check the page title', async () => {
-        await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
+        await page.goto(`${url}:${port}`, {waitUntil: 'networkidle0'});
         const pageTitle = await page.title();
 
         expect(pageTitle).toBe("Arthur Joly");
@@ -38,7 +38,7 @@ describe('>>> MAIN PAGE', () => {
     test('Check the main page screenshot', async (done) => {
         const tester = await ScreenTest();
 
-        await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
+        await page.goto(`${url}:${port}`, {waitUntil: 'networkidle0'});
         const result = await tester(page, 'screenshots/mainPage');
 
         expect(result).toBe(true);

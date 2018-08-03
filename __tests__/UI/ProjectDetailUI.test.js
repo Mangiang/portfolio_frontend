@@ -10,7 +10,7 @@ describe('>>> PROJECT DETAIL', () => {
     let browser, page, httpServer;
 
     beforeAll(()=>{
-        jest.setTimeout(10000);
+        jest.setTimeout(20000);
     });
 
     beforeAll(async (done) => {
@@ -31,8 +31,9 @@ describe('>>> PROJECT DETAIL', () => {
     });
 
     test('Check the page title', async (done) => {
-        await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
-        await page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
+        await page.goto(`${url}:${port}`, {waitUntil: 'networkidle0'});
+        page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
+        await page.waitForNavigation();
 
         const pageTitle = await page.title();
 
@@ -43,8 +44,9 @@ describe('>>> PROJECT DETAIL', () => {
     test('Check the project detail screenshot', async (done) => {
         const tester = await ScreenTest();
 
-        await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
-        await page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
+        await page.goto(`${url}:${port}`, {waitUntil: 'networkidle0'});
+        page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
+        await page.waitForNavigation();
         const result = await tester(page, 'screenshots/projectDetail');
 
         expect(result).toBe(true);

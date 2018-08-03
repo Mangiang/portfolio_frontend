@@ -32,7 +32,7 @@ describe('>>> PROJECT DETAIL', () => {
 
     test('Check the page title', async (done) => {
         await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
-        await page.click('a');
+        await page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
 
         const pageTitle = await page.title();
 
@@ -44,7 +44,7 @@ describe('>>> PROJECT DETAIL', () => {
         const tester = await ScreenTest();
 
         await page.goto(`${url}:${port}`, {waitUntil:'networkidle0'});
-        await page.click('a');
+        await page.click('#e63f1b2b-cae4-4a1f-8fba-1467a77fc19f'); // Test Portfolio project
         const result = await tester(page, 'screenshots/projectDetail');
 
         expect(result).toBe(true);

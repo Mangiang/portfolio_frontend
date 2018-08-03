@@ -1,5 +1,4 @@
 const ScreenTest = require('puppeteer-screenshot-tester');
-
 const {serverStart, serverClose} = require('./TestsUtils');
 
 const url = 'http://localhost';

@@ -34,7 +34,7 @@ class ProjectMiniature extends React.Component<Props> {
             <div className={styles['projectMiniature']}>
                 {
                     this.project &&
-                    <Link to={'/project/' + this.project.id}>
+                    <Link id={this.project.id} to={'/project/' + this.project.id}>
                         <div className={styles['projectMiniatureLink']}>
                             {image}
                             <div className={styles['projectName']}>

@@ -5,8 +5,6 @@ import {withRouter} from 'react-router-dom';
 import style from './HeaderComponent.css';
 
 type Props = {
-    requestNavigation: (currentPage: string) => any,
-    history: Object
 }
 
 export class HeaderComponent extends Component<Props> {

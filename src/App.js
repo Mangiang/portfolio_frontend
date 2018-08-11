@@ -15,6 +15,11 @@ const HeaderComponent = Loadable({
     loading: AppLoader
 });
 
+const FooterComponent = Loadable({
+    loader: () => import ('./Components/Other/FooterComponent'),
+    loading: AppLoader
+});
+
 export class App extends React.Component {
     constructor(props) {
         super(props);
@@ -26,6 +31,7 @@ export class App extends React.Component {
                 <div className={styles['content']}>
                     <HeaderComponent/>
                     {this.props.children}
+                    <FooterComponent/>
                 </div>
             </div>
         )

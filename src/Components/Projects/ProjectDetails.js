@@ -6,8 +6,6 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import ReactHtmlParser from 'react-html-parser';
 
-import {ProgressBar} from '../Other/ProgressBar/ProgressBar';
-
 import type {Dispatch, Project} from '../../Actions/Actions';
 import {displayProject} from '../../Actions/Actions';
 

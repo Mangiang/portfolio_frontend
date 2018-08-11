@@ -10,10 +10,16 @@ import type {Dispatch, Project} from '../../Actions/Actions';
 import {displayProject} from '../../Actions/Actions';
 
 import {format} from '../../Utilities/DateUtilities';
+import {StatusToString} from "../../Utilities/ProjectStatus";
 
-import style from './styles/ProjectDetails.css'
+import style from './styles/ProjectDetails.css';
 
-import Carousel from '../Other/Carousel/Carousel'
+import Carousel from '../Other/Carousel/Carousel';
+
+import completeSignal from "../../Images/completedSignal.png";
+import onGoingSignal from "../../Images/onGoing.png";
+import abortedSignal from "../../Images/abortedSignal.png";
+import onHoldSignal from "../../Images/onHoldSignal.png";
 
 type Props = {
     project: Project,
@@ -22,8 +28,12 @@ type Props = {
 }
 
 export class ProjectDetails extends Component<Props> {
+    statusIcons: string[];
+
     constructor(props: Props) {
         super(props);
+
+        this.statusIcons = [completeSignal, onGoingSignal, abortedSignal, onHoldSignal];
     }
 
     componentWillMount() {
@@ -34,12 +44,13 @@ export class ProjectDetails extends Component<Props> {
 
 
         let project = this.props.project;
+        console.log(project.status);
 
         return (
             <div key={project.id} className={style['container']}>
                 <h1 id={"projectTitle"}>
                     {project.title}
-                    <img className={style["statusIcon"]} src={require("../../Images/onGoing.png")}/>
+                    <img className={style["statusIcon"]} src={this.statusIcons[project.status]} title={StatusToString(project.status)}/>
                 </h1>
                 <p>
                     Starting date : {(project.beginDate ? format(project.beginDate) : "")}

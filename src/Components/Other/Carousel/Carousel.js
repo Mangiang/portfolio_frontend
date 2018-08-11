@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 
 import style from './Carousel.css';
 
+import ModalImage from '../ModalImage/ModalImage';
+
 type Props = {
     slides: Object,
     projectTitle: string
@@ -13,7 +15,9 @@ type Props = {
 
 type State = {
     activeIndex: number,
-    slidesLength: number
+    slidesLength: number,
+    showModal: boolean,
+    currentSlideUrl: string
 }
 
 class Carousel extends Component<Props, State> {
@@ -24,61 +28,69 @@ class Carousel extends Component<Props, State> {
 
         this.state = {
             activeIndex: 0,
-            slidesLength: this.props.slides.length
+            slidesLength: this.props.slides.length,
+            showModal: false,
+            currentSlideUrl: ""
         };
     }
 
 
     render() {
         return (
-            <div className={style["carousel"]}>
-                <ul className={style["carouselSlides"]}>
-                    {this.props.slides.map((slide, index) =>
-                        <li className={index === this.state.activeIndex ?
-                            [style["carouselSlide"], style["carouselSlide--active"]].join(' ') :
-                            style["carouselSlide"]} key={index}>
-                            <div className={style["carouselSlideContainer"]}>
-                                <a href={slide.url} target={"_blank"}>
-                                    <img className={style["carouselSlideContent"]} src={slide.url}/>
-                                </a>
-                                <a href="#"
-                                   className={[style["carouselArrow"], style["carouselArrow--left"]].join(' ')}
-                                   onClick={event => this.goToPrevSlide(event)}>
+            <div>
+                {
+                    this.state.showModal &&
+                    <ModalImage onCloseRequest={() => this.handleToggleModal("")} url={this.state.currentSlideUrl}/>
+                }
+
+                <div className={style["carousel"]}>
+                    <ul className={style["carouselSlides"]}>
+                        {this.props.slides.map((slide, index) =>
+                            <li className={index === this.state.activeIndex ?
+                                [style["carouselSlide"], style["carouselSlide--active"]].join(' ') :
+                                style["carouselSlide"]} key={index}>
+                                <div className={style["carouselSlideContainer"]}>
+                                    <img className={style["carouselSlideContent"]} src={slide.url}
+                                         onClick={() => this.handleToggleModal(slide.url)}/>
+                                    <a href="#"
+                                       className={[style["carouselArrow"], style["carouselArrow--left"]].join(' ')}
+                                       onClick={event => this.goToPrevSlide(event)}>
                                     <span
                                         className={["fa fa-2x fa-angle-left", style["carouselArrow--icon"]].join(' ')}/>
-                                </a>
-                                <a href="#"
-                                   className={[style["carouselArrow"], style["carouselArrow--right"]].join(' ')}
-                                   onClick={event => this.goToNextSlide(event)}>
+                                    </a>
+                                    <a href="#"
+                                       className={[style["carouselArrow"], style["carouselArrow--right"]].join(' ')}
+                                       onClick={event => this.goToNextSlide(event)}>
                                     <span
                                         className={["fa fa-2x fa-angle-right", style["carouselArrow--icon"]].join(' ')}/>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
 
-                            <p>
-                                <strong className={style["carouselSlideName"]}>
-                                    Image {index}
-                                </strong>,
-                                {" "}
-                                <small className={style["carouselSlideSource"]}>
-                                    {this.props.projectTitle}
-                                </small>
-                            </p>
-                        </li>
-                    )}
-                </ul>
+                                <p>
+                                    <strong className={style["carouselSlideName"]}>
+                                        Image {index}
+                                    </strong>,
+                                    {" "}
+                                    <small className={style["carouselSlideSource"]}>
+                                        {this.props.projectTitle}
+                                    </small>
+                                </p>
+                            </li>
+                        )}
+                    </ul>
 
-                <ul className={style["carouselIndicators"]}>
-                    {this.props.slides.map((slide, index) =>
-                        <li key={index}>
-                            <a className={
-                                index === this.state.activeIndex ?
-                                    [style["carouselIndicator"], style["carouselIndicator--active"]].join(' ') :
-                                    style["carouselIndicator"]}
-                               onClick={event => this.goToSlide(index)}/>
-                        </li>
-                    )}
-                </ul>
+                    <ul className={style["carouselIndicators"]}>
+                        {this.props.slides.map((slide, index) =>
+                            <li key={index}>
+                                <a className={
+                                    index === this.state.activeIndex ?
+                                        [style["carouselIndicator"], style["carouselIndicator--active"]].join(' ') :
+                                        style["carouselIndicator"]}
+                                   onClick={() => this.goToSlide(index)}/>
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>);
     }
 
@@ -115,6 +127,10 @@ class Carousel extends Component<Props, State> {
         this.setState({
             activeIndex: index
         });
+    }
+
+    handleToggleModal(url: string) {
+        this.setState({ showModal: !this.state.showModal, currentSlideUrl:url });
     }
 }
 

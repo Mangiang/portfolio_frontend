@@ -1,16 +1,13 @@
-:local(Link){
+:local(Link) {
+    color: black;
+}
+
+
+:local(a) {
     color: white;
 }
 
-:local(Link:hover){
-    color: white;
-}
-
-:local(a){
-    color: white;
-}
-
-:local(a:hover){
+:local(a:hover) {
     color: white;
 }
 
@@ -43,6 +40,15 @@
 }
 
 :local(.projectMiniatureLink) {
+    color: white;
+}
+
+:local(.projectMiniatureLink:hover) {
+    color: white;
+}
+
+
+:local(.projectMiniatureImageContainer) {
     display: inline-block;
     background-color: mediumpurple;
     color: white;
@@ -119,7 +125,7 @@
     position: absolute;
     height: 50%;
     width: auto;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
     right: 0;
 }
@@ -133,7 +139,7 @@
         font-size: 30px;
     }
 
-    :local(.projectMiniatureLink) {
+    :local(.projectMiniatureImageContainer) {
         min-width: 250px;
     }
 }

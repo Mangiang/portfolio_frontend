@@ -38,7 +38,7 @@
 
 :local(.modalImage){
     position: absolute;
-    width: auto;
+    max-width: 100%;
     height: auto;
     top: 50%;
     left: 50%;

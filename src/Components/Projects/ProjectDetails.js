@@ -39,6 +39,7 @@ export class ProjectDetails extends Component<Props> {
             <div key={project.id} className={style['container']}>
                 <h1 id={"projectTitle"}>
                     {project.title}
+                    <img className={style["statusIcon"]} src={require("../../Images/onGoing.png")}/>
                 </h1>
                 <p>
                     Starting date : {(project.beginDate ? format(project.beginDate) : "")}

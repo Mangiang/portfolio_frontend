@@ -20,7 +20,7 @@ import Carousel from '../Other/Carousel/Carousel'
 type Props = {
     project: Project,
     getProject: (id: string) => Project,
-    projectID : string,
+    projectID: string,
 }
 
 export class ProjectDetails extends Component<Props> {
@@ -42,17 +42,22 @@ export class ProjectDetails extends Component<Props> {
                 <h1 id={"projectTitle"}>
                     {project.title}
                 </h1>
-                <ProgressBar
-                    completion={50} //TODO: Do not hard code
-                    beginValue={(project.beginDate ? format(project.beginDate) : "")}
-                    endValue={(project.endDate ? format(project.endDate) : "")}/>
-                <div id={"projectDescription"} className={style['projectDescription']}>{ReactHtmlParser(project.description)}</div>
+                <p>
+                    Starting date : {(project.beginDate ? format(project.beginDate) : "")}
+                    <br/>
+                    Ending date : {(project.endDate ? format(project.endDate) : "")}
+                </p>
+
                 <div className={style["carousel-container"]}>
                     {
                         project.images &&
                         <Carousel slides={project.images} projectTitle={project.title}/>
                     }
                 </div>
+                <br/>
+                <br/>
+                <div id={"projectDescription"}
+                     className={style['projectDescription']}>{ReactHtmlParser(project.description)}</div>
             </div>
         )
     }

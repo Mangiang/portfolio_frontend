@@ -31,15 +31,16 @@ class Carousel extends Component<Props, State> {
 
     render() {
         return (
-            <div className="carousel">
-
+            <div className={style["carousel"]}>
                 <ul className={style["carousel__slides"]}>
                     {this.props.slides.map((slide, index) =>
                         <li className={index === this.state.activeIndex ?
                             [style["carousel__slide"], style["carousel__slide--active"]].join(' ') :
                             style["carousel__slide"]} key={index}>
                             <div className={style["carousel__slideContainer"]}>
-                                <img className={style["carousel-slide__content"]} src={slide.url}/>
+                                <a href={slide.url} target={"_blank"}>
+                                    <img className={style["carousel-slide__content"]} src={slide.url}/>
+                                </a>
                                 <a href="#"
                                    className={[style["carousel__arrow"], style["carousel__arrow--left"]].join(' ')}
                                    onClick={event => this.goToPrevSlide(event)}>

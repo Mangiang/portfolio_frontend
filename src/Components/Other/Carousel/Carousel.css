@@ -1,5 +1,7 @@
 :local(.carousel) {
     position: relative;
+    width: 50%;
+    left:25%;
 }
 
 :local(.carousel__slide) {

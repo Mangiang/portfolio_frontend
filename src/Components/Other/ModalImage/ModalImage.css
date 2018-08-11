@@ -12,7 +12,6 @@
     z-index: 9999;
     opacity: 1;
     overflow-x: hidden;
-    overflow-y: hidden;
     animation: show .5s ease;
 }
 

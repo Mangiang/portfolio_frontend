@@ -15,6 +15,8 @@ import {format} from '../../Utilities/DateUtilities';
 
 import style from './styles/ProjectDetails.css'
 
+import Carousel from '../Other/Carousel/Carousel'
+
 type Props = {
     project: Project,
     getProject: (id: string) => Project,
@@ -45,11 +47,10 @@ export class ProjectDetails extends Component<Props> {
                     beginValue={(project.beginDate ? format(project.beginDate) : "")}
                     endValue={(project.endDate ? format(project.endDate) : "")}/>
                 <div id={"projectDescription"} className={style['projectDescription']}>{ReactHtmlParser(project.description)}</div>
-                <div className={style['carouselContainer']}>
+                <div className={style["carousel-container"]}>
                     {
-                        project.images && project.images.map((img) => {
-                            return ( <img className={style['carouselImage']} key={img.id} src={img.url}/> );
-                        })
+                        project.images &&
+                        <Carousel slides={project.images} projectTitle={project.title}/>
                     }
                 </div>
             </div>

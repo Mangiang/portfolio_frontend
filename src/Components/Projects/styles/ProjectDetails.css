@@ -28,3 +28,17 @@
 a {
     color: black;
 }
+
+:local(.carousel-container) {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 210px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}

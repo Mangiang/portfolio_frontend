@@ -1,0 +1,112 @@
+:local(.carousel) {
+    position: relative;
+}
+
+:local(.carousel__slide) {
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+    max-width: 900px;
+    list-style-type: none;
+    text-align: center;
+}
+
+:local(.carousel__slide--active) {
+    display: block;
+}
+
+:local(.carousel-slide__content) {
+    width: 100%;
+    height: auto;
+}
+
+:local(.carousel__slideContainer) {
+    position: relative;
+}
+
+:local(.carousel-slide__author),
+:local(.carousel-slide__source) {
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 14px;
+}
+
+@media (min-width: 992px) {
+    :local(.carousel-slide__author),
+    :local(.carousel-slide__source) {
+        font-size: 16px;
+    }
+
+}
+
+:local(.carousel-slide__source) {
+    font-style: italic;
+    color: #888;
+}
+
+:local(.carousel__arrow) {
+    position: absolute;
+    height: 100%;
+    width: 5%;
+    top: 50%;
+    color: black;
+    cursor: pointer;
+    opacity: 1;
+    background-color: transparent;
+    transform: translateY(-50%);
+}
+
+:local(.carousel__arrow:focus) {
+    outline: 0;
+}
+
+:local(.carousel__arrow:hover) {
+    opacity: .5;
+    color: white;
+    background-color: #111;
+}
+
+:local(.carousel__arrow--left) {
+    left: 0;
+}
+
+:local(.carousel__arrow--right) {
+    right: 0;
+}
+
+:local(.carousel__arrow--icon) {
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+:local(.carousel__indicators) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+:local(.carousel__indicators) > :local(li:nth-of-type(n + 2)) {
+    margin-left: 9px;
+}
+
+:local(.carousel__indicator) {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #111;
+    cursor: pointer;
+    opacity: .15;
+    transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
+}
+
+:local(.carousel__indicator:hover) {
+    opacity: .5;
+}
+
+:local(.carousel__indicator--active),
+:local(.carousel__indicator--active:hover) {
+    opacity: .75;
+}

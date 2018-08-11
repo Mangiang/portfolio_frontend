@@ -20,6 +20,7 @@ import completeSignal from "../../Images/completedSignal.png";
 import onGoingSignal from "../../Images/onGoing.png";
 import abortedSignal from "../../Images/abortedSignal.png";
 import onHoldSignal from "../../Images/onHoldSignal.png";
+import {Link} from "react-router-dom/umd/react-router-dom";
 
 type Props = {
     project: Project,
@@ -48,6 +49,7 @@ export class ProjectDetails extends Component<Props> {
 
         return (
             <div key={project.id} className={style['container']}>
+                <Link to="/">{"< Go back to main menu"}</Link>
                 <h1 id={"projectTitle"}>
                     {project.title}
                     <img className={style["statusIcon"]} src={this.statusIcons[project.status]} title={StatusToString(project.status)}/>

@@ -1,7 +1,10 @@
+body, html {
+    background: url("./Images/wood.png") repeat center center fixed;
+}
+
 :local(.contentContainer){
     background-clip: content-box;
-    background: url("./Images/wood.png") repeat;
-    height:100%;
+    height: 100%;
 }
 
 :local(.content) {

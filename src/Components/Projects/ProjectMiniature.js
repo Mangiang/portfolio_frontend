@@ -9,6 +9,11 @@ import styles from './styles/ProjectMiniature.css';
 import {StatusToString} from '../../Utilities/ProjectStatus'
 import type {Project} from '../../Actions/Actions';
 
+import completeSignal from "../../Images/completedSignal.png";
+import onGoingSignal from "../../Images/onGoing.png";
+import abortedSignal from "../../Images/abortedSignal.png";
+import onHoldSignal from "../../Images/onHoldSignal.png";
+
 type Props = {
     projects: Object,
     projectIdx: number
@@ -20,7 +25,7 @@ class ProjectMiniature extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
         this.project = props.projects[props.projectIdx];
-        console.log(props.projectIdx, this.project);
+        this.statusIcons = [completeSignal, onGoingSignal, abortedSignal, onHoldSignal];
     }
 
     render() {
@@ -45,7 +50,7 @@ class ProjectMiniature extends React.Component<Props> {
                         </div>
                         <div className={styles['projectMiniatureStatus']}>
                                 <div className={styles['projectMiniatureStatusIconHolder']}>
-                                    <div className={styles['projectMiniatureStatusIconOngoing']}/>
+                                    <img className={styles['projectMiniatureStatusIcon']} src={this.statusIcons[this.project.status]}/>
                                 </div>
                             <div className={styles['projectMiniatureStatusTextHolder']}>
                                 <div className={styles['projectMiniatureStatusText']}>

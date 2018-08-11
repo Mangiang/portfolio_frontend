@@ -27,11 +27,6 @@
     height: 250px;
 }
 
-:local(.projectMiniature img) {
-    min-width: 100%;
-    min-height: 100%;
-}
-
 :local(.projectName) {
     background-color: #403d42;
     opacity: 0;
@@ -63,6 +58,8 @@
     width: 100%;
     height: auto;
     max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 :local(.projectMiniatureTitle) {
@@ -98,11 +95,14 @@
     height: 100%;
     flex: 1;
     padding: 5px;
+    margin-left: 5px;
 }
 
 :local(.projectMiniatureStatusText) {
-    position: relative;
-    top: 5%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
     float: left;
     font-size: 20px;
 }
@@ -112,52 +112,16 @@
     height: 100%;
     flex: 1;
     padding: 5px;
-}
-
-:local(.projectMiniatureStatusIconSVG) {
-    height: 70%;
-    width: 15%;
-    border-radius: 50%;
-    display: inline-block;
-    transform: translateY(18%);
-    float: right;
     margin-right: 5px;
-    overflow: hidden;
 }
 
 :local(.projectMiniatureStatusIcon) {
-    height: 70%;
-    width: 15%;
-    border-radius: 50%;
-    display: inline-block;
-    transform: translateY(18%);
-    float: right;
-    margin-right: 5px;
-    overflow: hidden;
-}
-
-:local(.projectMiniatureStatusIconCompleted) {
-    composes: projectMiniatureStatusIcon;
-    color: #00b100;
-    background-color: #00b100;
-}
-
-:local(.projectMiniatureStatusIconOngoing) {
-    composes: projectMiniatureStatusIcon;
-    color: #03b17d;
-    background-color: #03b17d;
-}
-
-:local(.projectMiniatureStatusIconAborted) {
-    composes: projectMiniatureStatusIcon;
-    color: #b10005;
-    background-color: #b10005;
-}
-
-:local(.projectMiniatureStatusIconOnHold) {
-    composes: projectMiniatureStatusIcon;
-    color: #b15e00;
-    background-color: #b15e00;
+    position: absolute;
+    height: 50%;
+    width: auto;
+    top:50%;
+    transform: translateY(-50%);
+    right: 0;
 }
 
 @media screen and (max-width: 1000px) {

@@ -32,35 +32,35 @@ class Carousel extends Component<Props, State> {
     render() {
         return (
             <div className={style["carousel"]}>
-                <ul className={style["carousel__slides"]}>
+                <ul className={style["carouselSlides"]}>
                     {this.props.slides.map((slide, index) =>
                         <li className={index === this.state.activeIndex ?
-                            [style["carousel__slide"], style["carousel__slide--active"]].join(' ') :
-                            style["carousel__slide"]} key={index}>
-                            <div className={style["carousel__slideContainer"]}>
+                            [style["carouselSlide"], style["carouselSlide--active"]].join(' ') :
+                            style["carouselSlide"]} key={index}>
+                            <div className={style["carouselSlideContainer"]}>
                                 <a href={slide.url} target={"_blank"}>
-                                    <img className={style["carousel-slide__content"]} src={slide.url}/>
+                                    <img className={style["carouselSlideContent"]} src={slide.url}/>
                                 </a>
                                 <a href="#"
-                                   className={[style["carousel__arrow"], style["carousel__arrow--left"]].join(' ')}
+                                   className={[style["carouselArrow"], style["carouselArrow--left"]].join(' ')}
                                    onClick={event => this.goToPrevSlide(event)}>
                                     <span
-                                        className={["fa fa-2x fa-angle-left", style["carousel__arrow--icon"]].join(' ')}/>
+                                        className={["fa fa-2x fa-angle-left", style["carouselArrow--icon"]].join(' ')}/>
                                 </a>
                                 <a href="#"
-                                   className={[style["carousel__arrow"], style["carousel__arrow--right"]].join(' ')}
+                                   className={[style["carouselArrow"], style["carouselArrow--right"]].join(' ')}
                                    onClick={event => this.goToNextSlide(event)}>
                                     <span
-                                        className={["fa fa-2x fa-angle-right", style["carousel__arrow--icon"]].join(' ')}/>
+                                        className={["fa fa-2x fa-angle-right", style["carouselArrow--icon"]].join(' ')}/>
                                 </a>
                             </div>
 
                             <p>
-                                <strong className={style["carousel-slide__author"]}>
+                                <strong className={style["carouselSlideName"]}>
                                     Image {index}
                                 </strong>,
                                 {" "}
-                                <small className={style["carousel-slide__source"]}>
+                                <small className={style["carouselSlideSource"]}>
                                     {this.props.projectTitle}
                                 </small>
                             </p>
@@ -68,13 +68,13 @@ class Carousel extends Component<Props, State> {
                     )}
                 </ul>
 
-                <ul className={style["carousel__indicators"]}>
+                <ul className={style["carouselIndicators"]}>
                     {this.props.slides.map((slide, index) =>
                         <li key={index}>
                             <a className={
                                 index === this.state.activeIndex ?
-                                    [style["carousel__indicator"], style["carousel__indicator--active"]].join(' ') :
-                                    style["carousel__indicator"]}
+                                    [style["carouselIndicator"], style["carouselIndicator--active"]].join(' ') :
+                                    style["carouselIndicator"]}
                                onClick={event => this.goToSlide(index)}/>
                         </li>
                     )}

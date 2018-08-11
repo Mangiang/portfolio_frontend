@@ -4,7 +4,7 @@
     left:25%;
 }
 
-:local(.carousel__slide) {
+:local(.carouselSlide) {
     margin-right: auto;
     margin-left: auto;
     display: none;
@@ -13,39 +13,39 @@
     text-align: center;
 }
 
-:local(.carousel__slide--active) {
+:local(.carouselSlide--active) {
     display: block;
 }
 
-:local(.carousel-slide__content) {
+:local(.carouselSlideContent) {
     width: 100%;
     height: auto;
 }
 
-:local(.carousel__slideContainer) {
+:local(.carouselSlideContainer) {
     position: relative;
 }
 
-:local(.carousel-slide__author),
-:local(.carousel-slide__source) {
+:local(.carouselSlideName),
+:local(.carouselSlideSource) {
     font-family: 'Roboto', arial, sans-serif;
     font-size: 14px;
 }
 
 @media (min-width: 992px) {
-    :local(.carousel-slide__author),
-    :local(.carousel-slide__source) {
+    :local(.carouselSlideName),
+    :local(.carouselSlideSource) {
         font-size: 16px;
     }
 
 }
 
-:local(.carousel-slide__source) {
+:local(.carouselSlideSource) {
     font-style: italic;
     color: #888;
 }
 
-:local(.carousel__arrow) {
+:local(.carouselArrow) {
     position: absolute;
     height: 100%;
     width: 5%;
@@ -57,25 +57,25 @@
     transform: translateY(-50%);
 }
 
-:local(.carousel__arrow:focus) {
+:local(.carouselArrow:focus) {
     outline: 0;
 }
 
-:local(.carousel__arrow:hover) {
+:local(.carouselArrow:hover) {
     opacity: .5;
     color: white;
     background-color: #111;
 }
 
-:local(.carousel__arrow--left) {
+:local(.carouselArrow--left) {
     left: 0;
 }
 
-:local(.carousel__arrow--right) {
+:local(.carouselArrow--right) {
     right: 0;
 }
 
-:local(.carousel__arrow--icon) {
+:local(.carouselArrow--icon) {
     opacity: 1;
     position: absolute;
     top: 50%;
@@ -83,18 +83,18 @@
     transform: translate(-50%,-50%);
 }
 
-:local(.carousel__indicators) {
+:local(.carouselIndicators) {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 20px;
 }
 
-:local(.carousel__indicators) > :local(li:nth-of-type(n + 2)) {
+:local(.carouselIndicators) > :local(li:nth-of-type(n + 2)) {
     margin-left: 9px;
 }
 
-:local(.carousel__indicator) {
+:local(.carouselIndicator) {
     display: block;
     width: 24px;
     height: 3px;
@@ -104,11 +104,11 @@
     transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
 }
 
-:local(.carousel__indicator:hover) {
+:local(.carouselIndicator:hover) {
     opacity: .5;
 }
 
-:local(.carousel__indicator--active),
-:local(.carousel__indicator--active:hover) {
+:local(.carouselIndicator--active),
+:local(.carouselIndicator--active:hover) {
     opacity: .75;
 }

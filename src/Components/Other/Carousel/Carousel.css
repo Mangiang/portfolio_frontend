@@ -4,6 +4,11 @@
     left:25%;
 }
 
+:local(.carouselSlides)
+{
+    list-style: none;
+}
+
 :local(.carouselSlide) {
     margin-right: auto;
     margin-left: auto;
